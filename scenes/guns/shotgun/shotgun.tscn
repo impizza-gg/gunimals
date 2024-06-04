@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwafu68v6v4ll"]
+
+[ext_resource type="Script" path="res://scenes/guns/shotgun/shotgun.gd" id="1_m0kal"]
+[ext_resource type="AudioStream" uid="uid://dx7feyv1wg8lr" path="res://assets/sounds/pew.mp3" id="2_i3gsd"]
+
+[sub_resource type="Gradient" id="Gradient_vtrla"]
+colors = PackedColorArray(0.174492, 0.64247, 5.77569e-07, 1, 0.806193, 0.601317, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n1kyy"]
+gradient = SubResource("Gradient_vtrla")
+
+[node name="Shotgun" type="Node2D" node_paths=PackedStringArray("ShootPlayer")]
+script = ExtResource("1_m0kal")
+bullet_num = 4
+ShootPlayer = NodePath("AudioStreamPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.207031, 0.0625)
+texture = SubResource("GradientTexture2D_n1kyy")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_i3gsd")
+volume_db = -14.529

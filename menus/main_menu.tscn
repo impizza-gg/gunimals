@@ -1,0 +1,201 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxqdji6g2l47g"]
+
+[ext_resource type="Theme" uid="uid://b7q6nhv8tdmuy" path="res://assets/themes/default_theme.tres" id="1_io5mb"]
+[ext_resource type="Script" path="res://menus/main_menu.gd" id="2_d51xf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nokq1"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.0431373, 0, 0.0862745, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_io5mb")
+script = ExtResource("2_d51xf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0625398, 7.55713e-05, 0.142258, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="StudioLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/TitleVBox"]
+modulate = Color(1, 0.650605, 0.22393, 1)
+layout_mode = 2
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "[center]
+[wave amp=50 freq=3]Impizza[/wave][/center] "
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/TitleVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 88
+text = "Jogao"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="HostButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../JoinButton")
+focus_next = NodePath("../JoinButton")
+focus_previous = NodePath("../QuitButton")
+mouse_default_cursor_shape = 2
+text = "HOST GAME"
+
+[node name="JoinButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../HostButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../HostButton")
+mouse_default_cursor_shape = 2
+text = "Join Game"
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../JoinButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../JoinButton")
+mouse_default_cursor_shape = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../HostButton")
+focus_next = NodePath("../HostButton")
+focus_previous = NodePath("../SettingsButton")
+mouse_default_cursor_shape = 2
+text = "Quit Game"
+
+[node name="PlaygroundButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Playground"
+
+[node name="HostPopup" type="PopupPanel" parent="."]
+transparent_bg = true
+initial_position = 1
+size = Vector2i(400, 104)
+theme_override_styles/panel = SubResource("StyleBoxFlat_nokq1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HostPopup"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 384.0
+offset_bottom = 88.0
+
+[node name="HostNameInput" type="LineEdit" parent="HostPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Name"
+alignment = 1
+max_length = 32
+clear_button_enabled = true
+
+[node name="PopupHostButton" type="Button" parent="HostPopup/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "HOST"
+
+[node name="JoinPopup" type="PopupPanel" parent="."]
+transparent_bg = true
+initial_position = 1
+size = Vector2i(400, 146)
+always_on_top = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_nokq1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="JoinPopup"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 384.0
+offset_bottom = 130.0
+
+[node name="JoinNameInput" type="LineEdit" parent="JoinPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Name"
+alignment = 1
+max_length = 32
+clear_button_enabled = true
+
+[node name="IPInput" type="LineEdit" parent="JoinPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "IP"
+alignment = 1
+max_length = 21
+clear_button_enabled = true
+
+[node name="PopupJoinButton" type="Button" parent="JoinPopup/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Join"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/PlaygroundButton" to="." method="_on_playground_button_pressed"]
+[connection signal="pressed" from="HostPopup/VBoxContainer/PopupHostButton" to="." method="_on_popup_host_button_pressed"]
+[connection signal="pressed" from="JoinPopup/VBoxContainer/PopupJoinButton" to="." method="_on_popup_join_button_pressed"]

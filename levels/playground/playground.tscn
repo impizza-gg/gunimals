@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0ghjlejhnjuf"]
+
+[ext_resource type="Script" path="res://levels/playground/playground.gd" id="1_0pddj"]
+[ext_resource type="PackedScene" uid="uid://0ypa6kxkj0w0" path="res://levels/playground/playground_wall.tscn" id="1_k2mwf"]
+
+[node name="Playground" type="Node2D"]
+script = ExtResource("1_0pddj")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="LeftWall" parent="Walls" instance=ExtResource("1_k2mwf")]
+position = Vector2(-248, 271)
+scale = Vector2(0.5, 15)
+
+[node name="Ground" parent="Walls" instance=ExtResource("1_k2mwf")]
+position = Vector2(750, 635)
+scale = Vector2(30, 0.5)
+
+[node name="Roof" parent="Walls" instance=ExtResource("1_k2mwf")]
+position = Vector2(750, -139)
+scale = Vector2(30, 0.5)
+
+[node name="Floating_Platform" parent="Walls" instance=ExtResource("1_k2mwf")]
+position = Vector2(429, 558)
+scale = Vector2(3, 0.5)
+
+[node name="Floating_Platform2" parent="Walls" instance=ExtResource("1_k2mwf")]
+position = Vector2(687, 489)
+scale = Vector2(5, 0.5)
+
+[node name="Wall" parent="." instance=ExtResource("1_k2mwf")]
+position = Vector2(120, 538)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(428, 516)

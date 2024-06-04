@@ -1,0 +1,208 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq5jogagp2fgv"]
+
+[ext_resource type="Script" path="res://menus/waiting_room.gd" id="1_4g615"]
+[ext_resource type="Theme" uid="uid://b7q6nhv8tdmuy" path="res://assets/themes/default_theme.tres" id="2_lrvm7"]
+[ext_resource type="StyleBox" uid="uid://carfjrrwdyj05" path="res://assets/themes/panel_style.tres" id="3_k7d6c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhln3"]
+bg_color = Color(0.0802295, 0.0076866, 0.185958, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.562945, 0.00407918, 0.986375, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="WaitingRoom" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lrvm7")
+script = ExtResource("1_4g615")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0627451, 0, 0.141176, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TopContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="IP_Label" type="Label" parent="MarginContainer/VBoxContainer/TopContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "127.0.0.1:555"
+
+[node name="CopyButton" type="Button" parent="MarginContainer/VBoxContainer/TopContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 6
+text = "Copy"
+
+[node name="BodyContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/BodyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fhln3")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="MarginContainer/VBoxContainer/BodyContainer/ScrollContainer"]
+unique_name_in_owner = true
+spawn_path = NodePath("../MarginContainer/PlayerList")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/BodyContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PlayerList" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SettingsContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/BodyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("3_k7d6c")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label7" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label8" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label9" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label10" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label11" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label12" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label13" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label14" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label15" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="Label16" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "sdasdsada
+"
+
+[node name="BottomContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_lrvm7")
+text = "Start"
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TopContainer/CopyButton" to="." method="_on_copy_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/BackButton" to="." method="_on_back_button_pressed"]

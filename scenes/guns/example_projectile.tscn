@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://iwhdcrndp8wd"]
+
+[ext_resource type="Script" path="res://scenes/guns/example_projectile.gd" id="1_22ow0"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eipyn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hanc1"]
+size = Vector2(4, 4)
+
+[node name="ExampleProjectile" type="Area2D"]
+script = ExtResource("1_22ow0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.19209e-07, 1.19209e-07)
+scale = Vector2(4, 4)
+texture = SubResource("PlaceholderTexture2D_eipyn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hanc1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

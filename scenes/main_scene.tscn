@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://xtmllb3s5bfv"]
+
+[ext_resource type="PackedScene" uid="uid://dxqdji6g2l47g" path="res://menus/main_menu.tscn" id="1_0t8dn"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_11qyb"]
+[ext_resource type="Script" path="res://scripts/MultiplayerManager.gd" id="2_d5ynk"]
+[ext_resource type="PackedScene" uid="uid://cq5jogagp2fgv" path="res://menus/waiting_room.tscn" id="2_ry4pq"]
+[ext_resource type="Script" path="res://scenes/HUD.gd" id="4_36bhv"]
+[ext_resource type="AudioStream" uid="uid://b3i2yp66xiaes" path="res://assets/music/Plantasia.mp3" id="5_l18s4"]
+[ext_resource type="Script" path="res://scenes/GameContainer.gd" id="7_5xvn3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1exn3"]
+font_size = 24
+font_color = Color(0.982959, 0.604976, 3.85046e-07, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_11qyb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_36bhv")
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 571.0
+offset_right = 180.0
+offset_bottom = 625.0
+text = "0/10"
+label_settings = SubResource("LabelSettings_1exn3")
+
+[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("1_0t8dn")]
+unique_name_in_owner = true
+
+[node name="WaitingRoom" parent="CanvasLayer" instance=ExtResource("2_ry4pq")]
+unique_name_in_owner = true
+visible = false
+
+[node name="MultiplayerManager" type="Node" parent="."]
+script = ExtResource("2_d5ynk")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_l18s4")
+volume_db = -8.0
+bus = &"Woo"
+
+[node name="GameContainer" type="Node" parent="."]
+script = ExtResource("7_5xvn3")
+
+[node name="MapSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://levels/playground/playground.tscn")
+spawn_path = NodePath("../GameContainer")
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("../GameContainer")
+
+[connection signal="create_room" from="CanvasLayer/MainMenu" to="MultiplayerManager" method="_on_main_menu_create_room"]
+[connection signal="join_room" from="CanvasLayer/MainMenu" to="MultiplayerManager" method="_on_main_menu_join_room"]
+[connection signal="start_playground" from="CanvasLayer/MainMenu" to="." method="_on_main_menu_start_playground"]
+[connection signal="leave_room" from="CanvasLayer/WaitingRoom" to="MultiplayerManager" method="_on_waiting_room_leave_room"]
+[connection signal="player_added" from="MultiplayerManager" to="CanvasLayer/WaitingRoom" method="_on_multiplayer_manager_player_added"]
+[connection signal="player_disconnected_signal" from="MultiplayerManager" to="CanvasLayer/WaitingRoom" method="_on_multiplayer_manager_player_disconnected_signal"]

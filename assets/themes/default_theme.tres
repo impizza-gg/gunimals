@@ -1,0 +1,40 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://b7q6nhv8tdmuy"]
+
+[ext_resource type="StyleBox" uid="uid://carfjrrwdyj05" path="res://assets/themes/panel_style.tres" id="1_4fsgh"]
+[ext_resource type="FontFile" uid="uid://bprcoae43ed3n" path="res://assets/fonts/EarlyGameBoy.ttf" id="1_4oegv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ky50o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yjan2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_umh0d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00pyt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qa4nu"]
+
+[resource]
+default_font = ExtResource("1_4oegv")
+default_font_size = 24
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.376471, 1, 0.298039, 1)
+Button/colors/font_hover_color = Color(0.376437, 1, 0.297408, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0.298622, 0.488363, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 8
+Button/styles/disabled = SubResource("StyleBoxEmpty_ky50o")
+Button/styles/focus = SubResource("StyleBoxEmpty_yjan2")
+Button/styles/hover = SubResource("StyleBoxEmpty_umh0d")
+Button/styles/normal = SubResource("StyleBoxEmpty_00pyt")
+Button/styles/pressed = SubResource("StyleBoxEmpty_qa4nu")
+Panel/styles/panel = ExtResource("1_4fsgh")

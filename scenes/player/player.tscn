@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckbdga2x3mllg"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_x5utg"]
+[ext_resource type="Script" path="res://scenes/player/GunManager.gd" id="2_8gubn"]
+[ext_resource type="PackedScene" uid="uid://dwafu68v6v4ll" path="res://scenes/guns/shotgun/shotgun.tscn" id="3_w71jw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ac5a1"]
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mnla"]
+
+[sub_resource type="Gradient" id="Gradient_clrrk"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y3bgj"]
+gradient = SubResource("Gradient_clrrk")
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nleoe"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Sprite2D:flip_h")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_x5utg")
+
+[node name="Name" type="Label" parent="."]
+offset_left = -22.0
+offset_top = -43.0
+offset_right = 20.0
+offset_bottom = -20.0
+text = "Teste"
+label_settings = SubResource("LabelSettings_ac5a1")
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8mnla")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7.86781e-06, -0.124996)
+scale = Vector2(0.3125, 0.308594)
+texture = SubResource("GradientTexture2D_y3bgj")
+
+[node name="GunManager" type="Node2D" parent="."]
+script = ExtResource("2_8gubn")
+currentGunScene = ExtResource("3_w71jw")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nleoe")
