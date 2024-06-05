@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7fskb55uikyb"
-path="res://.godot/imported/cursor_croshair.png-f616f9677b218ec451d8fd1e778c80fa.ctex"
+uid="uid://nkyh2rwfushh"
+path="res://.godot/imported/pizza.png-11c8b9cfed999de4e1f6017960f2d0ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cursors/cursor_croshair.png"
-dest_files=["res://.godot/imported/cursor_croshair.png-f616f9677b218ec451d8fd1e778c80fa.ctex"]
+source_file="res://scenes/intro/pizza.png"
+dest_files=["res://.godot/imported/pizza.png-11c8b9cfed999de4e1f6017960f2d0ba.ctex"]
 
 [params]
 

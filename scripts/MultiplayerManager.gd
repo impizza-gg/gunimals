@@ -38,12 +38,12 @@ func _on_main_menu_create_room(playerName: String) -> void:
 # essa função é chamada pelos clients quando se conectam no server
 # usando rpc_id(1, ...)
 @rpc("any_peer", "call_remote")
-func add_player(id: int, playerName: String, admin := false):
-	print("Adding player: " + playerName + " id: " + str(id))
+func add_player(id: int, player_name: String, admin := false):
+	print("Adding player: " + player_name + " id: " + str(id))
 	
-	player_added.emit(id, playerName, admin)
+	player_added.emit(id, player_name, admin)
 	connected_players[id] = {
-		"name": playerName,
+		"player_name": player_name,
 	}
 	
 	

@@ -1,5 +1,6 @@
 extends Node
 
+@onready var MainMenu := %MainMenu
 @onready var WaitingRoom := %WaitingRoom
 @onready var PlaygroundScene := preload("res://levels/playground/playground.tscn")
 @onready var PlayerScene := preload("res://scenes/player/player.tscn")
@@ -16,7 +17,7 @@ func _ready() -> void:
 func playerSpawnFunction(player_data: Dictionary) -> Node:
 	var player := PlayerScene.instantiate()
 	player.name = str(player_data.id) # nome do nodo
-	player.player_name = player_data.name
+	player.player_name = player_data.player_name
 	player.position = Vector2(400, 500) + player_data.counter * Vector2(700, 0)
 	return player
 
@@ -49,3 +50,14 @@ func game_started_all() -> void:
 	WaitingRoom.hide()
 	
 	
+func _on_main_menu_start_playground() -> void:
+	# não funciona se abrir depois de abrir uma conexão multiplayer
+	# TODO: lidar com controles locais e online
+	var playground := PlaygroundScene.instantiate()
+	MainMenu.hide()
+	add_child(playground)
+	PlayerSpawner.spawn({
+		"player_name": "Player",
+		"id": 1,
+		"counter": 0
+	})

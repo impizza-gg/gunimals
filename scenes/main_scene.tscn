@@ -64,7 +64,7 @@ spawn_path = NodePath("../GameContainer")
 
 [connection signal="create_room" from="CanvasLayer/MainMenu" to="MultiplayerManager" method="_on_main_menu_create_room"]
 [connection signal="join_room" from="CanvasLayer/MainMenu" to="MultiplayerManager" method="_on_main_menu_join_room"]
-[connection signal="start_playground" from="CanvasLayer/MainMenu" to="." method="_on_main_menu_start_playground"]
+[connection signal="start_playground" from="CanvasLayer/MainMenu" to="GameContainer" method="_on_main_menu_start_playground"]
 [connection signal="leave_room" from="CanvasLayer/WaitingRoom" to="MultiplayerManager" method="_on_waiting_room_leave_room"]
 [connection signal="player_added" from="MultiplayerManager" to="CanvasLayer/WaitingRoom" method="_on_multiplayer_manager_player_added"]
 [connection signal="player_disconnected_signal" from="MultiplayerManager" to="CanvasLayer/WaitingRoom" method="_on_multiplayer_manager_player_disconnected_signal"]

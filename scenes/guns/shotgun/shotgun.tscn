@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwafu68v6v4ll"]
 
 [ext_resource type="Script" path="res://scenes/guns/shotgun/shotgun.gd" id="1_m0kal"]
-[ext_resource type="AudioStream" uid="uid://dx7feyv1wg8lr" path="res://assets/sounds/pew.mp3" id="2_i3gsd"]
+[ext_resource type="AudioStream" uid="uid://by3mds4fkbad0" path="res://assets/sounds/bullet_sound.wav" id="2_45s0f"]
 
 [sub_resource type="Gradient" id="Gradient_vtrla"]
 colors = PackedColorArray(0.174492, 0.64247, 5.77569e-07, 1, 0.806193, 0.601317, 0, 1)
@@ -19,5 +19,5 @@ scale = Vector2(0.207031, 0.0625)
 texture = SubResource("GradientTexture2D_n1kyy")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_i3gsd")
-volume_db = -14.529
+stream = ExtResource("2_45s0f")
+volume_db = -20.0

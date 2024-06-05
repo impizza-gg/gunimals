@@ -43,9 +43,10 @@ func _on_quit_button_pressed() -> void:
 
 func focus_button() -> void:
 	if ButtonsVBox:
-		var button: Button = ButtonsVBox.get_child(0)
-		if button is Button:
-			button.grab_focus()
+		for child in ButtonsVBox.get_children():
+			if child is Button and not child.disabled:
+				child.grab_focus()
+				break
 
 
 func _on_popup_host_button_pressed() -> void:

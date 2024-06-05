@@ -87,14 +87,26 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
 
+[node name="LocalButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../PlaygroundButton")
+focus_neighbor_bottom = NodePath("../HostButton")
+focus_next = NodePath("../HostButton")
+focus_previous = NodePath("../PlaygroundButton")
+mouse_default_cursor_shape = 2
+disabled = true
+text = "Local"
+
 [node name="HostButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_top = NodePath("../LocalButton")
 focus_neighbor_bottom = NodePath("../JoinButton")
 focus_next = NodePath("../JoinButton")
-focus_previous = NodePath("../QuitButton")
+focus_previous = NodePath("../LocalButton")
 mouse_default_cursor_shape = 2
 text = "HOST GAME"
 
@@ -121,14 +133,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../SettingsButton")
-focus_neighbor_bottom = NodePath("../HostButton")
-focus_next = NodePath("../HostButton")
+focus_neighbor_bottom = NodePath("../PlaygroundButton")
+focus_next = NodePath("../PlaygroundButton")
 focus_previous = NodePath("../SettingsButton")
 mouse_default_cursor_shape = 2
 text = "Quit Game"
 
 [node name="PlaygroundButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../LocalButton")
+focus_next = NodePath("../LocalButton")
+focus_previous = NodePath("../QuitButton")
 mouse_default_cursor_shape = 2
 text = "Playground"
 
