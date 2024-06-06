@@ -65,7 +65,8 @@ modulate = Color(1, 0.650605, 0.22393, 1)
 layout_mode = 2
 size_flags_vertical = 4
 bbcode_enabled = true
-text = "[center]
+text = "
+[center]
 [wave amp=50 freq=3]Impizza[/wave][/center] "
 fit_content = true
 scroll_active = false
