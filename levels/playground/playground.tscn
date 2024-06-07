@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0ghjlejhnjuf"]
+[gd_scene load_steps=5 format=3 uid="uid://d0ghjlejhnjuf"]
 
 [ext_resource type="Script" path="res://levels/playground/playground.gd" id="1_0pddj"]
 [ext_resource type="PackedScene" uid="uid://0ypa6kxkj0w0" path="res://levels/playground/playground_wall.tscn" id="1_k2mwf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1buh"]
+size = Vector2(91.75, 1521.13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsndd"]
+size = Vector2(2831.5, 124)
 
 [node name="Playground" type="Node2D"]
 script = ExtResource("1_0pddj")
@@ -33,3 +39,27 @@ position = Vector2(120, 538)
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(428, 516)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2092, 303)
+shape = SubResource("RectangleShape2D_s1buh")
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-639, 293)
+shape = SubResource("RectangleShape2D_s1buh")
+
+[node name="Area2D3" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(719, 1125)
+shape = SubResource("RectangleShape2D_rsndd")
+
+[node name="Area2D3" type="Area2D" parent="Area2D3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3/Area2D3"]
+position = Vector2(726, -532)
+shape = SubResource("RectangleShape2D_rsndd")

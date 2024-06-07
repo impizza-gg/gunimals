@@ -11,12 +11,13 @@ signal game_started
 func _ready() -> void:
 	# foi uma desgraça chegar aqui
 	spawner.spawn_function = spawnMenuPlayer
-
+	
 
 var ip: String : 
 	set(value):
 		%IP_Label.text = value
-
+		# DEBUG
+		DisplayServer.clipboard_set(%IP_Label.text)
 
 func _on_back_button_pressed() -> void:
 	leave_room.emit()

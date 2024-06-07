@@ -21,10 +21,14 @@ func _ready() -> void:
 
 
 func _on_host_button_pressed() -> void:
+	# DEBUG
+	HostNameInput.text = "Host"
 	HostPopup.show()
 
 
 func _on_join_button_pressed() -> void:
+	# DEBUG
+	JoinNameInput.text = "Client"
 	JoinPopup.show()
 	
 

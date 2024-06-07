@@ -53,3 +53,10 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	move_and_slide()
+
+
+@rpc("any_peer", "call_local")
+func update_health(change: int):
+	current_health += change
+	current_health = min(current_health, max_health)
+	HealthBar.value = current_health

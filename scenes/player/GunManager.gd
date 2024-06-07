@@ -24,7 +24,7 @@ func shoot_function(gun_position: Vector2, gun_rotation: float, direction: Vecto
 
 @rpc("any_peer", "call_local")
 func spawn_bullets(gun_position: Vector2, gun_rotation: float, direction: Vector2, owner_id: int) -> void:
-	var bulletList : Array[Node] = currentGun.shoot(gun_position, gun_rotation, direction)
+	var bulletList : Array[Node] = currentGun.shoot(gun_position, gun_rotation, direction, owner_id)
 	if owner_id == my_id:
 		Signals.update_hud_ammo_current.emit(currentGun.current_ammo)
 	for bullet in bulletList:

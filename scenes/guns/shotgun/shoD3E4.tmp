@@ -12,7 +12,6 @@ gradient = SubResource("Gradient_vtrla")
 [node name="Shotgun" type="Node2D" node_paths=PackedStringArray("ShootPlayer")]
 script = ExtResource("1_m0kal")
 bullet_num = 4
-damage = 8
 ShootPlayer = NodePath("AudioStreamPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
