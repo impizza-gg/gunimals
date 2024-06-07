@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Jogao"
-run/main_scene="res://scenes/main_scene.tscn"
+run/main_scene="res://scenes/intro/intro.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
 [autoload]

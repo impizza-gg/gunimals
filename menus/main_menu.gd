@@ -109,6 +109,8 @@ func save_name(playerName: String) -> void:
 func load_config() -> Dictionary:
 	# No momento o jogo busca os dados do usuário, que é só o nome que ele utilizou da última vez.
 	var file = FileAccess.open("user://user_data.save", FileAccess.READ)
+	if not file:
+		return {}
 	var content = file.get_as_text()
 	var data = JSON.parse_string(content)
 	if not data: data = {}
