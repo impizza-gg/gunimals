@@ -1,0 +1,15 @@
+keys,en,br
+LOCAL_BUTTON,Local,Local
+SETTINGS_BUTTON,Settings,Configuracoes
+JOIN_BUTTON,Join Game,Entrar
+HOST_BUTTON,Host Game,Hospedar
+QUIT_BUTTON,Quit,Sair
+PLAYGROUND_BUTTON,Playground,Playground
+START_BUTTON,Start,Iniciar
+BACK_BUTTON,Back,Voltar
+COPY_BUTTON,Copy,Copiar
+BR_TOOLTIP,Portuguese,Portugues
+EN_TOOLTIP,English,Ingles
+NAME_PLACEHOLDER,Name,Nome
+IP_WARNING,Invalid IP address,Endereco IP invalido
+NAME_WARNING,Invalid name,Invalid name

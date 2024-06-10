@@ -64,7 +64,8 @@ text = "127.0.0.1:555"
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_constants/outline_size = 6
-text = "Copy"
+action_mode = 0
+text = "COPY_BUTTON"
 
 [node name="BodyContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -196,12 +197,14 @@ visible = false
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_lrvm7")
-text = "Start"
+action_mode = 0
+text = "START_BUTTON"
 
 [node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-text = "Back"
+action_mode = 0
+text = "BACK_BUTTON"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopContainer/CopyButton" to="." method="_on_copy_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/StartButton" to="." method="_on_start_button_pressed"]

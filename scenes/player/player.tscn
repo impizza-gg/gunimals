@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckbdga2x3mllg"]
+[gd_scene load_steps=9 format=3 uid="uid://ckbdga2x3mllg"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_x5utg"]
 [ext_resource type="Script" path="res://scenes/player/GunManager.gd" id="2_8gubn"]
-[ext_resource type="PackedScene" uid="uid://dwafu68v6v4ll" path="res://scenes/guns/shotgun/shotgun.tscn" id="3_w71jw"]
 [ext_resource type="Theme" uid="uid://d4lekt35xyedk" path="res://assets/themes/health_bar_theme.tres" id="4_kkano"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ac5a1"]
@@ -39,6 +38,7 @@ offset_left = -22.0
 offset_top = -43.0
 offset_right = 20.0
 offset_bottom = -20.0
+auto_translate = false
 text = "Teste"
 label_settings = SubResource("LabelSettings_ac5a1")
 horizontal_alignment = 1
@@ -63,7 +63,6 @@ texture = SubResource("GradientTexture2D_y3bgj")
 
 [node name="GunManager" type="Node2D" parent="."]
 script = ExtResource("2_8gubn")
-currentGunScene = ExtResource("3_w71jw")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_nleoe")

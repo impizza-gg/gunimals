@@ -181,7 +181,6 @@ texture_normal = ExtResource("4_n58w8")
 texture_pressed = ExtResource("5_gi5ol")
 
 [node name="EN_Button" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "EN_TOOLTIP"
 mouse_default_cursor_shape = 2
@@ -260,6 +259,7 @@ text = "JOIN_BUTTON"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonsVBox/PlaygroundButton" to="." method="_on_playground_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/BR_Button" to="." method="_on_br_button_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer/BR_Button" to="." method="_on_br_button_toggled"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/EN_Button" to="." method="_on_en_button_pressed"]
 [connection signal="pressed" from="HostPopup/VBoxContainer/PopupHostButton" to="." method="_on_popup_host_button_pressed"]
 [connection signal="pressed" from="JoinPopup/VBoxContainer/PopupJoinButton" to="." method="_on_popup_join_button_pressed"]

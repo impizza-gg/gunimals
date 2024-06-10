@@ -9,4 +9,3 @@ func _ready() -> void:
 	Input.set_custom_mouse_cursor(default_cursor)
 	Input.set_custom_mouse_cursor(pointing_cursor, Input.CURSOR_POINTING_HAND)
 	Input.set_custom_mouse_cursor(edit_cursor, Input.CURSOR_IBEAM)
-

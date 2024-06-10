@@ -10,14 +10,17 @@ signal start_playground
 @onready var HostNameInput := %HostNameInput
 @onready var JoinNameInput := %JoinNameInput
 @onready var IPInput := %IPInput
+@onready var BRButton := %BR_Button
+@onready var ENButton := %EN_Button
 
 func _ready() -> void:
-	var user_data := load_config()
-	if user_data.has('name'):
-		HostNameInput.text = user_data['name']
-		JoinNameInput.text = user_data['name']
-		
-	focus_button()
+	HostNameInput.text = Settings.current_settings["player_name"]
+	JoinNameInput.text = Settings.current_settings["player_name"]
+	if Settings.current_settings["locale"] == "br":
+		BRButton.emit_signal("pressed")
+		BRButton.set_pressed_no_signal(true)
+		ENButton.set_pressed_no_signal(false)
+	focus_first_button()
 
 
 func _on_host_button_pressed() -> void:
@@ -34,7 +37,7 @@ func _on_join_button_pressed() -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
-		focus_button()
+		focus_first_button()
 
 
 func _on_settings_button_pressed() -> void:
@@ -42,10 +45,11 @@ func _on_settings_button_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 	get_tree().quit()
 
 
-func focus_button() -> void:
+func focus_first_button() -> void:
 	if ButtonsVBox:
 		for child in ButtonsVBox.get_children():
 			if child is Button and not child.disabled:
@@ -70,53 +74,40 @@ func _on_popup_join_button_pressed() -> void:
 
 func ip_validity(input: LineEdit) -> bool:
 	input.text = input.text.strip_edges()
-	if input.text.is_empty():
-		input.placeholder_text = "IP is required"
-		return false
-	else:
+	var ip_valid := input.text.is_valid_ip_address()
+	if ip_valid:
 		input.placeholder_text = "IP"
-		# TODO: mensagem de erro
-		return input.text.is_valid_ip_address()
+	else:
+		input.placeholder_text = tr("IP_WARNING")
+	return ip_valid 
 
 
 func name_validity(input: LineEdit) -> bool:
 	input.text = input.text.strip_edges()
 	if input.text.is_empty():
-		input.placeholder_text = "Name is required"
+		input.placeholder_text = tr("NAME_WARNING")
 		return false
 	else:
-		input.placeholder_text = "Name"
-		save_name(input.text)
+		input.placeholder_text = tr("NAME_PLACEHOLDER")
+		Settings.current_settings["player_name"] = input.text
 		return true
-
-
-func save_name(playerName: String) -> void:
-	# Provavelmente vai ser necessário deixar mais geral e mudar de lugar essa função
-	# para tratar outras configurações
-	# ex: save_configs(configs: Dictionary) -> void: 
-	# ... sobreescreve as configs no dicionário e mantém as demais como estavam
-	
-	var file := FileAccess.open("user://user_data.save", FileAccess.READ_WRITE)
-	var content := file.get_as_text()
-	var user_data = JSON.parse_string(content)
-	if not user_data:
-		user_data = {}
-	user_data['name'] = playerName
-	file.store_string(JSON.stringify(user_data))
-	file.close()
-
-
-func load_config() -> Dictionary:
-	# No momento o jogo busca os dados do usuário, que é só o nome que ele utilizou da última vez.
-	var file = FileAccess.open("user://user_data.save", FileAccess.READ)
-	if not file:
-		return {}
-	var content = file.get_as_text()
-	var data = JSON.parse_string(content)
-	if not data: data = {}
-	file.close()
-	return data
-	
+		
 
 func _on_playground_button_pressed() -> void:
 	start_playground.emit()
+
+
+func _on_br_button_pressed() -> void:
+	set_locale("br")
+
+
+func _on_en_button_pressed() -> void:
+	set_locale("en")
+
+
+func set_locale(locale: String) -> void:
+	if locale == "br" or locale == "en":
+		TranslationServer.set_locale(locale)
+		Settings.current_settings["locale"] = locale
+	else:
+		print("Error: unknown locale")
