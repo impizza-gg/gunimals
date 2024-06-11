@@ -27,9 +27,18 @@ func _ready() -> void:
 		add_child(camera)
 
 
+func _process(delta: float) -> void:
+	if not is_multiplayer_authority():
+		return
+	if Input.is_action_just_pressed("esc"):
+		Signals.toggle_pause_menu.emit()
+	if Input.is_action_just_pressed("move_left"):
+		Sprite.flip_h = true
+	elif Input.is_action_just_pressed("move_right"):
+		Sprite.flip_h = false
+
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
-		#move_and_slide() # confuso
 		return
 		
 	if not Signals.paused:
@@ -37,19 +46,12 @@ func _physics_process(delta: float) -> void:
 			velocity.y = jump_velocity
 			
 		var direction := Input.get_axis("move_left", "move_right")
-		
-		if Input.is_action_just_pressed("move_left"):
-			Sprite.flip_h = true
-		elif Input.is_action_just_pressed("move_right"):
-			Sprite.flip_h = false
 			
 		if direction:
 			velocity.x = direction * speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
-
-	if Input.is_action_just_pressed("esc"):
-		Signals.toggle_pause_menu.emit()
+			
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	move_and_slide()

@@ -3,6 +3,7 @@ extends Node2D
 signal shoot(bullet: Node, location: Vector2)
 
 @export var currentGunScene: PackedScene = preload("res://scenes/guns/example_gun/example_gun.tscn")
+@onready var ShotgunScene := preload("res://scenes/guns/shotgun/shotgun.tscn")
 @onready var Player := $".."
 @onready var my_id := multiplayer.get_unique_id()
 var currentGun: Gun
@@ -14,6 +15,16 @@ func _ready() -> void:
 		if is_multiplayer_authority():
 			Signals.update_hud_ammo_current.emit(currentGun.current_ammo)
 			Signals.update_hud_ammo_max.emit(currentGun.max_ammo)
+
+
+func equip_gun(gunScene: PackedScene) -> void:
+	if gunScene.can_instantiate():
+		if currentGun:
+			currentGun.free()
+		currentGun = gunScene.instantiate()
+		add_child(currentGun)
+		Signals.update_hud_ammo_current.emit(currentGun.current_ammo)
+		Signals.update_hud_ammo_max.emit(currentGun.max_ammo)
 
 
 @rpc("authority", "call_remote")
@@ -35,6 +46,13 @@ func _process(_delta: float) -> void:
 	#currentGun.look_at(get_global_mouse_position())
 	#var direction = Vector2.RIGHT.rotated(currentGun.rotation)
 	if is_multiplayer_authority():
+		if Input.is_action_just_pressed("change_weapon"):
+			equip_gun(ShotgunScene)
+			return
+			
+		if not currentGun:
+			return
+			
 		var gunRotation = currentGun.global_position.angle_to_point(get_global_mouse_position())
 		var direction = Vector2.from_angle(rotation)
 		rotation = gunRotation
