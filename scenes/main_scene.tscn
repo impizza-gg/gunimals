@@ -18,6 +18,7 @@ script = ExtResource("1_11qyb")
 script = ExtResource("2_yhugk")
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,13 +27,28 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_36bhv")
 
-[node name="AmmoLabel" type="Label" parent="CanvasLayer/HUD"]
-layout_mode = 0
-offset_left = 38.0
-offset_top = 577.0
-offset_right = 189.0
-offset_bottom = 631.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUD"]
+top_level = true
+layout_mode = 2
+offset_left = 16.0
+offset_top = 601.0
+offset_right = 111.0
+offset_bottom = 635.0
+theme_override_constants/separation = 30
+
+[node name="AmmoLabel" type="Label" parent="CanvasLayer/HUD/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
 text = "0/10"
+label_settings = ExtResource("3_upor5")
+vertical_alignment = 2
+
+[node name="ClipLabel" type="Label" parent="CanvasLayer/HUD/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1"
 label_settings = ExtResource("3_upor5")
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer"]

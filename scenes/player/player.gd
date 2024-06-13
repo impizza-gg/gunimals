@@ -37,6 +37,7 @@ func _process(delta: float) -> void:
 	elif Input.is_action_just_pressed("move_right"):
 		Sprite.flip_h = false
 
+
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
 		return

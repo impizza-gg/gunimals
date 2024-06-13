@@ -2,64 +2,59 @@ extends Node2D
 
 signal shoot(bullet: Node, location: Vector2)
 
-@export var currentGunScene: PackedScene = preload("res://scenes/guns/example_gun/example_gun.tscn")
+@export var CurrentGunScene: PackedScene = preload("res://scenes/guns/shotgun/shotgun.tscn")
+
 @onready var ShotgunScene := preload("res://scenes/guns/shotgun/shotgun.tscn")
-@onready var Player := $".."
-@onready var my_id := multiplayer.get_unique_id()
-var currentGun: Gun
+@onready var ReloadBar := $"../ReloadBar"
+@onready var ReloadTimer := $"../ReloadTimer"
+var current_gun: Gun
 
 func _ready() -> void:
-	if currentGunScene.can_instantiate():
-		currentGun = currentGunScene.instantiate()
-		add_child(currentGun)
-		if is_multiplayer_authority():
-			Signals.update_hud_ammo_current.emit(currentGun.current_ammo)
-			Signals.update_hud_ammo_max.emit(currentGun.max_ammo)
+	equip_gun(CurrentGunScene)
 
 
 func equip_gun(gunScene: PackedScene) -> void:
 	if gunScene.can_instantiate():
-		if currentGun:
-			currentGun.free()
-		currentGun = gunScene.instantiate()
-		add_child(currentGun)
-		Signals.update_hud_ammo_current.emit(currentGun.current_ammo)
-		Signals.update_hud_ammo_max.emit(currentGun.max_ammo)
+		if current_gun:
+			current_gun.free()
+		current_gun = gunScene.instantiate()
+		
+		ReloadTimer.wait_time = current_gun.reload_time
+		ReloadTimer.one_shot = true
+		ReloadTimer.timeout.connect(reload)
+		
+		add_child(current_gun)
+		current_gun.updateHUD()
+		Signals.set_hud_visibility.emit(true)
+		Signals.set_clip_label_visibility.emit(current_gun.reloadable)
 
 
-@rpc("authority", "call_remote")
-func shoot_function(gun_position: Vector2, gun_rotation: float, direction: Vector2, owner_id: int) -> void:
-	if multiplayer.is_server():
-		rpc("spawn_bullets", gun_position, gun_rotation, direction, owner_id)
-
-
-@rpc("any_peer", "call_local")
-func spawn_bullets(gun_position: Vector2, gun_rotation: float, direction: Vector2, owner_id: int) -> void:
-	var bulletList : Array[Node] = currentGun.shoot(gun_position, gun_rotation, direction, owner_id)
-	if owner_id == my_id:
-		Signals.update_hud_ammo_current.emit(currentGun.current_ammo)
-	for bullet in bulletList:
-		add_child(bullet)
+func reload() -> void:
+	current_gun.rpc("reload")
+	#current_gun.reload()
+	ReloadBar.visible = false
 
 
 func _process(_delta: float) -> void:
-	#currentGun.look_at(get_global_mouse_position())
-	#var direction = Vector2.RIGHT.rotated(currentGun.rotation)
+	#current_gun.look_at(get_global_mouse_position())
+	#var direction = Vector2.RIGHT.rotated(current_gun.rotation)
 	if is_multiplayer_authority():
 		if Input.is_action_just_pressed("change_weapon"):
 			equip_gun(ShotgunScene)
 			return
 			
-		if not currentGun:
+		if not current_gun:
 			return
 			
-		var gunRotation = currentGun.global_position.angle_to_point(get_global_mouse_position())
-		var direction = Vector2.from_angle(rotation)
+		if Input.is_action_just_pressed("reload"):
+			if current_gun.can_reload():
+				ReloadTimer.start()
+				current_gun.reloading = true
+				ReloadBar.visible = true
+			
+		if current_gun.reloading:
+			ReloadBar.value = (ReloadTimer.time_left / current_gun.reload_time) * 100.0
+			
+		var gunRotation = current_gun.global_position.angle_to_point(get_global_mouse_position())
 		rotation = gunRotation
-	
-		if not Signals.paused and Input.is_action_just_pressed("shoot"):
-			var gun_position := currentGun.global_position
-			if multiplayer.is_server():
-				shoot_function(gun_position, rotation, direction, my_id)
-			else:
-				rpc_id(1, "shoot_function", gun_position, rotation, direction, my_id)
+
