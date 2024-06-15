@@ -24,9 +24,9 @@ func update_clip_current(new_value: int) -> void:
 	ClipLabel.text = str(new_value)
 
 
-func set_visibility(is_visible: bool) -> void:
-	visible = is_visible
+func set_visibility(visibility: bool) -> void:
+	visible = visibility
 
 
-func set_clip_label_visibility(is_visible: bool) -> void:
-	ClipLabel.visible = is_visible
+func set_clip_label_visibility(visibility: bool) -> void:
+	ClipLabel.visible = visibility

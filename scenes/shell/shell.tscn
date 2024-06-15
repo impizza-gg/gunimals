@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcvs23act5wc3"]
+
+[ext_resource type="Script" path="res://scenes/shell/shell.gd" id="1_wqb7a"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i6hhg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgrga"]
+size = Vector2(5.96875, 2.5)
+
+[sub_resource type="Animation" id="Animation_i6v6n"]
+resource_name = "delete"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6bv4q"]
+_data = {
+"delete": SubResource("Animation_i6v6n")
+}
+
+[node name="Shell" type="RigidBody2D"]
+top_level = true
+collision_layer = 8
+script = ExtResource("1_wqb7a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2.84217e-14)
+scale = Vector2(6, 2.5)
+texture = SubResource("PlaceholderTexture2D_i6hhg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wgrga")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6bv4q")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

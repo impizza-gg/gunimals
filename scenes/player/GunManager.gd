@@ -2,7 +2,7 @@ extends Node2D
 
 signal shoot(bullet: Node, location: Vector2)
 
-@export var CurrentGunScene: PackedScene = preload("res://scenes/guns/shotgun/shotgun.tscn")
+@export var CurrentGunScene: PackedScene = preload("res://scenes/guns/example_automatic/automatic_gun.tscn")
 
 @onready var ShotgunScene := preload("res://scenes/guns/shotgun/shotgun.tscn")
 @onready var ReloadBar := $"../ReloadBar"

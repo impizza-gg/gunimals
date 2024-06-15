@@ -78,6 +78,13 @@ reload={
 locale/translations=PackedStringArray("res://assets/translations/menu_translation.br.translation", "res://assets/translations/menu_translation.en.translation")
 locale/locale_filter_mode=0
 
+[layer_names]
+
+2d_physics/layer_1="wall"
+2d_physics/layer_2="player"
+2d_physics/layer_3="bullet"
+2d_physics/layer_4="shell"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

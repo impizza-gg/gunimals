@@ -27,7 +27,7 @@ func _ready() -> void:
 		add_child(camera)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not is_multiplayer_authority():
 		return
 	if Input.is_action_just_pressed("esc"):

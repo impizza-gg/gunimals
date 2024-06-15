@@ -16,8 +16,11 @@ signal update_ui(current_ammo: int)
 @export var ShootPlayer: AudioStreamPlayer
 @export var NoAmmoPlayer: AudioStreamPlayer
 @export var ReloadPlayer : AudioStreamPlayer
+@export var drop_shells := true
 
 @onready var CooldownTimer := Timer.new()
+@onready var Shell := preload("res://scenes/shell/shell.tscn")
+
 # tem que achar outro jeito, isso aqui é feio demais
 @onready var my_id := get_parent().get_parent().name.to_int()
 @onready var clips := max_clips
@@ -76,11 +79,16 @@ func shoot_function(gun_position: Vector2, gun_rotation: float, direction: Vecto
 
 @rpc("any_peer", "call_local")
 func spawn_bullets(gun_position: Vector2, gun_rotation: float, direction: Vector2, owner_id: int) -> void:
-	var bulletList : Array[Node] = shoot(gun_position, gun_rotation, direction, owner_id)
+	var bullet_list : Array[Node] = shoot(gun_position, gun_rotation, direction, owner_id)
 	if is_multiplayer_authority():
 		Signals.update_hud_ammo_current.emit(current_ammo)
-	for bullet in bulletList:
+	for bullet in bullet_list:
 		get_parent().add_child(bullet)
+	if bullet_list.size() > 0:
+		var shell := Shell.instantiate()
+		shell.global_position = gun_position - Vector2(10, 5)
+		shell.direction = direction
+		get_parent().add_child(shell)
 
 
 func can_reload() -> bool:
@@ -104,17 +112,18 @@ func _process(delta: float) -> void:
 	if not is_multiplayer_authority() or Signals.paused:
 		return
 	
-	var gunRotation = global_position.angle_to_point(get_global_mouse_position())
-	var direction = Vector2.from_angle(gunRotation)
+	var gun_rotation = global_position.angle_to_point(get_global_mouse_position())
+	var direction = Vector2.from_angle(gun_rotation)
 	
 	# ta meio grande
 	var should_shoot = ((automatic and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)) or \
 					   (not automatic and Input.is_action_just_pressed("shoot"))) and not reloading
 
 	if should_shoot and CooldownTimer.is_stopped():
+		#rpc("spawn_bullets", global_position, gun_rotation, direction, my_id)
 		if multiplayer.is_server():
-			shoot_function(global_position, gunRotation, direction, my_id)
+			shoot_function(global_position, gun_rotation, direction, my_id)
 		else:
-			rpc("spawn_bullets", global_position, gunRotation, direction, my_id)
-			#rpc_id(1, "shoot_function", global_position, gunRotation, direction, my_id)
+			rpc_id(1, "shoot_function", global_position, gun_rotation, direction, my_id)
+			#rpc("spawn_bullets", global_position, gun_rotation, direction, my_id)
 		CooldownTimer.start()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0ghjlejhnjuf"]
+[gd_scene load_steps=6 format=3 uid="uid://d0ghjlejhnjuf"]
 
 [ext_resource type="Script" path="res://levels/playground/playground.gd" id="1_0pddj"]
 [ext_resource type="PackedScene" uid="uid://0ypa6kxkj0w0" path="res://levels/playground/playground_wall.tscn" id="1_k2mwf"]
+[ext_resource type="PackedScene" uid="uid://lhqyh7712go1" path="res://scenes/dummy/dummy.tscn" id="3_o48ih"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1buh"]
 size = Vector2(91.75, 1521.13)
@@ -49,7 +50,7 @@ shape = SubResource("RectangleShape2D_s1buh")
 [node name="Area2D2" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(-639, 293)
+position = Vector2(-87, 297)
 shape = SubResource("RectangleShape2D_s1buh")
 
 [node name="Area2D3" type="Area2D" parent="."]
@@ -63,3 +64,9 @@ shape = SubResource("RectangleShape2D_rsndd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3/Area2D3"]
 position = Vector2(726, -532)
 shape = SubResource("RectangleShape2D_rsndd")
+
+[node name="Wall2" parent="." instance=ExtResource("1_k2mwf")]
+position = Vector2(248, 348)
+
+[node name="Dummy" parent="." instance=ExtResource("3_o48ih")]
+position = Vector2(473, 519)
