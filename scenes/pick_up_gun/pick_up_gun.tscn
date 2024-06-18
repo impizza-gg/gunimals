@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctdre0gn7602s"]
+
+[ext_resource type="Script" path="res://scenes/pick_up_gun/pick_up_gun.gd" id="1_wvfaj"]
+[ext_resource type="Texture2D" uid="uid://kix4kydxd3qe" path="res://scenes/pick_up_gun/arma.png" id="2_h2rw5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1v00f"]
+size = Vector2(52, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kckre"]
+size = Vector2(52, 16)
+
+[node name="PickUpGun" type="RigidBody2D"]
+collision_layer = 16
+script = ExtResource("1_wvfaj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_1v00f")
+
+[node name="Arma" type="Sprite2D" parent="."]
+texture = ExtResource("2_h2rw5")
+
+[node name="PickableArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickableArea"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_kckre")
+
+[connection signal="body_entered" from="PickableArea" to="." method="_on_pickable_area_body_entered"]
+[connection signal="body_exited" from="PickableArea" to="." method="_on_pickable_area_body_exited"]

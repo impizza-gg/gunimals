@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var Sprite := $Sprite2D
 @onready var NameLabel := $Name
 @onready var HealthBar := $HealthBar
+@onready var GunManager := $GunManager
 
 @export var max_health := 100.0
 @export var speed := 300.0
@@ -56,6 +57,10 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	move_and_slide()
+
+
+func is_interacting() -> bool:
+	return Input.is_action_just_pressed("pick_up")
 
 
 @rpc("any_peer", "call_local")
