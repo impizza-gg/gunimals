@@ -25,9 +25,8 @@ func playerSpawnFunction(player_data: Dictionary) -> Node:
 # chamado somente no server
 # players são instanciados no server e replicados pelo MultiplayerSpawner
 func game_started() -> void:
-	var playground := PlaygroundScene.instantiate()
-	level = playground
-	add_child(playground)
+	level = PlaygroundScene.instantiate()
+	add_child(level)
 	
 	var counter := 0
 	print(MultiplayerManager.connected_players)
@@ -51,8 +50,6 @@ func game_started_all() -> void:
 	
 	
 func _on_main_menu_start_playground() -> void:
-	# não funciona se abrir depois de abrir uma conexão multiplayer
-	# TODO: lidar com controles locais e online
 	var playground := PlaygroundScene.instantiate()
 	MainMenu.hide()
 	add_child(playground)

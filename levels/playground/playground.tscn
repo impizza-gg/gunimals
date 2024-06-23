@@ -1,12 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0ghjlejhnjuf"]
+[gd_scene load_steps=9 format=3 uid="uid://d0ghjlejhnjuf"]
 
 [ext_resource type="Script" path="res://levels/playground/playground.gd" id="1_0pddj"]
 [ext_resource type="PackedScene" uid="uid://0ypa6kxkj0w0" path="res://levels/playground/playground_wall.tscn" id="1_k2mwf"]
 [ext_resource type="PackedScene" uid="uid://lhqyh7712go1" path="res://scenes/dummy/dummy.tscn" id="3_o48ih"]
 [ext_resource type="PackedScene" uid="uid://ctdre0gn7602s" path="res://scenes/pick_up_gun/pick_up_gun.tscn" id="4_mw8ox"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_taeeu"]
+size = Vector2(15.25, 115.5)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7ffsa"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1buh"]
-size = Vector2(91.75, 1521.13)
+size = Vector2(91.75, 1530.56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rsndd"]
 size = Vector2(2831.5, 124)
@@ -36,25 +41,39 @@ scale = Vector2(3, 0.5)
 position = Vector2(687, 489)
 scale = Vector2(5, 0.5)
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+position = Vector2(-64, 539)
+shape = SubResource("RectangleShape2D_taeeu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walls/StaticBody2D"]
+position = Vector2(-63, 538)
+scale = Vector2(16.25, 113.75)
+texture = SubResource("PlaceholderTexture2D_7ffsa")
+
 [node name="Wall" parent="." instance=ExtResource("1_k2mwf")]
 position = Vector2(120, 538)
+
+[node name="Wall2" parent="." instance=ExtResource("1_k2mwf")]
+position = Vector2(248, 348)
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(428, 516)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["wall"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(2092, 303)
 shape = SubResource("RectangleShape2D_s1buh")
 
-[node name="Area2D2" type="Area2D" parent="."]
+[node name="Area2D2" type="Area2D" parent="." groups=["wall"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(-87, 297)
+position = Vector2(-639, 295.283)
 shape = SubResource("RectangleShape2D_s1buh")
 
-[node name="Area2D3" type="Area2D" parent="."]
+[node name="Area2D3" type="Area2D" parent="." groups=["wall"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
 position = Vector2(719, 1125)
@@ -65,9 +84,6 @@ shape = SubResource("RectangleShape2D_rsndd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3/Area2D3"]
 position = Vector2(726, -532)
 shape = SubResource("RectangleShape2D_rsndd")
-
-[node name="Wall2" parent="." instance=ExtResource("1_k2mwf")]
-position = Vector2(248, 348)
 
 [node name="Dummy" parent="." instance=ExtResource("3_o48ih")]
 position = Vector2(473, 519)

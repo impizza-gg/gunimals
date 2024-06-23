@@ -121,6 +121,7 @@ spawn_path = NodePath("../GameContainer")
 spawn_path = NodePath("../GameContainer")
 
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/ResumeButton" to="CanvasLayer" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/LeaveGame" to="CanvasLayer" method="_on_leave_game_pressed"]
 [connection signal="create_room" from="CanvasLayer/MainMenu" to="MultiplayerManager" method="_on_main_menu_create_room"]
 [connection signal="join_room" from="CanvasLayer/MainMenu" to="MultiplayerManager" method="_on_main_menu_join_room"]
 [connection signal="start_playground" from="CanvasLayer/MainMenu" to="GameContainer" method="_on_main_menu_start_playground"]

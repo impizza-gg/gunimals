@@ -17,10 +17,12 @@ signal update_ui(current_ammo: int)
 @export var NoAmmoPlayer: AudioStreamPlayer
 @export var ReloadPlayer : AudioStreamPlayer
 @export var drop_shells := true
+@export var ShootSound : AudioStream
 
 @onready var CooldownTimer := Timer.new()
 @onready var Shell := preload("res://scenes/shell/shell.tscn")
 
+@onready var locked := false
 # tem que achar outro jeito, isso aqui é feio demais
 @onready var my_id := get_parent().get_parent().name.to_int()
 @onready var clips := max_clips
@@ -29,7 +31,7 @@ signal update_ui(current_ammo: int)
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(get_parent().get_parent().name.to_int())
-	
+
 
 func _ready() -> void:
 	position += Vector2(offset_x, offset_y)
@@ -72,13 +74,14 @@ func create_bullets(initial_position: Vector2, bullet_rotation: float, direction
 
 # talvez seja ok tirar essa funcao
 @rpc("authority", "call_remote")
-func shoot_function(gun_position: Vector2, gun_rotation: float, direction: Vector2, owner_id: int) -> void:
+func shoot_function(gun_position: Vector2, gun_rotation: float, owner_id: int) -> void:
 	if multiplayer.is_server():
-		rpc("spawn_bullets", gun_position, gun_rotation, direction, owner_id)
+		rpc("spawn_bullets", gun_position, gun_rotation, owner_id)
 
 
 @rpc("any_peer", "call_local")
-func spawn_bullets(gun_position: Vector2, gun_rotation: float, direction: Vector2, owner_id: int) -> void:
+func spawn_bullets(gun_position: Vector2, gun_rotation: float, owner_id: int) -> void:
+	var direction := Vector2.from_angle(gun_rotation)
 	var bullet_list : Array[Node] = shoot(gun_position, gun_rotation, direction, owner_id)
 	if is_multiplayer_authority():
 		Signals.update_hud_ammo_current.emit(current_ammo)
@@ -108,12 +111,12 @@ func reload(reset := false) -> void:
 	reloading = false
 
 
-func _process(delta: float) -> void:
-	if not is_multiplayer_authority() or Signals.paused:
+func _process(_delta: float) -> void:
+	if not is_multiplayer_authority() or Signals.paused or locked:
 		return
 	
-	var gun_rotation = global_position.angle_to_point(get_global_mouse_position())
-	var direction = Vector2.from_angle(gun_rotation)
+	#var gun_rotation = global_position.angle_to_point(get_global_mouse_position())
+	var gun_rotation = get_parent().rotation
 	
 	# ta meio grande
 	var should_shoot = ((automatic and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)) or \
@@ -122,8 +125,8 @@ func _process(delta: float) -> void:
 	if should_shoot and CooldownTimer.is_stopped():
 		#rpc("spawn_bullets", global_position, gun_rotation, direction, my_id)
 		if multiplayer.is_server():
-			shoot_function(global_position, gun_rotation, direction, my_id)
+			shoot_function(global_position, gun_rotation, my_id)
 		else:
-			rpc_id(1, "shoot_function", global_position, gun_rotation, direction, my_id)
+			rpc_id(1, "shoot_function", global_position, gun_rotation, my_id)
 			#rpc("spawn_bullets", global_position, gun_rotation, direction, my_id)
 		CooldownTimer.start()

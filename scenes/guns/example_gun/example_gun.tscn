@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d5epx6nf6dg"]
+[gd_scene load_steps=5 format=3 uid="uid://d5epx6nf6dg"]
 
 [ext_resource type="Script" path="res://scenes/guns/example_gun/gun.gd" id="1_6s02t"]
+[ext_resource type="AudioStream" uid="uid://by3mds4fkbad0" path="res://assets/sounds/bullet_sound.wav" id="2_7ebvi"]
 
 [sub_resource type="Gradient" id="Gradient_y4pmx"]
 colors = PackedColorArray(0.717647, 0, 0, 1, 0.317647, 1, 1, 1)
@@ -8,9 +9,15 @@ colors = PackedColorArray(0.717647, 0, 0, 1, 0.317647, 1, 1, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vui0q"]
 gradient = SubResource("Gradient_y4pmx")
 
-[node name="ExamepleGun" type="Node2D"]
+[node name="ExamepleGun" type="Node2D" node_paths=PackedStringArray("ShootPlayer")]
 script = ExtResource("1_6s02t")
+ShootPlayer = NodePath("AudioStreamPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.203125, 0.15625)
 texture = SubResource("GradientTexture2D_vui0q")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_7ebvi")
+volume_db = -9.976
+max_polyphony = 10

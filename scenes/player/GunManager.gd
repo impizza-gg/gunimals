@@ -3,9 +3,11 @@ extends Node2D
 signal shoot(bullet: Node, location: Vector2)
 
 @export var CurrentGunScene: String = "res://scenes/guns/example_automatic/automatic_gun.tscn"
-
+@onready var parent := get_parent()
 @onready var ReloadBar := $"../ReloadBar"
 @onready var ReloadTimer : Timer = $"../ReloadTimer"
+@onready var locked := false
+
 var current_gun: Gun
 
 func _ready() -> void:
@@ -27,7 +29,6 @@ func equip_gun(gun_scene_path: String) -> void:
 			ReloadTimer.timeout.disconnect(reload)
 		ReloadTimer.timeout.connect(reload)
 		
-		
 		add_child(current_gun)
 		
 		if is_multiplayer_authority():
@@ -42,9 +43,18 @@ func reload() -> void:
 	ReloadBar.visible = false
 
 
+func lock() -> void:
+	locked = true
+	if current_gun:
+		current_gun.locked = true
+
+
 func _process(_delta: float) -> void:
 	#current_gun.look_at(get_global_mouse_position())
 	#var direction = Vector2.RIGHT.rotated(current_gun.rotation)
+	if locked:
+		return
+		
 	if is_multiplayer_authority():
 			
 		if not current_gun:
@@ -59,6 +69,6 @@ func _process(_delta: float) -> void:
 		if current_gun.reloading:
 			ReloadBar.value = (ReloadTimer.time_left / current_gun.reload_time) * 100.0
 			
-		var gunRotation = current_gun.global_position.angle_to_point(get_global_mouse_position())
+		var gunRotation = global_position.angle_to_point(get_global_mouse_position())
 		rotation = gunRotation
 

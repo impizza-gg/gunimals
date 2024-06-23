@@ -9,8 +9,9 @@ signal player_disconnected_signal(id: int)
 var peer := ENetMultiplayerPeer.new()
 var connected_players := {}
 
-func _on_main_menu_create_room(playerName: String) -> void:
+func _on_main_menu_create_room(playerName: String) -> void:	
 	var ip : String
+	
 	if OS.has_feature("windows"):
 		ip = IP.resolve_hostname(str(OS.get_environment("COMPUTERNAME")), IP.TYPE_IPV4)
 	else:
@@ -23,9 +24,10 @@ func _on_main_menu_create_room(playerName: String) -> void:
 		print("NETWORK: HOST ERROR")
 		return
 		
-	connected_players.clear()
 	multiplayer.multiplayer_peer = peer
-	multiplayer.peer_disconnected.connect(player_disconnected)
+	connected_players.clear()
+	if not multiplayer.is_connected("peer_disconnected", player_disconnected):
+		multiplayer.peer_disconnected.connect(player_disconnected)
 	add_player(peer.get_unique_id(), playerName, true)
 	MainMenu.hide()
 	
@@ -85,8 +87,11 @@ func back() -> void:
 	
 	# tá dando um "erro" porque o cliente tenta fechar a conexão que o servidor já fechou
 	# mas funciona igual
-	multiplayer.multiplayer_peer.close()
-	multiplayer.peer_disconnected.disconnect(player_disconnected)
+	#multiplayer.peer_disconnected.disconnect(player_disconnected)
+	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
+	peer.close()
+	
+	
 	WaitingRoom.hide()
 	MainMenu.show()
 

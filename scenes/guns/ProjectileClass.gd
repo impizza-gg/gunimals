@@ -9,9 +9,14 @@ func _ready() -> void:
 	top_level = true
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var movement = direction * speed * delta
 	position += movement
+
+
+func _on_area_entered(body: Node2D) -> void:
+	if body.is_in_group("wall"):
+		queue_free()
 
 
 func _on_body_entered(body: Node2D) -> void:

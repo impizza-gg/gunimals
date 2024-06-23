@@ -10,6 +10,7 @@ func _ready() -> void:
 	Signals.connect("set_hud_visibility", set_visibility)
 	Signals.connect("set_clip_label_visibility", set_clip_label_visibility)
 
+
 func update_ammo_current(new_value: int) -> void:
 	var max_ammo = AmmoLabel.text.split("/")[1]
 	AmmoLabel.text = str(new_value) + "/" + max_ammo

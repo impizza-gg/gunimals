@@ -1,14 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://3lm010thuj5v"]
+[gd_scene load_steps=4 format=3 uid="uid://3lm010thuj5v"]
 
 [ext_resource type="Script" path="res://scenes/guns/example_automatic/automatic_gun.gd" id="1_5mesx"]
+[ext_resource type="AudioStream" uid="uid://by3mds4fkbad0" path="res://assets/sounds/bullet_sound.wav" id="2_h0uiv"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wgg0k"]
 
-[node name="AutomaticGun" type="Node2D"]
+[node name="AutomaticGun" type="Node2D" node_paths=PackedStringArray("ShootPlayer")]
 script = ExtResource("1_5mesx")
 automatic = true
 cooldown = 0.05
+ShootPlayer = NodePath("AudioStreamPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(32.5, 8)
 texture = SubResource("PlaceholderTexture2D_wgg0k")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_h0uiv")
+volume_db = -9.976
+max_polyphony = 10
