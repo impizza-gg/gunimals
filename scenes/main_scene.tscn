@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=3 uid="uid://xtmllb3s5bfv"]
+[gd_scene load_steps=18 format=3 uid="uid://xtmllb3s5bfv"]
 
-[ext_resource type="PackedScene" uid="uid://dxqdji6g2l47g" path="res://menus/main_menu.tscn" id="1_0t8dn"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_11qyb"]
 [ext_resource type="Script" path="res://scripts/MultiplayerManager.gd" id="2_d5ynk"]
 [ext_resource type="PackedScene" uid="uid://cq5jogagp2fgv" path="res://menus/waiting_room.tscn" id="2_ry4pq"]
@@ -9,7 +8,32 @@
 [ext_resource type="Script" path="res://scenes/HUD.gd" id="4_36bhv"]
 [ext_resource type="Theme" uid="uid://b7q6nhv8tdmuy" path="res://assets/themes/default_theme.tres" id="5_11amd"]
 [ext_resource type="AudioStream" uid="uid://b3i2yp66xiaes" path="res://assets/music/Plantasia.mp3" id="5_l18s4"]
+[ext_resource type="Script" path="res://menus/main_menu.gd" id="6_dm0pw"]
+[ext_resource type="Script" path="res://scripts/SettingsMenu.gd" id="6_e2615"]
 [ext_resource type="Script" path="res://scenes/GameContainer.gd" id="7_5xvn3"]
+[ext_resource type="Texture2D" uid="uid://confybce5ufyg" path="res://assets/sprites/br_gray.png" id="7_8l2vg"]
+[ext_resource type="Texture2D" uid="uid://bwd2tj7wspp8y" path="res://assets/sprites/br_color.png" id="8_nh7du"]
+[ext_resource type="Texture2D" uid="uid://bnqi2gmq5dhg8" path="res://assets/sprites/en_gray.png" id="9_u3mv2"]
+[ext_resource type="Texture2D" uid="uid://khomtcsq0uas" path="res://assets/sprites/en_color.png" id="10_do353"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_di85f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nokq1"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.0431373, 0, 0.0862745, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_11qyb")
@@ -50,6 +74,14 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "1"
 label_settings = ExtResource("3_upor5")
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0627451, 0, 0.141176, 1)
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer"]
 visible = false
@@ -95,8 +127,259 @@ text = "Settings"
 layout_mode = 2
 text = "Leave Game"
 
-[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("1_0t8dn")]
+[node name="SettingsMenu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_11amd")
+script = ExtResource("6_e2615")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/SettingsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="CanvasLayer/SettingsMenu/MarginContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Back"
+
+[node name="MainMenu" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_11amd")
+script = ExtResource("6_dm0pw")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MainMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0625398, 7.55713e-05, 0.142258, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleVBox" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="StudioLabel" type="RichTextLabel" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/TitleVBox"]
+modulate = Color(1, 0.650605, 0.22393, 1)
+layout_mode = 2
+size_flags_vertical = 4
+auto_translate = false
+localize_numeral_system = false
+bbcode_enabled = true
+text = "
+[center]
+[wave amp=50 freq=3]Impizza[/wave][/center] "
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/TitleVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+auto_translate = false
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 88
+text = "Jogao"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="LocalButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../PlaygroundButton")
+focus_neighbor_bottom = NodePath("../HostButton")
+focus_next = NodePath("../HostButton")
+focus_previous = NodePath("../PlaygroundButton")
+mouse_default_cursor_shape = 2
+disabled = true
+action_mode = 0
+text = "LOCAL_BUTTON"
+
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../LocalButton")
+focus_neighbor_bottom = NodePath("../JoinButton")
+focus_next = NodePath("../JoinButton")
+focus_previous = NodePath("../LocalButton")
+mouse_default_cursor_shape = 2
+action_mode = 0
+text = "HOST_BUTTON"
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../HostButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../HostButton")
+mouse_default_cursor_shape = 2
+action_mode = 0
+text = "JOIN_BUTTON"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../JoinButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../JoinButton")
+mouse_default_cursor_shape = 2
+action_mode = 0
+text = "SETTINGS_BUTTON"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../PlaygroundButton")
+focus_next = NodePath("../PlaygroundButton")
+focus_previous = NodePath("../SettingsButton")
+mouse_default_cursor_shape = 2
+action_mode = 0
+text = "QUIT_BUTTON"
+
+[node name="PlaygroundButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../LocalButton")
+focus_next = NodePath("../LocalButton")
+focus_previous = NodePath("../QuitButton")
+mouse_default_cursor_shape = 2
+action_mode = 0
+text = "PLAYGROUND_BUTTON"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BR_Button" type="TextureButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "BR_TOOLTIP"
+mouse_default_cursor_shape = 2
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_di85f")
+texture_normal = ExtResource("7_8l2vg")
+texture_pressed = ExtResource("8_nh7du")
+
+[node name="EN_Button" type="TextureButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "EN_TOOLTIP"
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_pressed = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_di85f")
+texture_normal = ExtResource("9_u3mv2")
+texture_pressed = ExtResource("10_do353")
+
+[node name="HostPopup" type="PopupPanel" parent="CanvasLayer/MainMenu"]
+transparent_bg = true
+initial_position = 1
+size = Vector2i(400, 104)
+theme_override_styles/panel = SubResource("StyleBoxFlat_nokq1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/HostPopup"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 384.0
+offset_bottom = 94.0
+
+[node name="HostNameInput" type="LineEdit" parent="CanvasLayer/MainMenu/HostPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "NAME_PLACEHOLDER"
+alignment = 1
+max_length = 32
+clear_button_enabled = true
+
+[node name="PopupHostButton" type="Button" parent="CanvasLayer/MainMenu/HostPopup/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+text = "HOST_BUTTON"
+
+[node name="JoinPopup" type="PopupPanel" parent="CanvasLayer/MainMenu"]
+transparent_bg = true
+initial_position = 1
+size = Vector2i(400, 146)
+always_on_top = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_nokq1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/JoinPopup"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 384.0
+offset_bottom = 136.0
+
+[node name="JoinNameInput" type="LineEdit" parent="CanvasLayer/MainMenu/JoinPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "NAME_PLACEHOLDER"
+alignment = 1
+max_length = 32
+clear_button_enabled = true
+
+[node name="IPInput" type="LineEdit" parent="CanvasLayer/MainMenu/JoinPopup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "IP"
+alignment = 1
+max_length = 21
+clear_button_enabled = true
+
+[node name="PopupJoinButton" type="Button" parent="CanvasLayer/MainMenu/JoinPopup/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+text = "JOIN_BUTTON"
 
 [node name="WaitingRoom" parent="CanvasLayer" instance=ExtResource("2_ry4pq")]
 unique_name_in_owner = true
@@ -121,10 +404,22 @@ spawn_path = NodePath("../GameContainer")
 spawn_path = NodePath("../GameContainer")
 
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/ResumeButton" to="CanvasLayer" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/SettingsButton" to="CanvasLayer/SettingsMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/LeaveGame" to="CanvasLayer" method="_on_leave_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsMenu/MarginContainer/BackButton" to="CanvasLayer/SettingsMenu" method="_on_back_button_pressed"]
 [connection signal="create_room" from="CanvasLayer/MainMenu" to="MultiplayerManager" method="_on_main_menu_create_room"]
 [connection signal="join_room" from="CanvasLayer/MainMenu" to="MultiplayerManager" method="_on_main_menu_join_room"]
 [connection signal="start_playground" from="CanvasLayer/MainMenu" to="GameContainer" method="_on_main_menu_start_playground"]
+[connection signal="visibility_changed" from="CanvasLayer/MainMenu" to="CanvasLayer/MainMenu" method="_on_visibility_changed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox/HostButton" to="CanvasLayer/MainMenu" method="_on_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox/JoinButton" to="CanvasLayer/MainMenu" method="_on_join_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox/SettingsButton" to="CanvasLayer/MainMenu" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox/QuitButton" to="CanvasLayer/MainMenu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox/PlaygroundButton" to="CanvasLayer/MainMenu" method="_on_playground_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/BR_Button" to="CanvasLayer/MainMenu" method="_on_br_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HBoxContainer/EN_Button" to="CanvasLayer/MainMenu" method="_on_en_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/HostPopup/VBoxContainer/PopupHostButton" to="CanvasLayer/MainMenu" method="_on_popup_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/JoinPopup/VBoxContainer/PopupJoinButton" to="CanvasLayer/MainMenu" method="_on_popup_join_button_pressed"]
 [connection signal="leave_room" from="CanvasLayer/WaitingRoom" to="MultiplayerManager" method="_on_waiting_room_leave_room"]
 [connection signal="player_added" from="MultiplayerManager" to="CanvasLayer/WaitingRoom" method="_on_multiplayer_manager_player_added"]
 [connection signal="player_disconnected_signal" from="MultiplayerManager" to="CanvasLayer/WaitingRoom" method="_on_multiplayer_manager_player_disconnected_signal"]

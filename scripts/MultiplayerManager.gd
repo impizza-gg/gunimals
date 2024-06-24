@@ -94,6 +94,7 @@ func back() -> void:
 	
 	WaitingRoom.hide()
 	MainMenu.show()
+	$"../CanvasLayer/Background".show()
 
 
 func player_disconnected(id: int) -> void:

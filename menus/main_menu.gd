@@ -41,7 +41,9 @@ func _on_visibility_changed() -> void:
 
 
 func _on_settings_button_pressed() -> void:
-	pass # Replace with function body.
+	$"../SettingsMenu".visible = true
+	$"../SettingsMenu".return_to_main = true
+	visible = false
 
 
 func _on_quit_button_pressed() -> void:
