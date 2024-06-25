@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
-@onready var Sprite := $Sprite2D
+#@onready var Sprite := $Sprite2D
 @onready var NameLabel := $Name
 @onready var HealthBar := $HealthBar
 @onready var GunManager := $GunManager
+@onready var Sprite : AnimatedSprite2D = $AnimatedSprite2D
 
 @export var max_health := 100.0
 @export var speed := 300.0
@@ -53,7 +54,14 @@ func _physics_process(delta: float) -> void:
 			velocity.x = direction * speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
-			
+
+		if velocity.x != 0 and velocity.y == 0:
+			Sprite.play("walk")
+		elif velocity.y != 0:
+			Sprite.play("jump_simple")
+		elif velocity.x == 0 and velocity.y == 0 and current_health > 0:
+			Sprite.play("idle")
+      
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = jump_velocity
 			
@@ -81,6 +89,7 @@ func update_health(change: int) -> void:
 	current_health = min(current_health, max_health)
 	HealthBar.value = current_health
 	if current_health <= 0:
+		Sprite.play("death")
 		death()
 
 
