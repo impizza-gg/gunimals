@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://ck10vlm4ryxih"]
+
+[ext_resource type="Script" path="res://levels/ConveyorBelt.gd" id="1_4m1v3"]
+[ext_resource type="Texture2D" uid="uid://bwggdfsjxd07d" path="res://assets/sprites/tile_green.png" id="2_7c0o3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h27f0"]
+size = Vector2(545, 25)
+
+[sub_resource type="Animation" id="Animation_n0da6"]
+resource_name = "conveyor_belt"
+length = 0.15
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(4.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jchqb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_samod"]
+_data = {
+"RESET": SubResource("Animation_jchqb"),
+"conveyor_belt": SubResource("Animation_n0da6")
+}
+
+[node name="StaticBody2D" type="StaticBody2D"]
+position = Vector2(979, 645)
+script = ExtResource("1_4m1v3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -5.5)
+shape = SubResource("RectangleShape2D_h27f0")
+
+[node name="Sprite2D" type="Polygon2D" parent="."]
+texture_repeat = 2
+position = Vector2(-0.999996, -5)
+scale = Vector2(6.18182, 0.272727)
+texture = ExtResource("2_7c0o3")
+texture_offset = Vector2(1.17281, 0)
+texture_scale = Vector2(20, 1)
+polygon = PackedVector2Array(44, 44, -44, 44, -44, -44, 44, -44)
+uv = PackedVector2Array(88, 88, 0, 88, 0, 0, 88, 0)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_samod")
+}
