@@ -3,6 +3,8 @@ extends Node2D
 signal shoot(bullet: Node, location: Vector2)
 
 @export var CurrentGunScene: String = "res://scenes/guns/example_automatic/automatic_gun.tscn"
+
+@onready var PickUp := preload("res://scenes/pick_up_gun/pick_up_gun.tscn")
 @onready var parent := get_parent()
 @onready var ReloadBar := $"../ReloadBar"
 @onready var ReloadTimer : Timer = $"../ReloadTimer"
@@ -11,7 +13,12 @@ signal shoot(bullet: Node, location: Vector2)
 var current_gun: Gun
 
 func _ready() -> void:
-	equip_gun(CurrentGunScene)
+	if CurrentGunScene:
+		equip_gun(CurrentGunScene)
+
+
+func pre_equip():
+	pass
 
 
 @rpc("any_peer", "call_local")
@@ -20,8 +27,9 @@ func equip_gun(gun_scene_path: String) -> void:
 	
 	if gun_scene.can_instantiate():
 		if current_gun:
-			current_gun.free()
+			drop()
 		current_gun = gun_scene.instantiate()
+		CurrentGunScene = gun_scene_path
 		
 		ReloadTimer.wait_time = current_gun.reload_time
 		ReloadTimer.one_shot = true
@@ -72,3 +80,21 @@ func _process(_delta: float) -> void:
 		var gunRotation = global_position.angle_to_point(get_global_mouse_position())
 		rotation = gunRotation
 
+
+@rpc("any_peer", "call_local")
+func drop() -> void:
+	if not current_gun:
+		return
+		
+	var pick_up := PickUp.instantiate()
+	pick_up.item_scene = CurrentGunScene
+	pick_up.global_position = global_position
+	parent.get_parent().add_child(pick_up)
+	
+	current_gun = null
+	for child in get_children():
+		if child is Gun:
+			remove_child(child)
+			
+	if is_multiplayer_authority():
+		Signals.set_hud_visibility.emit(true)

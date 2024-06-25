@@ -13,6 +13,9 @@ var current_health := max_health
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var player_name := "Player"
 var locked := false
+@onready var is_hovering := false
+var interactables : Array[Node] = []
+var pickables : Array[Node] = []
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int(), true)
@@ -54,11 +57,22 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = jump_velocity
 			
+		if Input.is_action_just_pressed("interact") and interactables.size() > 0:
+			if interactables[0].has_method("interact"):
+				interactables[0].interact(self)
+				
+		if Input.is_action_just_pressed("pick_up") and pickables.size() > 0:
+			if pickables[0].has_method("interact"):
+				pickables[0].interact(self)
+			
+		if Input.is_action_just_pressed("drop"):
+			GunManager.rpc("drop")
+			
 	move_and_slide()
 
 
-func is_interacting() -> bool:
-	return Input.is_action_just_pressed("pick_up")
+#func is_interacting() -> bool:
+	#return Input.is_action_just_pressed("pick_up")
 
 
 @rpc("any_peer", "call_local")
@@ -69,7 +83,34 @@ func update_health(change: int) -> void:
 	if current_health <= 0:
 		death()
 
+
 func death() -> void:
 	locked = true
 	GunManager.lock()
-	# @fred : animação de morte
+
+
+func _on_interaction_area_area_entered(area: Area2D) -> void:
+	if not is_multiplayer_authority():
+		return
+		
+	if area.is_in_group("pickable"):
+		pickables.append(area)
+	else:
+		interactables.append(area)
+	if area.has_method("hover") and not is_hovering:
+		area.hover()
+		is_hovering = true
+
+
+func _on_interaction_area_area_exited(area: Area2D) -> void:
+	if not is_multiplayer_authority():
+		return
+	
+	if area.is_in_group("pickable"):
+		pickables.erase(area)
+	else:
+		interactables.erase(area)
+	if area.has_method("unhover"):
+		area.unhover()
+		is_hovering = false
+		
