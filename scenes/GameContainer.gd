@@ -47,11 +47,14 @@ func game_started() -> void:
 @rpc("authority", "call_local")
 func game_started_all() -> void:
 	WaitingRoom.hide()
+	$"../CanvasLayer/Background".hide()
 	
 	
 func _on_main_menu_start_playground() -> void:
 	var playground := PlaygroundScene.instantiate()
 	MainMenu.hide()
+	$"../CanvasLayer/Background".hide()
+	
 	add_child(playground)
 	PlayerSpawner.spawn({
 		"player_name": "Player",

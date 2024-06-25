@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctdre0gn7602s"]
+[gd_scene load_steps=6 format=3 uid="uid://ctdre0gn7602s"]
 
 [ext_resource type="Script" path="res://scenes/pick_up_gun/pick_up_gun.gd" id="1_wvfaj"]
 [ext_resource type="Texture2D" uid="uid://kix4kydxd3qe" path="res://scenes/pick_up_gun/arma.png" id="2_h2rw5"]
+[ext_resource type="Script" path="res://scenes/pick_up_gun/PickableArea.gd" id="3_u42bw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1v00f"]
 size = Vector2(52, 16)
@@ -9,8 +10,9 @@ size = Vector2(52, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kckre"]
 size = Vector2(52, 16)
 
-[node name="PickUpGun" type="RigidBody2D"]
+[node name="PickUpGun" type="RigidBody2D" groups=["pickable"]]
 collision_layer = 16
+collision_mask = 33
 script = ExtResource("1_wvfaj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -21,12 +23,23 @@ shape = SubResource("RectangleShape2D_1v00f")
 texture = ExtResource("2_h2rw5")
 
 [node name="PickableArea" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 2
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("3_u42bw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickableArea"]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_kckre")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -48.0
+offset_top = -104.0
+offset_right = 48.0
+offset_bottom = -81.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "[E] to pickup"
 
 [connection signal="body_entered" from="PickableArea" to="." method="_on_pickable_area_body_entered"]
 [connection signal="body_exited" from="PickableArea" to="." method="_on_pickable_area_body_exited"]

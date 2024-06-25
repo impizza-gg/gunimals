@@ -9,6 +9,10 @@ signal player_disconnected_signal(id: int)
 var peer := ENetMultiplayerPeer.new()
 var connected_players := {}
 
+func _ready() -> void:
+	multiplayer.allow_object_decoding = true
+
+
 func _on_main_menu_create_room(playerName: String) -> void:	
 	var ip : String
 	
@@ -94,6 +98,7 @@ func back() -> void:
 	
 	WaitingRoom.hide()
 	MainMenu.show()
+	$"../CanvasLayer/Background".show()
 
 
 func player_disconnected(id: int) -> void:
