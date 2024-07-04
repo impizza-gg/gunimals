@@ -3,10 +3,10 @@
 [ext_resource type="Theme" uid="uid://b7q6nhv8tdmuy" path="res://assets/themes/default_theme.tres" id="1_io5mb"]
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="2_d51xf"]
 [ext_resource type="ButtonGroup" uid="uid://cshs01kg4k1yl" path="res://assets/translation_button_group.tres" id="3_5tg7k"]
-[ext_resource type="Texture2D" uid="uid://confybce5ufyg" path="res://assets/sprites/br_gray.png" id="4_n58w8"]
-[ext_resource type="Texture2D" uid="uid://bwd2tj7wspp8y" path="res://assets/sprites/br_color.png" id="5_gi5ol"]
-[ext_resource type="Texture2D" uid="uid://bnqi2gmq5dhg8" path="res://assets/sprites/en_gray.png" id="6_kqedh"]
-[ext_resource type="Texture2D" uid="uid://khomtcsq0uas" path="res://assets/sprites/en_color.png" id="7_sdohg"]
+[ext_resource type="Texture2D" uid="uid://confybce5ufyg" path="res://assets/sprites/menus/br_gray.png" id="4_n58w8"]
+[ext_resource type="Texture2D" uid="uid://bwd2tj7wspp8y" path="res://assets/sprites/menus/br_color.png" id="5_gi5ol"]
+[ext_resource type="Texture2D" uid="uid://bnqi2gmq5dhg8" path="res://assets/sprites/menus/en_gray.png" id="6_kqedh"]
+[ext_resource type="Texture2D" uid="uid://khomtcsq0uas" path="res://assets/sprites/menus/en_color.png" id="7_sdohg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nokq1"]
 content_margin_left = 16.0

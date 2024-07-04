@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwggdfsjxd07d"
-path="res://.godot/imported/tile_green.png-beceb2bb81a7ba3f12f64ee6d5ba07e5.ctex"
+uid="uid://b5untiqse6nj8"
+path="res://.godot/imported/arma.png-2d356053919187d5dfc8a41b2c432a68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tile_green.png"
-dest_files=["res://.godot/imported/tile_green.png-beceb2bb81a7ba3f12f64ee6d5ba07e5.ctex"]
+source_file="res://assets/sprites/guns/arma.png"
+dest_files=["res://.godot/imported/arma.png-2d356053919187d5dfc8a41b2c432a68.ctex"]
 
 [params]
 

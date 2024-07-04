@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kix4kydxd3qe"
-path="res://.godot/imported/arma.png-be9b1c2e184d5b4d46634101edc802c1.ctex"
+uid="uid://dgs7h012kw4hu"
+path="res://.godot/imported/sea.png-4e6669cedca7ea3e6e8460497f028aa2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/pick_up_gun/arma.png"
-dest_files=["res://.godot/imported/arma.png-be9b1c2e184d5b4d46634101edc802c1.ctex"]
+source_file="res://assets/sprites/world/sea.png"
+dest_files=["res://.godot/imported/sea.png-4e6669cedca7ea3e6e8460497f028aa2.ctex"]
 
 [params]
 

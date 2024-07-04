@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var HealthBar := $HealthBar
 @onready var GunManager := $GunManager
 @onready var Sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var knockback := Vector2.ZERO
 
 @export var max_health := 100.0
 @export var speed := 300.0
@@ -17,6 +18,7 @@ var locked := false
 @onready var is_hovering := false
 var interactables : Array[Node] = []
 var pickables : Array[Node] = []
+
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int(), true)
@@ -45,26 +47,33 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority():
+		move_and_slide()
+		return
+		
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		
-	if is_multiplayer_authority() and not locked and not Signals.paused:			
+	velocity += knockback
+	knockback = lerp(knockback, Vector2.ZERO, 0.1)
+	
+	if not locked and not Signals.paused: 
 		var direction := Input.get_axis("move_left", "move_right")
 		if direction:
 			velocity.x = direction * speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 
-		if velocity.x != 0 and velocity.y == 0:
-			Sprite.play("walk")
-		elif velocity.y != 0:
-			Sprite.play("jump_simple")
-		elif velocity.x == 0 and velocity.y == 0 and current_health > 0:
-			Sprite.play("idle")
-      
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = jump_velocity
-			
+		
+		if direction != 0 and is_on_floor():
+			Sprite.play("walk")
+		elif velocity.y < -200:
+			Sprite.play("jump_simple")
+		elif velocity.x == 0 and velocity.y == 0:
+			Sprite.play("idle")
+	
 		if Input.is_action_just_pressed("interact") and interactables.size() > 0:
 			if interactables[0].has_method("interact"):
 				interactables[0].interact(self)
@@ -75,7 +84,13 @@ func _physics_process(delta: float) -> void:
 			
 		if Input.is_action_just_pressed("drop"):
 			GunManager.rpc("drop")
-			
+	
+	print(knockback)
+	if knockback.x > -0.1 and knockback.x < 0.1:
+		knockback.x = 0
+	if knockback.y > -0.1 and knockback.y < 0.1:
+		knockback.y = 0
+		
 	move_and_slide()
 
 

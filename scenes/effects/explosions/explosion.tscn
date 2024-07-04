@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqiyrkm1i6ayb"]
+
+[ext_resource type="Texture2D" uid="uid://ctthsuagy42ms" path="res://scenes/effects/explosions/explosion_gradient.tres" id="1_s8g00"]
+
+[sub_resource type="Curve" id="Curve_enk76"]
+_data = [Vector2(0.00766283, 0.214626), 0.0, 0.0, 0, 0, Vector2(0.298851, 1), 0.0, 0.0, 0, 0, Vector2(0.758621, 0.0492845), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_uwas8"]
+curve = SubResource("Curve_enk76")
+
+[sub_resource type="Curve" id="Curve_8ptfm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.183625), -2.2992, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kg1kv"]
+curve = SubResource("Curve_8ptfm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uskj1"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+initial_velocity_min = 175.0
+initial_velocity_max = 225.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_kg1kv")
+color_ramp = ExtResource("1_s8g00")
+emission_curve = SubResource("CurveTexture_uwas8")
+turbulence_enabled = true
+turbulence_noise_scale = 3.0
+turbulence_noise_speed_random = 0.0
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_uskj1")
+lifetime = 0.7
+explosiveness = 1.0

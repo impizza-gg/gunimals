@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwafu68v6v4ll"]
+[gd_scene load_steps=6 format=3 uid="uid://dwafu68v6v4ll"]
 
 [ext_resource type="Script" path="res://scenes/guns/shotgun/shotgun.gd" id="1_m0kal"]
+[ext_resource type="PackedScene" uid="uid://cnd2g7lqjwcjm" path="res://scenes/pickupables/shotgun_pickup/shotgun_pickup.tscn" id="2_7x7cu"]
 [ext_resource type="AudioStream" uid="uid://by3mds4fkbad0" path="res://assets/sounds/bullet_sound.wav" id="2_45s0f"]
 
 [sub_resource type="Gradient" id="Gradient_vtrla"]
@@ -15,6 +16,7 @@ max_ammo = 12
 bullet_num = 4
 damage = 8
 ShootPlayer = NodePath("AudioStreamPlayer")
+PickUpScene = ExtResource("2_7x7cu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.207031, 0.0625)

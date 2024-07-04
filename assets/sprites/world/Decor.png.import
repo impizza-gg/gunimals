@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5untiqse6nj8"
-path="res://.godot/imported/arma.png-63a0ff375e986e7d25a3b597fd0977e5.ctex"
+uid="uid://ddxxshcbnij1f"
+path="res://.godot/imported/Decor.png-de826041e6d9767ee9783654e9636ad5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/arma.png"
-dest_files=["res://.godot/imported/arma.png-63a0ff375e986e7d25a3b597fd0977e5.ctex"]
+source_file="res://assets/sprites/world/Decor.png"
+dest_files=["res://.godot/imported/Decor.png-de826041e6d9767ee9783654e9636ad5.ctex"]
 
 [params]
 

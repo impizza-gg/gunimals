@@ -4,7 +4,6 @@ signal shoot(bullet: Node, location: Vector2)
 
 @export var CurrentGunScene: String = "res://scenes/guns/example_automatic/automatic_gun.tscn"
 
-@onready var PickUp := preload("res://scenes/pick_up_gun/pick_up_gun.tscn")
 @onready var parent := get_parent()
 @onready var ReloadBar := $"../ReloadBar"
 @onready var ReloadTimer : Timer = $"../ReloadTimer"
@@ -86,7 +85,7 @@ func drop() -> void:
 	if not current_gun:
 		return
 		
-	var pick_up := PickUp.instantiate()
+	var pick_up := current_gun.PickUpScene.instantiate()
 	pick_up.item_scene = CurrentGunScene
 	pick_up.global_position = global_position
 	parent.get_parent().add_child(pick_up)

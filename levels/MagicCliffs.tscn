@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc0cm7mkoi21m"]
+
+[ext_resource type="Texture2D" uid="uid://cbk3itcaqmrek" path="res://assets/sprites/world/sky.png" id="1_cabp6"]
+[ext_resource type="Texture2D" uid="uid://b5qgyhfmuvstp" path="res://assets/sprites/world/clouds.png" id="2_0s0lk"]
+[ext_resource type="Texture2D" uid="uid://dgs7h012kw4hu" path="res://assets/sprites/world/sea.png" id="3_osyvw"]
+[ext_resource type="Texture2D" uid="uid://paomwm82f8me" path="res://assets/sprites/world/far-grounds.png" id="4_2dy0i"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayerSky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(2, 2)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerSky"]
+offset_left = -1396.0
+offset_top = -288.0
+offset_right = 2818.0
+offset_bottom = 16.0
+scale = Vector2(1, 4.3)
+texture = ExtResource("1_cabp6")
+stretch_mode = 1
+
+[node name="ParallaxLayerClouds" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.05, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerClouds"]
+offset_left = -1399.0
+offset_top = 598.0
+offset_right = 2817.0
+offset_bottom = 836.0
+texture = ExtResource("2_0s0lk")
+stretch_mode = 1
+
+[node name="ParallaxLayerSea" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.075, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerSea"]
+offset_left = -1398.0
+offset_top = 833.0
+offset_right = 2813.0
+offset_bottom = 929.0
+scale = Vector2(1, 2)
+texture = ExtResource("3_osyvw")
+stretch_mode = 1
+
+[node name="ParallaxLayerFarground" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.15, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerFarground"]
+offset_left = -529.0
+offset_top = 680.0
+offset_right = 843.0
+offset_bottom = 950.0
+texture = ExtResource("4_2dy0i")
+metadata/_edit_use_anchors_ = true

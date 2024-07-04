@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt3ju2o4a7klw"]
+
+[ext_resource type="Script" path="res://scenes/guns/grenade/grenade.gd" id="1_dlkra"]
+[ext_resource type="PackedScene" uid="uid://cttd3s7surn0q" path="res://scenes/guns/grenade/grenade_projectile.tscn" id="2_507yc"]
+[ext_resource type="PackedScene" uid="uid://byeo264dv3ep" path="res://scenes/pickupables/grenade_pickup/grenade_pickup.tscn" id="3_6fpcb"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f3uco"]
+
+[node name="Grenade" type="Node2D"]
+script = ExtResource("1_dlkra")
+offset_x = 40.0
+projectile = ExtResource("2_507yc")
+reloadable = false
+drop_shells = false
+PickUpScene = ExtResource("3_6fpcb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2.38419e-07, 2.38419e-07)
+scale = Vector2(6, 6)
+texture = SubResource("PlaceholderTexture2D_f3uco")

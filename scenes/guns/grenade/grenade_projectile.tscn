@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://cttd3s7surn0q"]
+
+[ext_resource type="Script" path="res://scenes/guns/grenade/grenade_projectile.gd" id="1_7dgfg"]
+[ext_resource type="PackedScene" uid="uid://dqiyrkm1i6ayb" path="res://scenes/effects/explosions/explosion.tscn" id="2_0jl4d"]
+[ext_resource type="Texture2D" uid="uid://mwoa77iofra6" path="res://assets/sprites/guns/grenade.png" id="2_fsn81"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_imu1v"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_77u4m"]
+radius = 134.015
+
+[node name="GrenadeProjectile" type="RigidBody2D"]
+collision_layer = 0
+mass = 0.03
+script = ExtResource("1_7dgfg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_imu1v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5.96046e-08, -5.96046e-08)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_fsn81")
+
+[node name="AliveTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="DeleteTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("2_0jl4d")]
+emitting = false
+amount = 128
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 26
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_77u4m")
+
+[connection signal="timeout" from="AliveTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]

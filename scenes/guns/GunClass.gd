@@ -18,13 +18,18 @@ signal update_ui(current_ammo: int)
 @export var ReloadPlayer : AudioStreamPlayer
 @export var drop_shells := true
 @export var ShootSound : AudioStream
+@export var knockback_x := 0.0
+@export var knockback_y := 0.0
+@export var knocks_back := false
+@export var PickUpScene := preload("res://scenes/pickupables/default_pickup/default_pickup.tscn")
 
 @onready var CooldownTimer := Timer.new()
 @onready var Shell := preload("res://scenes/shell/shell.tscn")
 
 @onready var locked := false
 # tem que achar outro jeito, isso aqui é feio demais
-@onready var my_id := get_parent().get_parent().name.to_int()
+@onready var player := get_parent().get_parent()
+@onready var my_id := player.name.to_int()
 @onready var clips := max_clips
 @onready var current_ammo := max_ammo
 @onready var reloading := false
@@ -63,6 +68,16 @@ func shoot(initial_position: Vector2, bullet_rotation: float, direction: Vector2
 # função que deve ser sobrescrita pela arma
 func create_bullets(initial_position: Vector2, bullet_rotation: float, direction: Vector2, owner_id: int) -> Array[Node]:
 	var bullet := projectile.instantiate()
+	
+	if knocks_back:
+		#var dir_factor = direction.x / abs(direction.x)
+		#var y_factor := randf_range(-15.0, 25.0)
+		#var x_factor := randf_range(15.5, 25.0)
+		#player.knockback = -Vector2(dir_factor * x_factor, y_factor)
+		#player.knockback.y = player.knockback.y / 10
+		#player.knockback = -Vector2(dir_factor * knockback_x, knockback_y)
+		player.knockback = -direction * Vector2(knockback_x, knockback_y)
+	
 	bullet.position = initial_position
 	bullet.rotation = bullet_rotation
 	bullet.direction = direction
@@ -87,7 +102,7 @@ func spawn_bullets(gun_position: Vector2, gun_rotation: float, owner_id: int) ->
 		Signals.update_hud_ammo_current.emit(current_ammo)
 	for bullet in bullet_list:
 		get_parent().add_child(bullet)
-	if bullet_list.size() > 0:
+	if bullet_list.size() > 0 and drop_shells:
 		var shell := Shell.instantiate()
 		shell.global_position = gun_position - Vector2(10, 5)
 		shell.direction = direction

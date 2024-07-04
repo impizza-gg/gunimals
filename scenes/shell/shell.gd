@@ -6,7 +6,7 @@ var direction := Vector2(1, 0)
 var rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
-	rotation = randf_range(-0.1, 0.1)
+	rotation = randf_range(-0.2, 0.2)
 	var rand_factor := Vector2(randf_range(-100.0, 100.0), randf_range(-80.0, 80.0))
 	var dir_factor = -(direction.x / abs(direction.x))
 	apply_impulse(Vector2(300.0 * dir_factor, 100.0) + rand_factor)

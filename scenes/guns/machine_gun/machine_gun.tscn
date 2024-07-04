@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0v8l7dfj1tqg"]
+
+[ext_resource type="Script" path="res://scenes/guns/machine_gun/machine_gun.gd" id="1_lyv2l"]
+[ext_resource type="PackedScene" uid="uid://bgi8lcckv30nb" path="res://scenes/pickupables/machine_gun_pickup/machine_gun_pickup.tscn" id="2_3mbau"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_33oqs"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_lyv2l")
+offset_x = 30.0
+automatic = true
+cooldown = 0.05
+knockback_x = 25.0
+knocks_back = true
+PickUpScene = ExtResource("2_3mbau")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(76, 21.5)
+texture = SubResource("PlaceholderTexture2D_33oqs")

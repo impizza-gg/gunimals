@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwd2tj7wspp8y"
-path="res://.godot/imported/br_color.png-ef42f5ef6ae1ce7243fdea39b896d57d.ctex"
+uid="uid://paomwm82f8me"
+path="res://.godot/imported/far-grounds.png-195ceb4309dc74679fd1372ab24ea866.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/br_color.png"
-dest_files=["res://.godot/imported/br_color.png-ef42f5ef6ae1ce7243fdea39b896d57d.ctex"]
+source_file="res://assets/sprites/world/far-grounds.png"
+dest_files=["res://.godot/imported/far-grounds.png-195ceb4309dc74679fd1372ab24ea866.ctex"]
 
 [params]
 

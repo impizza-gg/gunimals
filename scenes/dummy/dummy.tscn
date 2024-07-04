@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://lhqyh7712go1"]
 
 [ext_resource type="Script" path="res://scenes/dummy/dummy.gd" id="1_7urae"]
-[ext_resource type="Texture2D" uid="uid://0j3g1evhg8mi" path="res://assets/sprites/dummy_single.png" id="2_bnjbu"]
+[ext_resource type="Texture2D" uid="uid://0j3g1evhg8mi" path="res://assets/sprites/characters/dummy_single.png" id="2_bnjbu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nm6o4"]
 size = Vector2(41.625, 53.5)

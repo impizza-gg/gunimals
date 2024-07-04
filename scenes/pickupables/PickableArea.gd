@@ -1,5 +1,4 @@
 extends Area2D
-# isso aqui poderia virar uma cena ou classe depois
 
 func hover() -> void:
 	$"../Label".visible = true

@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://byeo264dv3ep"]
+
+[ext_resource type="Script" path="res://scenes/pickupables/grenade_pickup/grenade_pickup.gd" id="1_prpsb"]
+[ext_resource type="Texture2D" uid="uid://mwoa77iofra6" path="res://assets/sprites/guns/grenade.png" id="2_0kt33"]
+[ext_resource type="Script" path="res://scenes/pickupables/PickableArea.gd" id="3_bwqng"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1v00f"]
+size = Vector2(12, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kckre"]
+size = Vector2(32, 25)
+
+[node name="PickUpGun" type="RigidBody2D" groups=["pickable"]]
+collision_layer = 16
+collision_mask = 33
+script = ExtResource("1_prpsb")
+item_scene = "res://scenes/guns/grenade/grenade.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1v00f")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_0kt33")
+
+[node name="PickableArea" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("3_bwqng")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickableArea"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_kckre")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -48.0
+offset_top = -104.0
+offset_right = 48.0
+offset_bottom = -81.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "[E] to pickup"
+
+[connection signal="body_entered" from="PickableArea" to="." method="_on_pickable_area_body_entered"]
+[connection signal="body_exited" from="PickableArea" to="." method="_on_pickable_area_body_exited"]
