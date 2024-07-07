@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_x5utg"]
 [ext_resource type="Script" path="res://scenes/player/GunManager.gd" id="2_8gubn"]
 [ext_resource type="Theme" uid="uid://d4lekt35xyedk" path="res://assets/themes/health_bar_theme.tres" id="4_kkano"]
-[ext_resource type="SpriteFrames" uid="uid://d3ud5wii03kdx" path="res://scenes/player/sprites/sprite_frames/pato.tres" id="4_nmfcn"]
+[ext_resource type="SpriteFrames" uid="uid://baonqyv5a1qvy" path="res://scenes/player/sprites/sprite_frames/pingu.tres" id="4_prwdx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ac5a1"]
 outline_size = 5
@@ -81,10 +81,9 @@ script = ExtResource("2_8gubn")
 replication_config = SubResource("SceneReplicationConfig_nleoe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(2, -13)
-scale = Vector2(1.5646, 1.63005)
-sprite_frames = ExtResource("4_nmfcn")
-animation = &"fall"
+scale = Vector2(1.36771, 1.45439)
+sprite_frames = ExtResource("4_prwdx")
+animation = &"death"
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 32
