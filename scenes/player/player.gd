@@ -70,7 +70,9 @@ func _physics_process(delta: float) -> void:
 		if direction != 0 and is_on_floor():
 			Sprite.play("walk")
 		elif velocity.y < -200:
-			Sprite.play("jump_simple")
+			Sprite.play("jump")
+		elif velocity.y > 0:
+			Sprite.play("fall")
 		elif velocity.x == 0 and velocity.y == 0:
 			Sprite.play("idle")
 	

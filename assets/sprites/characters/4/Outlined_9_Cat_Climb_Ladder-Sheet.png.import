@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baj0782jqjy8x"
-path="res://.godot/imported/4_Cat_Fall-Sheet.png-836236d9181bbc2abf2cb79b53b1bb89.ctex"
+uid="uid://d05ng5d53uom3"
+path="res://.godot/imported/Outlined_9_Cat_Climb_Ladder-Sheet.png-abca17fa835385a85b1d9e2f60ad4b5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/characters/4/4_Cat_Fall-Sheet.png"
-dest_files=["res://.godot/imported/4_Cat_Fall-Sheet.png-836236d9181bbc2abf2cb79b53b1bb89.ctex"]
+source_file="res://assets/sprites/characters/4/Outlined_9_Cat_Climb_Ladder-Sheet.png"
+dest_files=["res://.godot/imported/Outlined_9_Cat_Climb_Ladder-Sheet.png-abca17fa835385a85b1d9e2f60ad4b5b.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
