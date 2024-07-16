@@ -15,6 +15,7 @@ var current_health := max_health
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var player_name := "Player"
 var locked := false
+var dead := false
 @onready var is_hovering := false
 var interactables : Array[Node] = []
 var pickables : Array[Node] = []
@@ -22,7 +23,7 @@ var pickables : Array[Node] = []
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int(), true)
-
+	
 
 func _ready() -> void:
 	NameLabel.text = player_name
@@ -33,6 +34,7 @@ func _ready() -> void:
 		var cameraScene := load("res://scenes/player/player_camera.tscn")
 		var camera = cameraScene.instantiate()
 		add_child(camera)
+		camera.make_current()
 
 
 func _process(_delta: float) -> void:
@@ -53,6 +55,9 @@ func _physics_process(delta: float) -> void:
 		
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		
+	if locked or Signals.paused:
+		velocity = Vector2.ZERO
 		
 	velocity += knockback
 	knockback = lerp(knockback, Vector2.ZERO, 0.1)
@@ -75,7 +80,7 @@ func _physics_process(delta: float) -> void:
 			Sprite.play("fall")
 		elif velocity.x == 0 and velocity.y == 0:
 			Sprite.play("idle")
-	
+			
 		if Input.is_action_just_pressed("interact") and interactables.size() > 0:
 			if interactables[0].has_method("interact"):
 				interactables[0].interact(self)
@@ -86,8 +91,8 @@ func _physics_process(delta: float) -> void:
 			
 		if Input.is_action_just_pressed("drop"):
 			GunManager.rpc("drop")
-	
-	print(knockback)
+
+	#print(knockback)
 	if knockback.x > -0.1 and knockback.x < 0.1:
 		knockback.x = 0
 	if knockback.y > -0.1 and knockback.y < 0.1:
@@ -102,6 +107,8 @@ func _physics_process(delta: float) -> void:
 
 @rpc("any_peer", "call_local")
 func update_health(change: int) -> void:
+	if locked: 
+		return
 	current_health += change
 	current_health = min(current_health, max_health)
 	HealthBar.value = current_health
@@ -112,17 +119,29 @@ func update_health(change: int) -> void:
 
 func death() -> void:
 	locked = true
+	dead = true
+	GunManager.call_deferred("drop")
 	GunManager.lock()
+	
+	$HealthBar.visible = false
+	$ReloadBar.visible = false
+	$Name.self_modulate = Color(1, 0, 0, 0.5)
+	
+	if is_multiplayer_authority():
+		Signals.set_hud_visibility.emit(false)
+	if multiplayer.is_server():
+		Signals.player_death.emit(name.to_int())
 
 
 func _on_interaction_area_area_entered(area: Area2D) -> void:
-	if not is_multiplayer_authority():
+	if not is_multiplayer_authority() or dead:
 		return
 		
 	if area.is_in_group("pickable"):
 		pickables.append(area)
 	else:
 		interactables.append(area)
+		
 	if area.has_method("hover") and not is_hovering:
 		area.hover()
 		is_hovering = true
@@ -134,9 +153,31 @@ func _on_interaction_area_area_exited(area: Area2D) -> void:
 	
 	if area.is_in_group("pickable"):
 		pickables.erase(area)
+		
 	else:
 		interactables.erase(area)
 	if area.has_method("unhover"):
 		area.unhover()
 		is_hovering = false
+
+
+@rpc("any_peer", "call_local")
+func change_camera() -> void:
+	var level = get_parent().level
+	if level:
+		var center = level.get_node("Center")
+		GunManager.remove()
+		$AnimatedSprite2D.visible = false
+		$GunManager.visible = false
+		$HealthBar.visible = false
+		$Name.visible = false
 		
+		$CollisionShape2D.set_deferred("disabled", true)
+		$InteractionArea.set_deferred("monitoring", false)
+		if is_multiplayer_authority():
+			position = center.position
+		
+
+@rpc("any_peer", "call_local")
+func set_knockback(kb: Vector2) -> void:
+	knockback = kb

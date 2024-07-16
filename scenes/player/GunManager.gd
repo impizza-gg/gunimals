@@ -20,6 +20,14 @@ func pre_equip():
 	pass
 
 
+func remove():
+	lock()
+	current_gun = null
+	for child in get_children():
+		if child is Gun:
+			remove_child(child)
+
+
 @rpc("any_peer", "call_local")
 func equip_gun(gun_scene_path: String) -> void:
 	var gun_scene: PackedScene = load(gun_scene_path)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d0ghjlejhnjuf"]
+[gd_scene load_steps=24 format=3 uid="uid://d0ghjlejhnjuf"]
 
 [ext_resource type="Script" path="res://levels/playground/playground.gd" id="1_0pddj"]
 [ext_resource type="PackedScene" uid="uid://lhqyh7712go1" path="res://scenes/dummy/dummy.tscn" id="3_o48ih"]
@@ -6,26 +6,29 @@
 [ext_resource type="PackedScene" uid="uid://byeo264dv3ep" path="res://scenes/pickupables/grenade_pickup/grenade_pickup.tscn" id="5_a85fh"]
 [ext_resource type="PackedScene" uid="uid://bgi8lcckv30nb" path="res://scenes/pickupables/machine_gun_pickup/machine_gun_pickup.tscn" id="7_esehv"]
 [ext_resource type="PackedScene" uid="uid://cc0cm7mkoi21m" path="res://levels/MagicCliffs.tscn" id="7_hjqdl"]
+[ext_resource type="Script" path="res://scripts/Killzone.gd" id="8_6uo7d"]
 [ext_resource type="PackedScene" uid="uid://du8d2k7flouhi" path="res://scenes/pickupables/laser_gun_pickup/laser_gun_pickup.tscn" id="8_c7ekx"]
-[ext_resource type="PackedScene" uid="uid://dqiyrkm1i6ayb" path="res://scenes/effects/explosions/explosion.tscn" id="8_u0g73"]
 [ext_resource type="Texture2D" uid="uid://v0syu0pelecj" path="res://assets/sprites/world/tileset.png" id="9_afmer"]
 [ext_resource type="Texture2D" uid="uid://vfsvmy82ajx0" path="res://assets/sprites/world/Assets.png" id="10_npp5d"]
 [ext_resource type="Texture2D" uid="uid://ddxxshcbnij1f" path="res://assets/sprites/world/Decor.png" id="11_h75k2"]
+[ext_resource type="Script" path="res://scripts/DamageZone.gd" id="12_i0p3j"]
 
 [sub_resource type="Environment" id="Environment_u1seb"]
 background_mode = 3
 tonemap_mode = 2
 glow_enabled = true
+glow_normalized = true
 glow_intensity = 8.0
-glow_blend_mode = 1
-glow_hdr_threshold = 2.01
-glow_hdr_scale = 4.0
+glow_strength = 1.61
+glow_mix = 0.0
+glow_hdr_threshold = 1.5
+glow_hdr_scale = 0.2
+glow_hdr_luminance_cap = 256.0
+glow_map_strength = 1.0
+adjustment_enabled = true
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1buh"]
-size = Vector2(91.75, 1530.56)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsndd"]
-size = Vector2(2831.5, 124)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qbbr"]
+size = Vector2(4327, 72.5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vrs1l"]
 texture = ExtResource("9_afmer")
@@ -853,6 +856,9 @@ size = Vector2(381, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pjnn"]
 size = Vector2(410.75, 15)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfdud"]
+size = Vector2(49, 10)
+
 [node name="Playground" type="Node2D"]
 script = ExtResource("1_0pddj")
 
@@ -868,10 +874,6 @@ position = Vector2(473, 519)
 [node name="MagicCliffs" parent="." instance=ExtResource("7_hjqdl")]
 position = Vector2(400, -110)
 
-[node name="GPUParticles2D" parent="." instance=ExtResource("8_u0g73")]
-visible = false
-position = Vector2(393, 590)
-
 [node name="ConveyorBelt" parent="." instance=ExtResource("5_7eews")]
 position = Vector2(978, 636)
 scale = Vector2(1, 0.7)
@@ -879,7 +881,7 @@ scale = Vector2(1, 0.7)
 [node name="Pickupables" type="Node2D" parent="."]
 
 [node name="MachineGun" parent="Pickupables" instance=ExtResource("7_esehv")]
-position = Vector2(43, 593)
+position = Vector2(79, 592)
 
 [node name="LaserGun" parent="Pickupables" instance=ExtResource("8_c7ekx")]
 position = Vector2(599, 597)
@@ -889,29 +891,14 @@ position = Vector2(380, 515)
 
 [node name="Killzones" type="Node2D" parent="."]
 
-[node name="KillzoneRight" type="Area2D" parent="Killzones" groups=["wall"]]
+[node name="Area2D" type="Area2D" parent="Killzones"]
+position = Vector2(544, 894)
+collision_mask = 6
+script = ExtResource("8_6uo7d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/KillzoneRight"]
-position = Vector2(2092, 303)
-shape = SubResource("RectangleShape2D_s1buh")
-
-[node name="KillzoneLeft" type="Area2D" parent="Killzones" groups=["wall"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/KillzoneLeft"]
-position = Vector2(-639, 295.283)
-shape = SubResource("RectangleShape2D_s1buh")
-
-[node name="KillzoneBottom" type="Area2D" parent="Killzones" groups=["wall"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/KillzoneBottom"]
-position = Vector2(719, 1125)
-shape = SubResource("RectangleShape2D_rsndd")
-
-[node name="KillzoneTop" type="Area2D" parent="Killzones"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/KillzoneTop"]
-position = Vector2(726, -532)
-shape = SubResource("RectangleShape2D_rsndd")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Area2D"]
+position = Vector2(-30, -47)
+shape = SubResource("RectangleShape2D_6qbbr")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_r42fo")
@@ -944,3 +931,23 @@ shape = SubResource("RectangleShape2D_sf0bl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D3"]
 position = Vector2(911.625, 488.5)
 shape = SubResource("RectangleShape2D_8pjnn")
+
+[node name="Spike" type="Area2D" parent="."]
+position = Vector2(42, 356)
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("12_i0p3j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike"]
+position = Vector2(-18, 103)
+shape = SubResource("RectangleShape2D_sfdud")
+
+[node name="MapCamera" type="Camera2D" parent="."]
+top_level = true
+position = Vector2(576, 326)
+
+[node name="Center" type="Node2D" parent="."]
+position = Vector2(557, 426)
+
+[connection signal="body_entered" from="Killzones/Area2D" to="Killzones/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Spike" to="Spike" method="_on_body_entered"]

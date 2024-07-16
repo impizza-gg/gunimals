@@ -23,10 +23,13 @@ func _on_timer_timeout() -> void:
 			impact_direction = impact_direction.normalized()
 			var force_vector = impact_direction * (force / (distance))
 			force_vector = force_vector.clamp(Vector2(-1000, -50), Vector2(1000, 50))
+			print("explosion")
 			if body.has_method("update_health"):
 				body.rpc("update_health", -damage)
-				body.knockback = force_vector / 1.5
+				body.rpc_id(body.name.to_int(), "set_knockback", force_vector / 1.5)
+				#body.knockback = force_vector / 1.5
 			if body.has_method("rpc_impulse"):
+				print("rpc_impulse")
 				if distance == 0:
 					return
 				body.rpc("rpc_impulse", force_vector)

@@ -396,8 +396,11 @@ bus = &"Woo"
 [node name="GameContainer" type="Node" parent="."]
 script = ExtResource("7_5xvn3")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="MapSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://levels/playground/playground.tscn")
 spawn_path = NodePath("../GameContainer")
 
 [node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]

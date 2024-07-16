@@ -50,6 +50,8 @@ func add_player(id: int, player_name: String, admin := false):
 	player_added.emit(id, player_name, admin)
 	connected_players[id] = {
 		"player_name": player_name,
+		"points": 0,
+		"alive": true
 	}
 	
 	

@@ -1,13 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqiyrkm1i6ayb"]
+[gd_scene load_steps=6 format=3 uid="uid://dqiyrkm1i6ayb"]
 
 [ext_resource type="Texture2D" uid="uid://ctthsuagy42ms" path="res://scenes/effects/explosions/explosion_gradient.tres" id="1_s8g00"]
 
-[sub_resource type="Curve" id="Curve_enk76"]
-_data = [Vector2(0.00766283, 0.214626), 0.0, 0.0, 0, 0, Vector2(0.298851, 1), 0.0, 0.0, 0, 0, Vector2(0.758621, 0.0492845), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [sub_resource type="CurveTexture" id="CurveTexture_uwas8"]
-curve = SubResource("Curve_enk76")
 
 [sub_resource type="Curve" id="Curve_8ptfm"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.183625), -2.2992, 0.0, 0, 0]
