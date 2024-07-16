@@ -19,6 +19,11 @@ var dead := false
 @onready var is_hovering := false
 var interactables : Array[Node] = []
 var pickables : Array[Node] = []
+var character := ""
+var canDoubleJump := false
+var doubleJumpUsed := false
+var canDash := false
+var canGlide := false
 
 
 func _enter_tree() -> void:
@@ -29,6 +34,19 @@ func _ready() -> void:
 	NameLabel.text = player_name
 	HealthBar.max_value = max_health
 	HealthBar.value = current_health
+	
+	if Sprite.sprite_frames.resource_path.contains("pingu"):
+		character = "pingu"
+		canGlide = true
+	if Sprite.sprite_frames.resource_path.contains("gato"):
+		character = "gato"
+		canDash = true
+	if Sprite.sprite_frames.resource_path.contains("sapo"):
+		character = "sapo"
+		jump_velocity = -800.0
+	if Sprite.sprite_frames.resource_path.contains("pato"):
+		character = "pato"
+		canDoubleJump = true
 	
 	if is_multiplayer_authority():
 		var cameraScene := load("res://scenes/player/player_camera.tscn")
@@ -53,8 +71,13 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 		
+	if is_on_floor():
+		doubleJumpUsed = false
+		
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	if not is_on_floor() and canGlide and Input.is_action_pressed("jump"):
+		velocity.y = 50
 		
 	if locked or Signals.paused:
 		velocity = Vector2.ZERO
@@ -71,6 +94,9 @@ func _physics_process(delta: float) -> void:
 
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = jump_velocity
+		if Input.is_action_just_pressed("jump") and not is_on_floor() and canDoubleJump and not doubleJumpUsed:
+			velocity.y = jump_velocity
+			doubleJumpUsed = true
 		
 		if direction != 0 and is_on_floor():
 			Sprite.play("walk")
