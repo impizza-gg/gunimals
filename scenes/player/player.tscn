@@ -81,10 +81,10 @@ script = ExtResource("2_8gubn")
 replication_config = SubResource("SceneReplicationConfig_nleoe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 10)
+position = Vector2(3, -13)
 scale = Vector2(1.36771, 1.45439)
 sprite_frames = ExtResource("4_prwdx")
-animation = &"death"
+animation = &"idle"
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 32

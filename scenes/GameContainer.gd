@@ -78,6 +78,7 @@ func change_map(map: String) -> void:
 	
 	var counter := 0
 	for id in MultiplayerManager.connected_players:
+		MultiplayerManager.connected_players[id]["alive"] = true
 		var player_data = MultiplayerManager.connected_players[id]
 		player_data.counter = counter
 		player_data.id = id

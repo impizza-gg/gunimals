@@ -43,7 +43,7 @@ func _ready() -> void:
 		canDash = true
 	if Sprite.sprite_frames.resource_path.contains("sapo"):
 		character = "sapo"
-		jump_velocity = -800.0
+		jump_velocity = -750.0
 	if Sprite.sprite_frames.resource_path.contains("pato"):
 		character = "pato"
 		canDoubleJump = true
@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 		
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	if not is_on_floor() and canGlide and Input.is_action_pressed("jump"):
+	if not is_on_floor() and canGlide and Input.is_action_pressed("jump") and velocity.y > 0:
 		velocity.y = 50
 		
 	if locked or Signals.paused:
@@ -92,11 +92,20 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 
-		if Input.is_action_just_pressed("jump") and is_on_floor():
-			velocity.y = jump_velocity
-		if Input.is_action_just_pressed("jump") and not is_on_floor() and canDoubleJump and not doubleJumpUsed:
-			velocity.y = jump_velocity
-			doubleJumpUsed = true
+		#if Input.is_action_just_pressed("jump") and is_on_floor():
+			#velocity.y = jump_velocity
+		#if Input.is_action_just_pressed("jump") and not is_on_floor() and canDoubleJump and not doubleJumpUsed:
+			#velocity.y = jump_velocity
+			#doubleJumpUsed = true
+		
+		if Input.is_action_just_pressed("jump"):
+			if is_on_floor():
+				velocity.y = jump_velocity
+			else:
+				if canDoubleJump and not doubleJumpUsed:
+					velocity.y = jump_velocity
+					doubleJumpUsed = true
+		
 		
 		if direction != 0 and is_on_floor():
 			Sprite.play("walk")
@@ -138,6 +147,8 @@ func update_health(change: int) -> void:
 	current_health += change
 	current_health = min(current_health, max_health)
 	HealthBar.value = current_health
+	if change < 0:
+		Sprite.play("hurt")
 	if current_health <= 0:
 		Sprite.play("death")
 		death()
