@@ -14,7 +14,7 @@ extends CharacterBody2D
 var current_health := max_health
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var player_name := "Player"
-var locked := false
+var locked := true
 var dead := false
 @onready var is_hovering := false
 var interactables : Array[Node] = []
@@ -34,6 +34,7 @@ func _ready() -> void:
 	NameLabel.text = player_name
 	HealthBar.max_value = max_health
 	HealthBar.value = current_health
+	Signals.unlock.connect(unlock)
 	
 	if Sprite.sprite_frames.resource_path.contains("pingu"):
 		character = "pingu"
@@ -79,8 +80,8 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor() and canGlide and Input.is_action_pressed("jump") and velocity.y > 0:
 		velocity.y = 50
 		
-	if locked or Signals.paused:
-		velocity = Vector2.ZERO
+	#if locked or Signals.paused:
+		#velocity = Vector2.ZERO
 		
 	velocity += knockback
 	knockback = lerp(knockback, Vector2.ZERO, 0.1)
@@ -136,8 +137,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-#func is_interacting() -> bool:
-	#return Input.is_action_just_pressed("pick_up")
+func unlock() -> void:
+	locked = false
+	GunManager.locked = false
+	if GunManager.current_gun:
+		GunManager.current_gun.locked = false
 
 
 @rpc("any_peer", "call_local")

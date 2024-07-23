@@ -21,3 +21,4 @@ texture = SubResource("GradientTexture2D_vui0q")
 stream = ExtResource("2_7ebvi")
 volume_db = -9.976
 max_polyphony = 10
+bus = &"sfx"

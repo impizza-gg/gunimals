@@ -8,7 +8,11 @@ func _on_back_button_pressed() -> void:
 		%MainMenu.visible = true
 	else:
 		$"../PauseMenu".visible = true
-
+	
+	Settings.current_settings['Master'] = $VBoxContainer/Master/MasterSlider.value
+	Settings.current_settings['music'] = $VBoxContainer/Music/MusicSlider.value
+	Settings.current_settings['sfx'] = $VBoxContainer/SFX/EffectsSlider.value
+	
 
 # Pause Menu Settings
 func _on_settings_button_pressed() -> void:

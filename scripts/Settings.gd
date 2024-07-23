@@ -3,7 +3,10 @@ extends Node
 const SETTINGS_PATH := "user://user_data.save"
 const default_settings := {
 	"player_name": "",
-	"locale": "en"
+	"locale": "en",
+	"Master": 1,
+	"music": 1,
+	"sfx": 1
 }
 
 var current_settings := default_settings
@@ -23,8 +26,8 @@ func _ready() -> void:
 		# não tá salvando 
 	else:
 		create_settings_file()
-
-
+	
+	
 func _notification(type):
 	if type == NOTIFICATION_WM_CLOSE_REQUEST:
 		print("Saving config file...")

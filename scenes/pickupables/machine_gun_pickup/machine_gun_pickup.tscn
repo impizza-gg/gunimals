@@ -35,7 +35,10 @@ script = ExtResource("3_6i1p4")
 position = Vector2(-1, -5)
 shape = SubResource("RectangleShape2D_kckre")
 
-[node name="Label" type="Label" parent="."]
+[node name="LabelContainer" type="Node2D" parent="."]
+top_level = true
+
+[node name="Label" type="Label" parent="LabelContainer"]
 visible = false
 offset_left = -48.0
 offset_top = -104.0
@@ -44,6 +47,11 @@ offset_bottom = -81.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 text = "[E] to pickup"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../LabelContainer")
+update_rotation = false
+update_scale = false
 
 [connection signal="body_entered" from="PickableArea" to="." method="_on_pickable_area_body_entered"]
 [connection signal="body_exited" from="PickableArea" to="." method="_on_pickable_area_body_exited"]

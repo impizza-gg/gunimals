@@ -1,0 +1,105 @@
+[gd_scene load_steps=6 format=3 uid="uid://rk3ptl5wf086"]
+
+[ext_resource type="Script" path="res://scripts/countdown.gd" id="1_c3vf0"]
+[ext_resource type="Theme" uid="uid://b7q6nhv8tdmuy" path="res://assets/themes/default_theme.tres" id="1_vcuv7"]
+
+[sub_resource type="Animation" id="Animation_mgnwl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Countdown/Countdown:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["3
+"]
+}
+
+[sub_resource type="Animation" id="Animation_4mrbh"]
+resource_name = "countdown"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Countdown/Countdown:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["
+", "3", "2", "1", "GO"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Countdown/Countdown:theme_override_font_sizes/font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 1.4),
+"transitions": PackedFloat32Array(1.5, 1.5),
+"update": 0,
+"values": [92, 16]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Countdown/Countdown:theme_override_font_sizes/font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 2.5),
+"transitions": PackedFloat32Array(1.5, 1.5),
+"update": 0,
+"values": [92, 16]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Countdown/Countdown:theme_override_font_sizes/font_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3, 3.5),
+"transitions": PackedFloat32Array(1.5, 1.5),
+"update": 0,
+"values": [92, 16]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2lk1d"]
+_data = {
+"RESET": SubResource("Animation_mgnwl"),
+"countdown": SubResource("Animation_4mrbh")
+}
+
+[node name="Countdown" type="Node2D"]
+script = ExtResource("1_c3vf0")
+
+[node name="Countdown" type="Label" parent="."]
+offset_left = 276.0
+offset_top = 109.0
+offset_right = 896.0
+offset_bottom = 556.0
+theme = ExtResource("1_vcuv7")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 276
+text = "3
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountdownPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_2lk1d")
+}
+autoplay = "size"
+
+[connection signal="animation_finished" from="CountdownPlayer" to="." method="_on_countdown_player_animation_finished"]

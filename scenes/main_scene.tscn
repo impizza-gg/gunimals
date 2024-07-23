@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://xtmllb3s5bfv"]
+[gd_scene load_steps=21 format=3 uid="uid://xtmllb3s5bfv"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_11qyb"]
 [ext_resource type="Script" path="res://scripts/MultiplayerManager.gd" id="2_d5ynk"]
@@ -12,9 +12,12 @@
 [ext_resource type="Script" path="res://scripts/SettingsMenu.gd" id="6_e2615"]
 [ext_resource type="Script" path="res://scenes/GameContainer.gd" id="7_5xvn3"]
 [ext_resource type="Texture2D" uid="uid://confybce5ufyg" path="res://assets/sprites/menus/br_gray.png" id="7_8l2vg"]
+[ext_resource type="PackedScene" uid="uid://q5dsdiffu7uu" path="res://menus/slider/audio_slider.tscn" id="7_85um5"]
 [ext_resource type="Texture2D" uid="uid://bwd2tj7wspp8y" path="res://assets/sprites/menus/br_color.png" id="8_nh7du"]
 [ext_resource type="Texture2D" uid="uid://bnqi2gmq5dhg8" path="res://assets/sprites/menus/en_gray.png" id="9_u3mv2"]
 [ext_resource type="Texture2D" uid="uid://khomtcsq0uas" path="res://assets/sprites/menus/en_color.png" id="10_do353"]
+[ext_resource type="PackedScene" uid="uid://8i05aiqvo68j" path="res://scenes/scene_transition.tscn" id="13_olxy7"]
+[ext_resource type="PackedScene" uid="uid://rk3ptl5wf086" path="res://scenes/countdown.tscn" id="14_pt04r"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_di85f"]
 
@@ -138,16 +141,60 @@ grow_vertical = 2
 theme = ExtResource("5_11amd")
 script = ExtResource("6_e2615")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/SettingsMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SettingsMenu"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -74.0
+offset_right = 220.0
+offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackButton" type="Button" parent="CanvasLayer/SettingsMenu/MarginContainer"]
+[node name="Master" type="HBoxContainer" parent="CanvasLayer/SettingsMenu/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsMenu/VBoxContainer/Master"]
+layout_mode = 2
+text = "Master  "
+
+[node name="MasterSlider" parent="CanvasLayer/SettingsMenu/VBoxContainer/Master" instance=ExtResource("7_85um5")]
+layout_mode = 2
+size_flags_horizontal = 3
+bus_name = "Master"
+
+[node name="Music" type="HBoxContainer" parent="CanvasLayer/SettingsMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsMenu/VBoxContainer/Music"]
+layout_mode = 2
+text = "Music    "
+
+[node name="MusicSlider" parent="CanvasLayer/SettingsMenu/VBoxContainer/Music" instance=ExtResource("7_85um5")]
+layout_mode = 2
+size_flags_horizontal = 3
+bus_name = "music"
+
+[node name="SFX" type="HBoxContainer" parent="CanvasLayer/SettingsMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsMenu/VBoxContainer/SFX"]
+layout_mode = 2
+text = "Effects"
+
+[node name="EffectsSlider" parent="CanvasLayer/SettingsMenu/VBoxContainer/SFX" instance=ExtResource("7_85um5")]
+layout_mode = 2
+size_flags_horizontal = 3
+bus_name = "sfx"
+
+[node name="BackButton" type="Button" parent="CanvasLayer/SettingsMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_default_cursor_shape = 2
 text = "Back"
 
@@ -385,6 +432,12 @@ text = "JOIN_BUTTON"
 unique_name_in_owner = true
 visible = false
 
+[node name="SceneTransition" parent="CanvasLayer" instance=ExtResource("13_olxy7")]
+visible = false
+
+[node name="Countdown" parent="CanvasLayer" instance=ExtResource("14_pt04r")]
+visible = false
+
 [node name="MultiplayerManager" type="Node" parent="."]
 script = ExtResource("2_d5ynk")
 
@@ -397,7 +450,11 @@ bus = &"Woo"
 script = ExtResource("7_5xvn3")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [node name="MapSpawner" type="MultiplayerSpawner" parent="."]
@@ -409,7 +466,7 @@ spawn_path = NodePath("../GameContainer")
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/ResumeButton" to="CanvasLayer" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/SettingsButton" to="CanvasLayer/SettingsMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/LeaveGame" to="CanvasLayer" method="_on_leave_game_pressed"]
-[connection signal="pressed" from="CanvasLayer/SettingsMenu/MarginContainer/BackButton" to="CanvasLayer/SettingsMenu" method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsMenu/VBoxContainer/BackButton" to="CanvasLayer/SettingsMenu" method="_on_back_button_pressed"]
 [connection signal="create_room" from="CanvasLayer/MainMenu" to="MultiplayerManager" method="_on_main_menu_create_room"]
 [connection signal="join_room" from="CanvasLayer/MainMenu" to="MultiplayerManager" method="_on_main_menu_join_room"]
 [connection signal="start_playground" from="CanvasLayer/MainMenu" to="GameContainer" method="_on_main_menu_start_playground"]

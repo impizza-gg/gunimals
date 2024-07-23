@@ -21,13 +21,13 @@ signal update_ui(current_ammo: int)
 @export var knockback_x := 0.0
 @export var knockback_y := 0.0
 @export var knocks_back := false
+@export var vary_pitch := true
 @export var PickUpScene := preload("res://scenes/pickupables/default_pickup/default_pickup.tscn")
 
 @onready var CooldownTimer := Timer.new()
 @onready var Shell := preload("res://scenes/shell/shell.tscn")
 
-@onready var locked := false
-# tem que achar outro jeito, isso aqui é feio demais
+@onready var locked := true
 @onready var player := get_parent().get_parent()
 @onready var my_id := player.name.to_int()
 @onready var clips := max_clips
@@ -61,6 +61,9 @@ func shoot(initial_position: Vector2, bullet_rotation: float, direction: Vector2
 	else: 
 		current_ammo -= 1
 		if ShootPlayer:
+			if vary_pitch:
+				var p_scale := randf_range(0.9, 1.1)
+				ShootPlayer.pitch_scale = p_scale
 			ShootPlayer.play()
 		return create_bullets(initial_position, bullet_rotation, direction, owner_id)
 	

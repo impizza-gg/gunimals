@@ -15,6 +15,7 @@ extends Node
 @onready var MapSpawner := $"../MapSpawner"
 @onready var PlayerSpawner := $"../PlayerSpawner"
 @onready var WaitTimer : Timer = $"../Timer"
+@onready var WaitTimer2 : Timer = $"../Timer2"
 
 var max_rounds := 10
 var current_round := 0
@@ -25,6 +26,8 @@ func _ready() -> void:
 	PlayerSpawner.spawn_function = playerSpawnFunction
 	MapSpawner.spawn_function = mapSpawnFunction
 	Signals.player_death.connect(on_player_death)
+	
+	WaitTimer2.timeout.connect(transition)
 	WaitTimer.timeout.connect(round_end)
 
 func on_player_death(id: int) -> void:
@@ -45,7 +48,12 @@ func on_player_death(id: int) -> void:
 		if winner != 0:
 			MultiplayerManager.connected_players[winner]["points"] += 1
 			current_round += 1
-			WaitTimer.start()
+			WaitTimer2.start()
+
+
+func transition() -> void:
+	$"../CanvasLayer/SceneTransition".rpc("playTransition", true)
+	WaitTimer.start()
 
 
 func round_end() -> void:
@@ -65,7 +73,8 @@ func clear_game() -> void:
 		child.queue_free()
 	
 	
-func change_map(map: String) -> void:
+	
+func change_map(map: String) -> void:	
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
@@ -84,7 +93,9 @@ func change_map(map: String) -> void:
 		player_data.id = id
 		PlayerSpawner.spawn(player_data)
 		counter += 1
-
+	$"../CanvasLayer/SceneTransition".rpc("playTransition")
+	$"../CanvasLayer/Countdown".rpc("playCountdown")
+	
 
 func mapSpawnFunction(map_data: Dictionary) -> Node:
 	var mapscene = load(map_data["map"])
@@ -104,6 +115,8 @@ func playerSpawnFunction(player_data: Dictionary) -> Node:
 # chamado somente no server
 # players são instanciados no server e replicados pelo MultiplayerSpawner
 func game_started() -> void:
+	$"../CanvasLayer/SceneTransition".rpc("playTransition", true)
+	
 	MapSpawner.spawn({
 		"map": firstMap
 	})
@@ -118,13 +131,15 @@ func game_started() -> void:
 		counter += 1
 		
 	game_started_all.rpc()
-
+	
 
 @rpc("authority", "call_local")
 func game_started_all() -> void:
 	WaitingRoom.hide()
 	$"../CanvasLayer/Background".hide()
 	
+	$"../CanvasLayer/SceneTransition".rpc("playTransition")
+	$"../CanvasLayer/Countdown".rpc("playCountdown")
 	
 func _on_main_menu_start_playground() -> void:
 	var playground := PlaygroundScene.instantiate()

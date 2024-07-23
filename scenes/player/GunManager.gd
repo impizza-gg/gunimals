@@ -7,7 +7,7 @@ signal shoot(bullet: Node, location: Vector2)
 @onready var parent := get_parent()
 @onready var ReloadBar := $"../ReloadBar"
 @onready var ReloadTimer : Timer = $"../ReloadTimer"
-@onready var locked := false
+@onready var locked := true
 
 var current_gun: Gun
 
@@ -29,15 +29,16 @@ func remove():
 
 
 @rpc("any_peer", "call_local")
-func equip_gun(gun_scene_path: String) -> void:
+func equip_gun(gun_scene_path: String, clips = -1, ammo = -1) -> void:
 	var gun_scene: PackedScene = load(gun_scene_path)
-	
+	print(clips)
+	print(ammo)
 	if gun_scene.can_instantiate():
 		if current_gun:
 			drop()
 		current_gun = gun_scene.instantiate()
 		CurrentGunScene = gun_scene_path
-		
+			
 		ReloadTimer.wait_time = current_gun.reload_time
 		ReloadTimer.one_shot = true
 		if ReloadTimer.timeout.is_connected(reload):
@@ -46,7 +47,13 @@ func equip_gun(gun_scene_path: String) -> void:
 		
 		add_child(current_gun)
 		
+		if clips > -1:
+			current_gun.clips = clips
+		if ammo > -1:
+			current_gun.current_ammo = ammo
+			
 		if is_multiplayer_authority():
+			print(current_gun.current_ammo)
 			current_gun.updateHUD()
 			Signals.set_hud_visibility.emit(true)
 			Signals.set_clip_label_visibility.emit(current_gun.reloadable)
@@ -95,6 +102,8 @@ func drop() -> void:
 		
 	var pick_up := current_gun.PickUpScene.instantiate()
 	pick_up.item_scene = CurrentGunScene
+	pick_up.clips = current_gun.clips
+	pick_up.current_ammo = current_gun.current_ammo
 	pick_up.global_position = global_position
 	parent.get_parent().add_child(pick_up)
 	
@@ -104,4 +113,4 @@ func drop() -> void:
 			remove_child(child)
 			
 	if is_multiplayer_authority():
-		Signals.set_hud_visibility.emit(true)
+		Signals.set_hud_visibility.emit(false)

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6qqldqkl7jkv"]
+
+[ext_resource type="PackedScene" uid="uid://rk3ptl5wf086" path="res://scenes/countdown.tscn" id="1_vldny"]
+[ext_resource type="PackedScene" uid="uid://8i05aiqvo68j" path="res://scenes/scene_transition.tscn" id="2_cm3w4"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Countdown" parent="." instance=ExtResource("1_vldny")]
+
+[node name="SceneTransition" parent="." instance=ExtResource("2_cm3w4")]
