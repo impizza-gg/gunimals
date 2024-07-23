@@ -19,11 +19,15 @@ var dead := false
 @onready var is_hovering := false
 var interactables : Array[Node] = []
 var pickables : Array[Node] = []
-var character := ""
+var character := -1
 var canDoubleJump := false
 var doubleJumpUsed := false
 var canDash := false
+var isDashing := false
+var dashSpeed := Vector2.ZERO
 var canGlide := false
+
+enum character_types {DBLJMP = 0, HIJMP = 1, DASH = 2, GLIDE = 3}
 
 
 func _enter_tree() -> void:
@@ -36,16 +40,16 @@ func _ready() -> void:
 	HealthBar.value = current_health
 	
 	if Sprite.sprite_frames.resource_path.contains("pingu"):
-		character = "pingu"
+		character = character_types.GLIDE
 		canGlide = true
 	if Sprite.sprite_frames.resource_path.contains("gato"):
-		character = "gato"
+		character = character_types.DASH
 		canDash = true
 	if Sprite.sprite_frames.resource_path.contains("sapo"):
-		character = "sapo"
+		character = character_types.HIJMP
 		jump_velocity = -750.0
 	if Sprite.sprite_frames.resource_path.contains("pato"):
-		character = "pato"
+		character = character_types.DBLJMP
 		canDoubleJump = true
 	
 	if is_multiplayer_authority():
@@ -85,18 +89,26 @@ func _physics_process(delta: float) -> void:
 	velocity += knockback
 	knockback = lerp(knockback, Vector2.ZERO, 0.1)
 	
+	if dashSpeed.x == 0:
+		isDashing = false
+	
 	if not locked and not Signals.paused: 
 		var direction := Input.get_axis("move_left", "move_right")
+		
+		if isDashing:
+			velocity = dashSpeed
+			dashSpeed = lerp(dashSpeed, Vector2.ZERO, 0.1)
+
 		if direction:
-			velocity.x = direction * speed
+			if Input.is_action_just_pressed("dash"):
+				print("dash")
+				isDashing = true
+				Sprite.play("dash")
+				dashSpeed = Vector2(50 * direction, 0)
+			else:
+				velocity.x = direction * speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
-
-		#if Input.is_action_just_pressed("jump") and is_on_floor():
-			#velocity.y = jump_velocity
-		#if Input.is_action_just_pressed("jump") and not is_on_floor() and canDoubleJump and not doubleJumpUsed:
-			#velocity.y = jump_velocity
-			#doubleJumpUsed = true
 		
 		if Input.is_action_just_pressed("jump"):
 			if is_on_floor():
@@ -105,7 +117,6 @@ func _physics_process(delta: float) -> void:
 				if canDoubleJump and not doubleJumpUsed:
 					velocity.y = jump_velocity
 					doubleJumpUsed = true
-		
 		
 		if direction != 0 and is_on_floor():
 			Sprite.play("walk")
@@ -132,6 +143,11 @@ func _physics_process(delta: float) -> void:
 		knockback.x = 0
 	if knockback.y > -0.1 and knockback.y < 0.1:
 		knockback.y = 0
+		
+	if dashSpeed.x > -0.1 and dashSpeed.x < 0.1:
+		dashSpeed.x = 0
+	if dashSpeed.y > -0.1 and dashSpeed.y < 0.1:
+		dashSpeed.y = 0
 		
 	move_and_slide()
 
