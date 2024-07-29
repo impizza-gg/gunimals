@@ -26,8 +26,9 @@ var canDash := false
 var isDashing := false
 var dashSpeed := Vector2.ZERO
 var canGlide := false
-
 enum character_types {DBLJMP = 0, HIJMP = 1, DASH = 2, GLIDE = 3}
+var dash_timer := Timer.new()
+const DASH_DURATION := 0.25
 
 
 func _enter_tree() -> void:
@@ -38,6 +39,10 @@ func _ready() -> void:
 	NameLabel.text = player_name
 	HealthBar.max_value = max_health
 	HealthBar.value = current_health
+	dash_timer.wait_time = DASH_DURATION
+	dash_timer.one_shot = true
+	dash_timer.connect("timeout", _on_timer_timeout)
+	add_child(dash_timer)
 	
 	if Sprite.sprite_frames.resource_path.contains("pingu"):
 		character = character_types.GLIDE
@@ -74,7 +79,7 @@ func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
 		move_and_slide()
 		return
-		
+	
 	if is_on_floor():
 		doubleJumpUsed = false
 		
@@ -84,27 +89,26 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 50
 		
 	if locked or Signals.paused:
-		velocity = Vector2.ZERO
+		if isDashing:
+			Sprite.play("dash")
+			velocity = dashSpeed
+		else:
+			velocity = Vector2.ZERO
+		
 		
 	velocity += knockback
 	knockback = lerp(knockback, Vector2.ZERO, 0.1)
 	
-	if dashSpeed.x == 0:
-		isDashing = false
-	
 	if not locked and not Signals.paused: 
 		var direction := Input.get_axis("move_left", "move_right")
-		
-		if isDashing:
-			velocity = dashSpeed
-			dashSpeed = lerp(dashSpeed, Vector2.ZERO, 0.1)
 
 		if direction:
 			if Input.is_action_just_pressed("dash"):
-				print("dash")
 				isDashing = true
+				dashSpeed = Vector2(700 * direction, 0)
+				dash_timer.start()
 				Sprite.play("dash")
-				dashSpeed = Vector2(50 * direction, 0)
+				locked = true
 			else:
 				velocity.x = direction * speed
 		else:
@@ -143,11 +147,6 @@ func _physics_process(delta: float) -> void:
 		knockback.x = 0
 	if knockback.y > -0.1 and knockback.y < 0.1:
 		knockback.y = 0
-		
-	if dashSpeed.x > -0.1 and dashSpeed.x < 0.1:
-		dashSpeed.x = 0
-	if dashSpeed.y > -0.1 and dashSpeed.y < 0.1:
-		dashSpeed.y = 0
 		
 	move_and_slide()
 
@@ -212,6 +211,12 @@ func _on_interaction_area_area_exited(area: Area2D) -> void:
 	if area.has_method("unhover"):
 		area.unhover()
 		is_hovering = false
+
+
+func _on_timer_timeout() -> void:
+	isDashing = false
+	locked = false
+	velocity.x = 0
 
 
 @rpc("any_peer", "call_local")
