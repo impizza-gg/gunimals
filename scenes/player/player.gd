@@ -44,16 +44,16 @@ func _ready() -> void:
 	dash_timer.connect("timeout", _on_timer_timeout)
 	add_child(dash_timer)
 	
-	if Sprite.sprite_frames.resource_path.contains("pingu"):
+	if Sprite.sprite_frames.resource_path.contains("penguin"):
 		character = character_types.GLIDE
 		canGlide = true
-	if Sprite.sprite_frames.resource_path.contains("gato"):
+	if Sprite.sprite_frames.resource_path.contains("cat"):
 		character = character_types.DASH
 		canDash = true
-	if Sprite.sprite_frames.resource_path.contains("sapo"):
+	if Sprite.sprite_frames.resource_path.contains("frog"):
 		character = character_types.HIJMP
 		jump_velocity = -750.0
-	if Sprite.sprite_frames.resource_path.contains("pato"):
+	if Sprite.sprite_frames.resource_path.contains("duck"):
 		character = character_types.DBLJMP
 		canDoubleJump = true
 	
