@@ -24,7 +24,7 @@ var canDoubleJump := false
 var doubleJumpUsed := false
 var canDash := false
 var canGlide := false
-
+var character_type := 0
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int(), true)
@@ -36,18 +36,18 @@ func _ready() -> void:
 	HealthBar.value = current_health
 	Signals.unlock.connect(unlock)
 	
-	if Sprite.sprite_frames.resource_path.contains("pingu"):
-		character = "pingu"
+	if character_type == Globals.Characters.PENGUIN:
 		canGlide = true
-	if Sprite.sprite_frames.resource_path.contains("gato"):
-		character = "gato"
+	if character_type == Globals.Characters.CAT:
 		canDash = true
-	if Sprite.sprite_frames.resource_path.contains("sapo"):
-		character = "sapo"
+	if character_type == Globals.Characters.FROG:
 		jump_velocity = -750.0
-	if Sprite.sprite_frames.resource_path.contains("pato"):
-		character = "pato"
+	if character_type == Globals.Characters.DUCK:
 		canDoubleJump = true
+	
+	# não tem segurança nenhuma hahahahahahahhaha
+	var path = Globals.CharacterArray[character_type]
+	Sprite.sprite_frames = load(path)
 	
 	if is_multiplayer_authority():
 		var cameraScene := load("res://scenes/player/player_camera.tscn")
@@ -178,7 +178,6 @@ func _on_interaction_area_area_entered(area: Area2D) -> void:
 	if not is_multiplayer_authority() or dead:
 		return
 	
-	
 	if area.is_in_group("pickable"):
 		pickables.append(area)
 	elif area.is_in_group("interactable"):
@@ -223,3 +222,7 @@ func change_camera() -> void:
 @rpc("any_peer", "call_local")
 func set_knockback(kb: Vector2) -> void:
 	knockback = kb
+
+
+func flatten() -> void:
+	$AnimationPlayer.play("flatten")

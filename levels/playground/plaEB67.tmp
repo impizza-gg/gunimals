@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d0ghjlejhnjuf"]
+[gd_scene load_steps=34 format=3 uid="uid://d0ghjlejhnjuf"]
 
 [ext_resource type="Script" path="res://levels/playground/playground.gd" id="1_0pddj"]
 [ext_resource type="PackedScene" uid="uid://lhqyh7712go1" path="res://scenes/dummy/dummy.tscn" id="3_o48ih"]
@@ -19,6 +19,7 @@
 [sub_resource type="Environment" id="Environment_u1seb"]
 background_mode = 3
 tonemap_mode = 2
+glow_enabled = true
 glow_normalized = true
 glow_intensity = 8.0
 glow_strength = 1.61
@@ -910,50 +911,7 @@ _data = {
 "rotate": SubResource("Animation_2k5hq")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtp42"]
-size = Vector2(124, 43)
-
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v31xh"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7al7i"]
-size = Vector2(126, 6)
-
-[sub_resource type="Animation" id="Animation_dfym7"]
-resource_name = "stomp"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StaticBody2D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 70)]
-}
-
-[sub_resource type="Animation" id="Animation_q3hek"]
-resource_name = "return"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StaticBody2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 70), Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_if0k5"]
-_data = {
-"return": SubResource("Animation_q3hek"),
-"stomp": SubResource("Animation_dfym7")
-}
 
 [node name="Playground" type="Node2D"]
 script = ExtResource("1_0pddj")
@@ -1079,44 +1037,19 @@ libraries = {
 "": SubResource("AnimationLibrary_xa3rl")
 }
 
-[node name="Stomper" type="Node2D" parent="."]
-position = Vector2(576, 464)
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(606, 464)
 script = ExtResource("15_cn3n6")
 
-[node name="RayCast2D" type="RayCast2D" parent="Stomper"]
+[node name="RayCast2D" type="RayCast2D" parent="Node2D"]
 position = Vector2(-1, 13)
 collision_mask = 2
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Stomper" groups=["wall"]]
-collision_mask = 14
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stomper/StaticBody2D"]
-position = Vector2(-1, -11.5)
-shape = SubResource("RectangleShape2D_mtp42")
-
-[node name="Sprite2D" type="Sprite2D" parent="Stomper/StaticBody2D"]
-position = Vector2(-1, -10.875)
-scale = Vector2(126, 44.25)
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(-1, 4)
+scale = Vector2(126, 14.5)
 texture = SubResource("PlaceholderTexture2D_v31xh")
-
-[node name="StompArea" type="Area2D" parent="Stomper/StaticBody2D"]
-collision_layer = 64
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stomper/StaticBody2D/StompArea"]
-position = Vector2(-1, 14)
-shape = SubResource("RectangleShape2D_7al7i")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Stomper"]
-libraries = {
-"": SubResource("AnimationLibrary_if0k5")
-}
-
-[node name="Cooldown" type="Timer" parent="Stomper"]
-one_shot = true
 
 [connection signal="body_entered" from="Killzones/Area2D" to="Killzones/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Spike" to="Spike" method="_on_body_entered"]
 [connection signal="body_entered" from="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" to="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" method="_on_body_entered"]
-[connection signal="body_entered" from="Stomper/StaticBody2D/StompArea" to="Stomper" method="_on_area_2d_body_entered"]
-[connection signal="animation_finished" from="Stomper/AnimationPlayer" to="Stomper" method="_on_animation_player_animation_finished"]

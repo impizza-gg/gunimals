@@ -73,7 +73,6 @@ func clear_game() -> void:
 		child.queue_free()
 	
 	
-	
 func change_map(map: String) -> void:	
 	for child in get_children():
 		remove_child(child)
@@ -95,7 +94,7 @@ func change_map(map: String) -> void:
 		counter += 1
 	$"../CanvasLayer/SceneTransition".rpc("playTransition")
 	$"../CanvasLayer/Countdown".rpc("playCountdown")
-	
+
 
 func mapSpawnFunction(map_data: Dictionary) -> Node:
 	var mapscene = load(map_data["map"])
@@ -108,6 +107,7 @@ func playerSpawnFunction(player_data: Dictionary) -> Node:
 	var player := PlayerScene.instantiate()
 	player.name = str(player_data.id) # nome do nodo
 	player.player_name = player_data.player_name
+	player.character_type = player_data.character
 	player.position = Vector2(400, 500) + player_data.counter * Vector2(700, 0)
 	return player
 
@@ -140,6 +140,7 @@ func game_started_all() -> void:
 	
 	$"../CanvasLayer/SceneTransition".rpc("playTransition")
 	$"../CanvasLayer/Countdown".rpc("playCountdown")
+	
 	
 func _on_main_menu_start_playground() -> void:
 	var playground := PlaygroundScene.instantiate()

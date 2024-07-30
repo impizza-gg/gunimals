@@ -11,6 +11,7 @@ var connected_players := {}
 
 func _ready() -> void:
 	multiplayer.allow_object_decoding = true
+	Signals.change_player_character.connect(change_player_character)
 
 
 func _on_main_menu_create_room(playerName: String) -> void:	
@@ -51,6 +52,7 @@ func add_player(id: int, player_name: String, admin := false):
 	connected_players[id] = {
 		"player_name": player_name,
 		"points": 0,
+		"character": 0,
 		"alive": true
 	}
 	
@@ -110,3 +112,7 @@ func player_disconnected(id: int) -> void:
 		connected_players.erase(id)
 
 
+func change_player_character(character: int, id: int) -> void:
+	if connected_players.has(id):
+		connected_players[id]["character"] = character
+		print("changed ", id, " character to ", character)
