@@ -33,6 +33,7 @@ func equip_gun(gun_scene_path: String, clips = -1, ammo = -1) -> void:
 	var gun_scene: PackedScene = load(gun_scene_path)
 	print(clips)
 	print(ammo)
+	
 	if gun_scene.can_instantiate():
 		if current_gun:
 			drop()
@@ -53,12 +54,14 @@ func equip_gun(gun_scene_path: String, clips = -1, ammo = -1) -> void:
 			current_gun.current_ammo = ammo
 			
 		if is_multiplayer_authority():
-			print(current_gun.current_ammo)
+			#print(current_gun.current_ammo)
 			current_gun.updateHUD()
 			Signals.set_hud_visibility.emit(true)
 			Signals.set_clip_label_visibility.emit(current_gun.reloadable)
-
-
+	print(current_gun)
+	if not locked:
+		current_gun.locked = false
+	
 func reload() -> void:
 	current_gun.rpc("reload")
 	#current_gun.reload()

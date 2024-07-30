@@ -13,7 +13,7 @@ size = Vector2(48, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kckre"]
 size = Vector2(50, 19.5)
 
-[node name="PickUpGun" type="RigidBody2D" groups=["pickable"]]
+[node name="PickUpGun" type="RigidBody2D"]
 collision_layer = 16
 collision_mask = 33
 script = SubResource("GDScript_cfvf6")
@@ -27,7 +27,7 @@ shape = SubResource("RectangleShape2D_1v00f")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_ojx75")
 
-[node name="PickableArea" type="Area2D" parent="."]
+[node name="PickableArea" type="Area2D" parent="." groups=["pickable"]]
 collision_layer = 32
 collision_mask = 32
 script = ExtResource("3_gqglo")

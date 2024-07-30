@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d0ghjlejhnjuf"]
+[gd_scene load_steps=33 format=3 uid="uid://d0ghjlejhnjuf"]
 
 [ext_resource type="Script" path="res://levels/playground/playground.gd" id="1_0pddj"]
 [ext_resource type="PackedScene" uid="uid://lhqyh7712go1" path="res://scenes/dummy/dummy.tscn" id="3_o48ih"]
@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://vfsvmy82ajx0" path="res://assets/sprites/world/Assets.png" id="10_npp5d"]
 [ext_resource type="Texture2D" uid="uid://ddxxshcbnij1f" path="res://assets/sprites/world/Decor.png" id="11_h75k2"]
 [ext_resource type="Script" path="res://scripts/DamageZone.gd" id="12_i0p3j"]
+[ext_resource type="PackedScene" uid="uid://bflpq0xb600wk" path="res://scenes/button/button.tscn" id="13_gt2oi"]
+[ext_resource type="Script" path="res://scenes/moving_saw/PathFollow2D.gd" id="14_brs5g"]
+[ext_resource type="Script" path="res://scenes/stomper/stomper.gd" id="15_cn3n6"]
 
 [sub_resource type="Environment" id="Environment_u1seb"]
 background_mode = 3
@@ -28,7 +31,7 @@ glow_map_strength = 1.0
 adjustment_enabled = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6qbbr"]
-size = Vector2(4327, 72.5)
+size = Vector2(12197, 172.25)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vrs1l"]
 texture = ExtResource("9_afmer")
@@ -859,6 +862,55 @@ size = Vector2(410.75, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sfdud"]
 size = Vector2(49, 10)
 
+[sub_resource type="Curve2D" id="Curve2D_s6471"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -195, 0, 0, 0, 0, 0, 185, 0, 0, 0, 0, 0, 185, 0, 0, 0, 0, 0, -195, 0)
+}
+point_count = 4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wjww1"]
+radius = 8.06226
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jukq7"]
+
+[sub_resource type="Animation" id="Animation_6fhp4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2k5hq"]
+resource_name = "rotate"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xa3rl"]
+_data = {
+"RESET": SubResource("Animation_6fhp4"),
+"rotate": SubResource("Animation_2k5hq")
+}
+
 [node name="Playground" type="Node2D"]
 script = ExtResource("1_0pddj")
 
@@ -872,7 +924,7 @@ position = Vector2(428, 516)
 position = Vector2(473, 519)
 
 [node name="MagicCliffs" parent="." instance=ExtResource("7_hjqdl")]
-position = Vector2(400, -110)
+position = Vector2(702, 32)
 
 [node name="ConveyorBelt" parent="." instance=ExtResource("5_7eews")]
 position = Vector2(978, 636)
@@ -897,7 +949,7 @@ collision_mask = 6
 script = ExtResource("8_6uo7d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Area2D"]
-position = Vector2(-30, -47)
+position = Vector2(85.5, 2.875)
 shape = SubResource("RectangleShape2D_6qbbr")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -949,5 +1001,48 @@ position = Vector2(576, 326)
 [node name="Center" type="Node2D" parent="."]
 position = Vector2(557, 426)
 
+[node name="Button" parent="." instance=ExtResource("13_gt2oi")]
+position = Vector2(680, 615)
+interact_with = "../ConveyorBelt"
+
+[node name="MovingSaw" type="Node2D" parent="."]
+position = Vector2(923, 467)
+
+[node name="Path2D" type="Path2D" parent="MovingSaw"]
+curve = SubResource("Curve2D_s6471")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="MovingSaw/Path2D"]
+position = Vector2(-195, 0)
+script = ExtResource("14_brs5g")
+
+[node name="Node2D" type="Node2D" parent="MovingSaw/Path2D/PathFollow2D"]
+
+[node name="Area2D" type="Area2D" parent="MovingSaw/Path2D/PathFollow2D/Node2D"]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("12_i0p3j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D"]
+shape = SubResource("CircleShape2D_wjww1")
+
+[node name="Sprite2D" type="Sprite2D" parent="MovingSaw/Path2D/PathFollow2D/Node2D"]
+position = Vector2(-1.19209e-07, 1.78814e-07)
+scale = Vector2(14.6003, 14.1549)
+texture = SubResource("PlaceholderTexture2D_jukq7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MovingSaw/Path2D/PathFollow2D/Node2D"]
+libraries = {
+"": SubResource("AnimationLibrary_xa3rl")
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(606, 464)
+script = ExtResource("15_cn3n6")
+
+[node name="RayCast2D" type="RayCast2D" parent="Node2D"]
+position = Vector2(-1, 13)
+collision_mask = 2
+
 [connection signal="body_entered" from="Killzones/Area2D" to="Killzones/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Spike" to="Spike" method="_on_body_entered"]
+[connection signal="body_entered" from="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" to="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" method="_on_body_entered"]

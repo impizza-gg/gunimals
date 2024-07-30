@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://bs8u75jus58gk"]
+
+[ext_resource type="Script" path="res://scenes/moving_saw/PathFollow2D.gd" id="1_1va4p"]
+[ext_resource type="Script" path="res://scripts/DamageZone.gd" id="1_3esr5"]
+
+[sub_resource type="Curve2D" id="Curve2D_uwgqx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wjww1"]
+radius = 8.06226
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jukq7"]
+
+[sub_resource type="Animation" id="Animation_2k5hq"]
+resource_name = "rotate"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_6fhp4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xa3rl"]
+_data = {
+"RESET": SubResource("Animation_6fhp4"),
+"rotate": SubResource("Animation_2k5hq")
+}
+
+[node name="MovingSaw" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_uwgqx")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+script = ExtResource("1_1va4p")
+
+[node name="Node2D" type="Node2D" parent="Path2D/PathFollow2D"]
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D/Node2D"]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("1_3esr5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Node2D/Area2D"]
+shape = SubResource("CircleShape2D_wjww1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Node2D"]
+position = Vector2(-1.19209e-07, 1.78814e-07)
+scale = Vector2(14.6003, 14.1549)
+texture = SubResource("PlaceholderTexture2D_jukq7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D/PathFollow2D/Node2D"]
+libraries = {
+"": SubResource("AnimationLibrary_xa3rl")
+}
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/Node2D/Area2D" to="Path2D/PathFollow2D/Node2D/Area2D" method="_on_body_entered"]

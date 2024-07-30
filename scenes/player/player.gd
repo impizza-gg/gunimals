@@ -177,10 +177,11 @@ func death() -> void:
 func _on_interaction_area_area_entered(area: Area2D) -> void:
 	if not is_multiplayer_authority() or dead:
 		return
-		
+	
+	
 	if area.is_in_group("pickable"):
 		pickables.append(area)
-	else:
+	elif area.is_in_group("interactable"):
 		interactables.append(area)
 		
 	if area.has_method("hover") and not is_hovering:
@@ -194,9 +195,9 @@ func _on_interaction_area_area_exited(area: Area2D) -> void:
 	
 	if area.is_in_group("pickable"):
 		pickables.erase(area)
-		
-	else:
+	elif area.is_in_group("interactable"):
 		interactables.erase(area)
+		
 	if area.has_method("unhover"):
 		area.unhover()
 		is_hovering = false
