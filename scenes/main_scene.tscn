@@ -331,6 +331,7 @@ action_mode = 0
 text = "QUIT_BUTTON"
 
 [node name="PlaygroundButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_top = NodePath("../QuitButton")

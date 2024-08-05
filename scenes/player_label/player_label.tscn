@@ -9,29 +9,33 @@
 
 [sub_resource type="SystemFont" id="SystemFont_n5sm1"]
 
-[node name="HBoxContainer" type="HBoxContainer"]
+[node name="PlayerLabel" type="HBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("1_viw6y")
+theme_override_constants/separation = 25
 script = ExtResource("2_ump5i")
 
-[node name="Label" type="Label" parent="."]
+[node name="Player" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Player"]
 layout_mode = 2
 text = "Player"
 
-[node name="Crown" type="HBoxContainer" parent="."]
+[node name="Crown" type="HBoxContainer" parent="Player"]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Crown"]
+[node name="Sprite2D" type="Sprite2D" parent="Player/Crown"]
 position = Vector2(11, 15)
 scale = Vector2(0.0245354, 0.0295224)
 texture = ExtResource("3_7paes")
 
-[node name="Label" type="Label" parent="Crown"]
+[node name="Label" type="Label" parent="Player/Crown"]
 layout_mode = 2
 text = "  "
 
-[node name="KickButton" type="Button" parent="."]
+[node name="KickButton" type="Button" parent="Player"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0.941176, 0, 0, 1)
@@ -41,30 +45,33 @@ theme_override_colors/font_focus_color = Color(0.564706, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.448949, 1.96133e-06, 1.15514e-06, 1)
 text = "X"
 
-[node name="BackCharacter" type="Button" parent="."]
+[node name="Character" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="BackCharacter" type="Button" parent="Character"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_lljxp")
 text = "<"
 
-[node name="Padding" type="Label" parent="."]
+[node name="Padding" type="Label" parent="Character"]
 layout_mode = 2
 text = " "
 
-[node name="CharacterContainer" type="Control" parent="."]
+[node name="CharacterContainer" type="Control" parent="Character"]
 layout_mode = 2
 
-[node name="SelectCharacter" parent="CharacterContainer" instance=ExtResource("4_g36e4")]
-position = Vector2(14, 22)
+[node name="SelectCharacter" parent="Character/CharacterContainer" instance=ExtResource("4_g36e4")]
+position = Vector2(10, -1)
 
-[node name="Padding2" type="Label" parent="."]
+[node name="Padding2" type="Label" parent="Character"]
 layout_mode = 2
 text = "   "
 
-[node name="NextCharacter" type="Button" parent="."]
+[node name="NextCharacter" type="Button" parent="Character"]
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_n5sm1")
 text = ">"
 
-[connection signal="pressed" from="KickButton" to="." method="_on_kick_button_pressed"]
-[connection signal="pressed" from="BackCharacter" to="." method="_on_back_character_pressed"]
-[connection signal="pressed" from="NextCharacter" to="." method="_on_next_character_pressed"]
+[connection signal="pressed" from="Player/KickButton" to="." method="_on_kick_button_pressed"]
+[connection signal="pressed" from="Character/BackCharacter" to="." method="_on_back_character_pressed"]
+[connection signal="pressed" from="Character/NextCharacter" to="." method="_on_next_character_pressed"]

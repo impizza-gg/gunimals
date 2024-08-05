@@ -169,15 +169,17 @@ func update_health(change: int) -> void:
 	if change < 0:
 		Sprite.play("hurt")
 	if current_health <= 0:
-		Sprite.play("death")
 		death()
 
 
-func death() -> void:
+func death(play_animation = true) -> void:
 	locked = true
 	dead = true
 	GunManager.call_deferred("drop")
 	GunManager.lock()
+	
+	if play_animation:
+		Sprite.play("death")
 	
 	$HealthBar.visible = false
 	$ReloadBar.visible = false
@@ -246,4 +248,10 @@ func set_knockback(kb: Vector2) -> void:
 
 
 func flatten() -> void:
+	death(false)
 	$AnimationPlayer.play("flatten")
+	
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "flatten":
+		$AnimatedSprite2D.pause()

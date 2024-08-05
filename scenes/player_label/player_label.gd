@@ -1,8 +1,8 @@
 extends Control
 
-@onready var NameLabel := $Label
-@onready var Crown := $Crown
-@onready var KickButton := $KickButton
+@onready var NameLabel := $Player/NameLabel
+@onready var Crown := $Player/Crown
+@onready var KickButton := $Player/KickButton
 
 var playerName : String = "Player"
 var id : int = 0
@@ -19,8 +19,8 @@ func _ready() -> void:
 	Crown.visible = admin
 	KickButton.visible = show_controls
 	KickButton.disabled = not show_controls
-	$NextCharacter.visible = id == multiplayer.get_unique_id()
-	$BackCharacter.visible = id == multiplayer.get_unique_id()
+	$Character/NextCharacter.visible = id == multiplayer.get_unique_id()
+	$Character/BackCharacter.visible = id == multiplayer.get_unique_id()
 	
 	
 func _on_kick_button_pressed() -> void:
@@ -46,4 +46,4 @@ func character_btn(val := 1) -> void:
 	elif current_character >= chars:
 		current_character = 0
 
-	$CharacterContainer/SelectCharacter.rpc("change_sprite", current_character, id)
+	$Character/CharacterContainer/SelectCharacter.rpc("change_sprite", current_character, id)

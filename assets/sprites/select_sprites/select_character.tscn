@@ -1,14 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://cngn2fc6gmij0"]
 
-[ext_resource type="SpriteFrames" uid="uid://baonqyv5a1qvy" path="res://scenes/player/sprites/sprite_frames/pingu.tres" id="1_k584g"]
+[ext_resource type="SpriteFrames" uid="uid://baonqyv5a1qvy" path="res://scenes/player/sprites/sprite_frames/penguin.tres" id="1_k584g"]
 [ext_resource type="Script" path="res://assets/sprites/select_sprites/select_character.gd" id="1_ux8hu"]
 
 [node name="SelectCharacter" type="Node2D"]
 script = ExtResource("1_ux8hu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-3, 16)
+position = Vector2(1, -1)
 scale = Vector2(2.375, 2.14063)
 sprite_frames = ExtResource("1_k584g")
-animation = &"walk"
-frame_progress = 0.678301
+animation = &"idle"
