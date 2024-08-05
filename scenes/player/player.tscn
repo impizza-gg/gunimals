@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_x5utg"]
 [ext_resource type="Script" path="res://scenes/player/GunManager.gd" id="2_8gubn"]
 [ext_resource type="Theme" uid="uid://d4lekt35xyedk" path="res://assets/themes/health_bar_theme.tres" id="4_kkano"]
-[ext_resource type="SpriteFrames" uid="uid://c8fl1hbc8i8ws" path="res://scenes/player/sprites/sprite_frames/cat.tres" id="4_y0pob"]
+[ext_resource type="SpriteFrames" uid="uid://baonqyv5a1qvy" path="res://scenes/player/sprites/sprite_frames/penguin.tres" id="4_svgar"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ac5a1"]
 outline_size = 5
@@ -116,9 +116,8 @@ replication_config = SubResource("SceneReplicationConfig_nleoe")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -13)
 scale = Vector2(1.36771, 1.45439)
-sprite_frames = ExtResource("4_y0pob")
+sprite_frames = ExtResource("4_svgar")
 animation = &"idle"
-frame_progress = 0.980445
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 32
