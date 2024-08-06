@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" load_steps=23 format=3 uid="uid://baonqyv5a1qvy"]
 
-[ext_resource type="Texture2D" uid="uid://rge83svb7ksk" path="res://assets/sprites/characters/penguin/Idle_penguin.png" id="5_o4ij4"]
+[ext_resource type="Texture2D" uid="uid://crubg2x4dhdck" path="res://assets/sprites/characters/penguin/Idle.png" id="4_hdlmq"]
 [ext_resource type="Texture2D" uid="uid://b03arjbvncn46" path="res://assets/sprites/characters/penguin/Death.png" id="6_7knkq"]
 [ext_resource type="Texture2D" uid="uid://icdjkwtb4aj5" path="res://assets/sprites/characters/penguin/Fall.png" id="6_j0mby"]
 [ext_resource type="Texture2D" uid="uid://f86kcgwyk7tx" path="res://assets/sprites/characters/penguin/Hurt.png" id="8_6ok8q"]
@@ -31,12 +31,12 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("8_6ok8q")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kuw1a"]
-atlas = ExtResource("5_o4ij4")
+[sub_resource type="AtlasTexture" id="AtlasTexture_q47gf"]
+atlas = ExtResource("4_hdlmq")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lihp2"]
-atlas = ExtResource("5_o4ij4")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ht4sq"]
+atlas = ExtResource("4_hdlmq")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_68tcr"]
@@ -108,10 +108,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kuw1a")
+"texture": SubResource("AtlasTexture_q47gf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lihp2")
+"texture": SubResource("AtlasTexture_ht4sq")
 }],
 "loop": true,
 "name": &"idle",

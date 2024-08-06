@@ -3,8 +3,7 @@
 [ext_resource type="Script" path="res://scenes/guns/laser_gun/laser_gun.gd" id="1_j4fjj"]
 [ext_resource type="PackedScene" uid="uid://1b6rehf7vtka" path="res://scenes/guns/laser_gun/laser_projectile.tscn" id="2_ih60l"]
 [ext_resource type="PackedScene" uid="uid://du8d2k7flouhi" path="res://scenes/pickupables/laser_gun_pickup/laser_gun_pickup.tscn" id="3_xkgrp"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8huab"]
+[ext_resource type="Texture2D" uid="uid://dus753oo5hikl" path="res://assets/sprites/guns/beam rifle.png" id="4_nh1so"]
 
 [node name="LaserGun" type="Node2D"]
 script = ExtResource("1_j4fjj")
@@ -16,5 +15,5 @@ PickUpScene = ExtResource("3_xkgrp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3.8147e-06, 0)
-scale = Vector2(41.5, 14.5)
-texture = SubResource("PlaceholderTexture2D_8huab")
+scale = Vector2(0.953, 1)
+texture = ExtResource("4_nh1so")
