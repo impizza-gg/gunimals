@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://du8d2k7flouhi"]
 
-[ext_resource type="Texture2D" uid="uid://kix4kydxd3qe" path="res://scenes/pickupables/arma.png" id="1_lklyq"]
+[ext_resource type="Texture2D" uid="uid://dus753oo5hikl" path="res://assets/sprites/guns/beam rifle.png" id="1_4g2ml"]
 [ext_resource type="Script" path="res://scenes/pickupables/PickableArea.gd" id="3_unhsh"]
 
 [sub_resource type="GDScript" id="GDScript_v3uqo"]
@@ -20,11 +20,10 @@ script = SubResource("GDScript_v3uqo")
 item_scene = "res://scenes/guns/laser_gun/laser_gun.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -4)
 shape = SubResource("RectangleShape2D_1v00f")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_lklyq")
+texture = ExtResource("1_4g2ml")
 
 [node name="PickableArea" type="Area2D" parent="." groups=["pickable"]]
 collision_layer = 32
@@ -32,7 +31,6 @@ collision_mask = 32
 script = ExtResource("3_unhsh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickableArea"]
-position = Vector2(0.5, -3.5)
 shape = SubResource("RectangleShape2D_kckre")
 
 [node name="LabelContainer" type="Node2D" parent="."]

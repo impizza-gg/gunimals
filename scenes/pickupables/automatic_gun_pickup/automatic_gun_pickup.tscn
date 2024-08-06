@@ -19,7 +19,6 @@ collision_mask = 33
 script = SubResource("GDScript_tvy5o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -2)
 shape = SubResource("RectangleShape2D_1v00f")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -31,7 +30,6 @@ collision_mask = 32
 script = ExtResource("2_oa6vb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickableArea"]
-position = Vector2(0.5, -2.5)
 shape = SubResource("RectangleShape2D_kckre")
 
 [node name="LabelContainer" type="Node2D" parent="."]

@@ -2,10 +2,12 @@ extends Area2D
 
 func hover() -> void:
 	$"../LabelContainer/Label".visible = true
+	pass
 
 
 func unhover() -> void:
 	$"../LabelContainer/Label".visible = false
+	pass
 
 
 func interact(player: Node) -> void:

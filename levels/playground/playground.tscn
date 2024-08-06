@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d0ghjlejhnjuf"]
+[gd_scene load_steps=40 format=3 uid="uid://d0ghjlejhnjuf"]
 
 [ext_resource type="Script" path="res://levels/playground/playground.gd" id="1_0pddj"]
 [ext_resource type="PackedScene" uid="uid://lhqyh7712go1" path="res://scenes/dummy/dummy.tscn" id="3_o48ih"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cc0cm7mkoi21m" path="res://levels/MagicCliffs.tscn" id="7_hjqdl"]
 [ext_resource type="Script" path="res://scripts/Killzone.gd" id="8_6uo7d"]
 [ext_resource type="PackedScene" uid="uid://du8d2k7flouhi" path="res://scenes/pickupables/laser_gun_pickup/laser_gun_pickup.tscn" id="8_c7ekx"]
+[ext_resource type="PackedScene" uid="uid://cnd2g7lqjwcjm" path="res://scenes/pickupables/shotgun_pickup/shotgun_pickup.tscn" id="8_ib03e"]
 [ext_resource type="Texture2D" uid="uid://v0syu0pelecj" path="res://assets/sprites/world/tileset.png" id="9_afmer"]
 [ext_resource type="Texture2D" uid="uid://vfsvmy82ajx0" path="res://assets/sprites/world/Assets.png" id="10_npp5d"]
 [ext_resource type="Texture2D" uid="uid://ddxxshcbnij1f" path="res://assets/sprites/world/Decor.png" id="11_h75k2"]
@@ -984,6 +985,9 @@ position = Vector2(599, 597)
 
 [node name="Grenade" parent="Pickupables" instance=ExtResource("5_a85fh")]
 position = Vector2(380, 515)
+
+[node name="Shotgun" parent="Pickupables" instance=ExtResource("8_ib03e")]
+position = Vector2(303, 596)
 
 [node name="Killzones" type="Node2D" parent="."]
 
