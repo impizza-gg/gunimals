@@ -31,8 +31,6 @@ func remove():
 @rpc("any_peer", "call_local")
 func equip_gun(gun_scene_path: String, clips = -1, ammo = -1) -> void:
 	var gun_scene: PackedScene = load(gun_scene_path)
-	print(clips)
-	print(ammo)
 	
 	if gun_scene.can_instantiate():
 		if current_gun:
@@ -54,13 +52,13 @@ func equip_gun(gun_scene_path: String, clips = -1, ammo = -1) -> void:
 			current_gun.current_ammo = ammo
 			
 		if is_multiplayer_authority():
-			#print(current_gun.current_ammo)
 			current_gun.updateHUD()
 			Signals.set_hud_visibility.emit(true)
 			Signals.set_clip_label_visibility.emit(current_gun.reloadable)
-	print(current_gun)
+			
 	if not locked:
 		current_gun.locked = false
+	 
 	
 func reload() -> void:
 	current_gun.rpc("reload")
@@ -81,7 +79,6 @@ func _process(_delta: float) -> void:
 		return
 		
 	if is_multiplayer_authority():
-			
 		if not current_gun:
 			return
 			
@@ -94,10 +91,16 @@ func _process(_delta: float) -> void:
 		if current_gun.reloading:
 			ReloadBar.value = (ReloadTimer.time_left / current_gun.reload_time) * 100.0
 			
-		var gunRotation = global_position.angle_to_point(get_global_mouse_position())
-		rotation = gunRotation
-
-
+		var mouse_pos = get_global_mouse_position()
+		var gun_rotation = global_position.angle_to_point(mouse_pos)
+		rotation = gun_rotation
+		
+		if current_gun.Sprite:
+			if mouse_pos.x < global_position.x:
+				current_gun.Sprite.flip_v = true
+			else:
+				current_gun.Sprite.flip_v = false
+			
 @rpc("any_peer", "call_local")
 func drop() -> void:
 	if not current_gun:

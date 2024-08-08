@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctdre0gn7602s"]
+[gd_scene load_steps=7 format=3 uid="uid://ctdre0gn7602s"]
 
 [ext_resource type="Script" path="res://scenes/pickupables/Pickup.gd" id="1_i1xhg"]
 [ext_resource type="Texture2D" uid="uid://kix4kydxd3qe" path="res://scenes/pickupables/arma.png" id="2_br62q"]
 [ext_resource type="Script" path="res://scenes/pickupables/PickableArea.gd" id="3_eclxw"]
+[ext_resource type="Texture2D" uid="uid://ct5v37p3l4kcm" path="res://assets/prompts/e_light.png" id="4_82pba"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1v00f"]
 size = Vector2(52, 16)
@@ -34,15 +35,11 @@ shape = SubResource("RectangleShape2D_kckre")
 [node name="LabelContainer" type="Node2D" parent="."]
 top_level = true
 
-[node name="Label" type="Label" parent="LabelContainer"]
+[node name="Label" type="Sprite2D" parent="LabelContainer"]
 visible = false
-offset_left = -48.0
-offset_top = -104.0
-offset_right = 48.0
-offset_bottom = -81.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-text = "[E] to pickup"
+position = Vector2(0, -80)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_82pba")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 remote_path = NodePath("../LabelContainer")

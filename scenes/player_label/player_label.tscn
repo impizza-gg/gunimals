@@ -50,7 +50,10 @@ layout_mode = 2
 
 [node name="BackCharacter" type="Button" parent="Character"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../NextCharacter")
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("SystemFont_lljxp")
+action_mode = 0
 text = "<"
 
 [node name="Padding" type="Label" parent="Character"]
@@ -69,7 +72,10 @@ text = "   "
 
 [node name="NextCharacter" type="Button" parent="Character"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../BackCharacter")
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = SubResource("SystemFont_n5sm1")
+action_mode = 0
 text = ">"
 
 [connection signal="pressed" from="Player/KickButton" to="." method="_on_kick_button_pressed"]

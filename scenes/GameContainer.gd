@@ -21,14 +21,28 @@ var max_rounds := 10
 var current_round := 0
 var level: Node
 
+#var default_settings := {
+	#"current_round": 0,
+	#"rounds": 10
+#}
+#var room_settings := {}
+
 func _ready() -> void:
 	WaitingRoom.connect("game_started", game_started)
+	MultiplayerManager.connect("new_room", new_room)
 	PlayerSpawner.spawn_function = playerSpawnFunction
 	MapSpawner.spawn_function = mapSpawnFunction
 	Signals.player_death.connect(on_player_death)
 	
 	WaitTimer2.timeout.connect(transition)
 	WaitTimer.timeout.connect(round_end)
+
+
+func new_room() -> void:
+	#room_settings = default_settings.duplicate(true)
+	max_rounds = 10
+	current_round = 0
+
 
 func on_player_death(id: int) -> void:
 	if MultiplayerManager.connected_players.has(id):
@@ -138,6 +152,7 @@ func game_started_all() -> void:
 	WaitingRoom.hide()
 	$"../CanvasLayer/Background".hide()
 	
+	Signals.set_crosshair.emit(true)
 	$"../CanvasLayer/SceneTransition".rpc("playTransition")
 	$"../CanvasLayer/Countdown".rpc("playCountdown")
 	

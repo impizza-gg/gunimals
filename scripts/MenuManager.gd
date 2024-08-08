@@ -13,6 +13,7 @@ func _on_resume_button_pressed() -> void:
 func toggle_pause_menu() -> void:
 	PauseMenu.visible = not PauseMenu.visible
 	Signals.paused = PauseMenu.visible
+	Signals.set_crosshair.emit(not Signals.paused)
 
 
 func _on_leave_game_pressed() -> void:

@@ -34,6 +34,8 @@ signal update_ui(current_ammo: int)
 @onready var current_ammo := max_ammo
 @onready var reloading := false
 
+var Sprite : Sprite2D
+
 func _enter_tree() -> void:
 	set_multiplayer_authority(get_parent().get_parent().name.to_int())
 
@@ -43,7 +45,8 @@ func _ready() -> void:
 	CooldownTimer.wait_time = cooldown
 	CooldownTimer.one_shot = true
 	add_child(CooldownTimer)
-
+	Sprite = get_node_or_null("Sprite2D")
+	
 
 func updateHUD() -> void:
 	if is_multiplayer_authority():

@@ -9,6 +9,8 @@ signal player_disconnected_signal(id: int)
 var peer := ENetMultiplayerPeer.new()
 var connected_players := {}
 
+signal new_room()
+
 func _ready() -> void:
 	multiplayer.allow_object_decoding = true
 	Signals.change_player_character.connect(change_player_character)
@@ -39,7 +41,7 @@ func _on_main_menu_create_room(playerName: String) -> void:
 	WaitingRoom.ip = ip + ":" + str(port)
 	WaitingRoom.StartButton.visible = true
 	WaitingRoom.show()
-
+	new_room.emit()
 
 # botando isso aqui porque eu esqueci como funcionava algumas vezes
 # essa função é chamada pelos clients quando se conectam no server
@@ -72,9 +74,7 @@ func _on_main_menu_join_room(playerName: String, ipPort: String) -> void:
 	
 	MainMenu.hide()
 	WaitingRoom.ip = ipPort
-	# acho péssimo isso estar aqui, mas foi o jeito pq se não ele achava q era o server 
-	# pq a waitingroom ja vem alocada e ele acha que é server por padrão sei lá pq
-	# e instanciar ela nesse momento ia dar mto mais trabalho
+
 	WaitingRoom.StartButton.visible = false
 	WaitingRoom.show()
 
@@ -96,9 +96,9 @@ func back() -> void:
 	# tá dando um "erro" porque o cliente tenta fechar a conexão que o servidor já fechou
 	# mas funciona igual
 	#multiplayer.peer_disconnected.disconnect(player_disconnected)
+	Signals.set_crosshair.emit(false)
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	peer.close()
-	
 	
 	WaitingRoom.hide()
 	MainMenu.show()

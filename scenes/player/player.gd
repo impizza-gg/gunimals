@@ -93,16 +93,11 @@ func _physics_process(delta: float) -> void:
 		if isDashing:
 			Sprite.play("dash")
 			velocity = dashSpeed
-		else:
-			velocity = Vector2.ZERO
+		#else:
+			#velocity = Vector2.ZERO
 		
-		
-	velocity += knockback
-	knockback = lerp(knockback, Vector2.ZERO, 0.1)
-	
 	if not locked and not Signals.paused: 
 		var direction := Input.get_axis("move_left", "move_right")
-
 		if direction:
 			if Input.is_action_just_pressed("dash"):
 				isDashing = true
@@ -142,13 +137,17 @@ func _physics_process(delta: float) -> void:
 			
 		if Input.is_action_just_pressed("drop"):
 			GunManager.rpc("drop")
-
-	#print(knockback)
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		
+	velocity += knockback
+	knockback = lerp(knockback, Vector2.ZERO, 0.1)
+	
 	if knockback.x > -0.1 and knockback.x < 0.1:
 		knockback.x = 0
 	if knockback.y > -0.1 and knockback.y < 0.1:
 		knockback.y = 0
-		
+	
 	move_and_slide()
 
 
@@ -180,9 +179,12 @@ func death(play_animation = true) -> void:
 	
 	if play_animation:
 		Sprite.play("death")
-	
 	$HealthBar.visible = false
 	$ReloadBar.visible = false
+	
+	dashSpeed = Vector2.ZERO
+	isDashing = false
+	
 	$Name.self_modulate = Color(1, 0, 0, 0.5)
 	
 	if is_multiplayer_authority():

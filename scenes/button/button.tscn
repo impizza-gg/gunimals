@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bflpq0xb600wk"]
+[gd_scene load_steps=6 format=3 uid="uid://bflpq0xb600wk"]
 
 [ext_resource type="Script" path="res://scenes/button/button.gd" id="1_ottsu"]
 [ext_resource type="Script" path="res://scenes/button/button_top.gd" id="1_woff2"]
+[ext_resource type="Texture2D" uid="uid://ct5v37p3l4kcm" path="res://assets/prompts/e_light.png" id="3_spdny"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ri4a8"]
 size = Vector2(14, 17)
@@ -25,12 +26,8 @@ position = Vector2(5.68434e-14, 1.19209e-07)
 scale = Vector2(16, 18)
 texture = SubResource("PlaceholderTexture2D_u7qa3")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Sprite2D" parent="."]
 visible = false
-offset_left = -34.0
-offset_top = -79.0
-offset_right = 29.0
-offset_bottom = -56.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-text = "[E] Push"
+position = Vector2(0, -80)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_spdny")

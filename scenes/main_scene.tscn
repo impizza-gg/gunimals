@@ -120,15 +120,33 @@ size_flags_vertical = 4
 
 [node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Resume"
+focus_neighbor_top = NodePath("../LeaveGame")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../LeaveGame")
+mouse_default_cursor_shape = 2
+action_mode = 0
+text = "RESUME_BUTTON"
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Settings"
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../LeaveGame")
+focus_next = NodePath("../LeaveGame")
+focus_previous = NodePath("../ResumeButton")
+mouse_default_cursor_shape = 2
+action_mode = 0
+text = "SETTINGS_BUTTON"
 
 [node name="LeaveGame" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Leave Game"
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../ResumeButton")
+focus_next = NodePath("../ResumeButton")
+focus_previous = NodePath("../SettingsButton")
+mouse_default_cursor_shape = 2
+action_mode = 0
+text = "LEAVE_GAME"
 
 [node name="SettingsMenu" type="Control" parent="CanvasLayer"]
 visible = false
@@ -160,7 +178,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsMenu/VBoxContainer/Master"]
 layout_mode = 2
-text = "Master  "
+text = "MASTER_SOUND"
 
 [node name="MasterSlider" parent="CanvasLayer/SettingsMenu/VBoxContainer/Master" instance=ExtResource("7_85um5")]
 layout_mode = 2
@@ -172,7 +190,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsMenu/VBoxContainer/Music"]
 layout_mode = 2
-text = "Music    "
+text = "MUSIC_SOUND"
 
 [node name="MusicSlider" parent="CanvasLayer/SettingsMenu/VBoxContainer/Music" instance=ExtResource("7_85um5")]
 layout_mode = 2
@@ -184,7 +202,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsMenu/VBoxContainer/SFX"]
 layout_mode = 2
-text = "Effects"
+text = "EFFECTS_SOUND"
 
 [node name="EffectsSlider" parent="CanvasLayer/SettingsMenu/VBoxContainer/SFX" instance=ExtResource("7_85um5")]
 layout_mode = 2
@@ -196,7 +214,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
-text = "Back"
+text = "BACK_BUTTON"
 
 [node name="MainMenu" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
