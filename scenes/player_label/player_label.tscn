@@ -1,19 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://bd0o3k4culpe6"]
+[gd_scene load_steps=8 format=3 uid="uid://bd0o3k4culpe6"]
 
 [ext_resource type="Theme" uid="uid://b7q6nhv8tdmuy" path="res://assets/themes/default_theme.tres" id="1_viw6y"]
 [ext_resource type="Script" path="res://scenes/player_label/player_label.gd" id="2_ump5i"]
 [ext_resource type="Texture2D" uid="uid://cyw1137uj0mt6" path="res://assets/sprites/menus/crown.png" id="3_7paes"]
 [ext_resource type="PackedScene" uid="uid://cngn2fc6gmij0" path="res://assets/sprites/select_sprites/select_character.tscn" id="4_g36e4"]
-
-[sub_resource type="SystemFont" id="SystemFont_lljxp"]
-
-[sub_resource type="SystemFont" id="SystemFont_n5sm1"]
+[ext_resource type="Texture2D" uid="uid://bqr5waeq02sfi" path="res://assets/prompts/normal.png" id="4_s3u82"]
+[ext_resource type="Texture2D" uid="uid://bikn4nnh5nfvn" path="res://assets/prompts/pressed.png" id="5_f8py3"]
+[ext_resource type="Texture2D" uid="uid://bjqyjquvq2q87" path="res://assets/prompts/hover.png" id="6_uugvh"]
 
 [node name="PlayerLabel" type="HBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("1_viw6y")
-theme_override_constants/separation = 25
+theme_override_constants/separation = 20
 script = ExtResource("2_ump5i")
 
 [node name="Player" type="HBoxContainer" parent="."]
@@ -47,14 +46,16 @@ text = "X"
 
 [node name="Character" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 4
 
-[node name="BackCharacter" type="Button" parent="Character"]
+[node name="BackCharacter" type="TextureButton" parent="Character"]
 layout_mode = 2
-focus_neighbor_right = NodePath("../NextCharacter")
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = SubResource("SystemFont_lljxp")
 action_mode = 0
-text = "<"
+texture_normal = ExtResource("4_s3u82")
+texture_pressed = ExtResource("5_f8py3")
+texture_hover = ExtResource("6_uugvh")
+flip_h = true
 
 [node name="Padding" type="Label" parent="Character"]
 layout_mode = 2
@@ -70,13 +71,13 @@ position = Vector2(10, -1)
 layout_mode = 2
 text = "   "
 
-[node name="NextCharacter" type="Button" parent="Character"]
+[node name="NextCharacter" type="TextureButton" parent="Character"]
 layout_mode = 2
-focus_neighbor_left = NodePath("../BackCharacter")
 mouse_default_cursor_shape = 2
-theme_override_fonts/font = SubResource("SystemFont_n5sm1")
 action_mode = 0
-text = ">"
+texture_normal = ExtResource("4_s3u82")
+texture_pressed = ExtResource("5_f8py3")
+texture_hover = ExtResource("6_uugvh")
 
 [connection signal="pressed" from="Player/KickButton" to="." method="_on_kick_button_pressed"]
 [connection signal="pressed" from="Character/BackCharacter" to="." method="_on_back_character_pressed"]
