@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6ysi1hvvwsnm"]
+
+[ext_resource type="Script" path="res://scenes/stomper/stomper.gd" id="1_g73lh"]
+[ext_resource type="Texture2D" uid="uid://bikbuei3h1tqw" path="res://assets/sprites/Stomper2.png" id="2_804ab"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtp42"]
+size = Vector2(135, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ne67"]
+size = Vector2(124, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7al7i"]
+size = Vector2(126, 6)
+
+[sub_resource type="Animation" id="Animation_q3hek"]
+resource_name = "return"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 70), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dfym7"]
+resource_name = "stomp"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 70)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_if0k5"]
+_data = {
+"return": SubResource("Animation_q3hek"),
+"stomp": SubResource("Animation_dfym7")
+}
+
+[node name="Stomper" type="Node2D"]
+position = Vector2(176, 547)
+script = ExtResource("1_g73lh")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-1, 13)
+collision_mask = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["wall"]]
+collision_mask = 14
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-1.4375, -29)
+scale = Vector2(2.13867, 2.42529)
+texture = ExtResource("2_804ab")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -7.25)
+shape = SubResource("RectangleShape2D_mtp42")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -28.5)
+shape = SubResource("RectangleShape2D_4ne67")
+
+[node name="StompArea" type="Area2D" parent="StaticBody2D"]
+collision_layer = 64
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StompArea"]
+position = Vector2(-2, 13)
+shape = SubResource("RectangleShape2D_7al7i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_if0k5")
+}
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="StaticBody2D/StompArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,13 +1,47 @@
-[gd_scene load_steps=6 format=3 uid="uid://bflpq0xb600wk"]
+[gd_scene load_steps=11 format=3 uid="uid://bflpq0xb600wk"]
 
 [ext_resource type="Script" path="res://scenes/button/button.gd" id="1_ottsu"]
 [ext_resource type="Script" path="res://scenes/button/button_top.gd" id="1_woff2"]
 [ext_resource type="Texture2D" uid="uid://ct5v37p3l4kcm" path="res://assets/prompts/e_light.png" id="3_spdny"]
+[ext_resource type="Texture2D" uid="uid://do4kgqsvl1cp5" path="res://assets/sprites/button.png" id="4_pgbx7"]
+[ext_resource type="AudioStream" uid="uid://burkkvmtr6fy" path="res://assets/sounds/click.mp3" id="5_polv7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ri4a8"]
-size = Vector2(14, 17)
+size = Vector2(24, 15)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_u7qa3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xncv6"]
+atlas = ExtResource("4_pgbx7")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v58n5"]
+atlas = ExtResource("4_pgbx7")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1yww"]
+atlas = ExtResource("4_pgbx7")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qr7wu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xncv6")
+}],
+"loop": false,
+"name": &"normal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_v58n5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1yww")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 5.0
+}]
 
 [node name="Button" type="Node2D"]
 script = ExtResource("1_woff2")
@@ -18,16 +52,25 @@ collision_mask = 2
 script = ExtResource("1_ottsu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -0.5)
+position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_ri4a8")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(5.68434e-14, 1.19209e-07)
-scale = Vector2(16, 18)
-texture = SubResource("PlaceholderTexture2D_u7qa3")
 
 [node name="Label" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -80)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_spdny")
+
+[node name="ButtonSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -10)
+scale = Vector2(0.6875, 0.770833)
+sprite_frames = SubResource("SpriteFrames_qr7wu")
+animation = &"normal"
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_polv7")
+bus = &"sfx"

@@ -1,22 +1,21 @@
 extends Node2D
 
+@onready var CooldownTimer := $"../Cooldown"
 
 @rpc("any_peer", "call_local")
 func interact(user: Node) -> void:
-	print(user, "interacting with button")
+	if not CooldownTimer.is_stopped():
+		print("button is in cooldown")
+		return
 	var path = "../" + $"..".interact_with
-	print(path)
 	var object = get_node_or_null(path)
-	print(object)
+	$"../AudioStreamPlayer".pitch_scale = randf_range(0.5, 0.7)
+	$"../AudioStreamPlayer".play()
+	CooldownTimer.start()
+	$"../ButtonSprite".play("pressed")
 	if object != null and object.has_method("interact"):
-		print("here")
-		object.rpc("interact")
-
-
-@rpc("any_peer", "call_local")
-func send_interaction() -> void:
-	# changes to button to send to everyone
-	print('sendInteraction')
+		#object.rpc("interact")
+		object.interact()
 
 
 func hover() -> void:

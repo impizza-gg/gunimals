@@ -13,7 +13,7 @@ EN_TOOLTIP,English,Ingles
 NAME_PLACEHOLDER,Name,Nome
 IP_WARNING,Invalid IP address,Endereco IP invalido
 NAME_WARNING,Invalid name,Invalid name
-ROUNDS_CONFIG,Rounds,Rodadas
+ROUNDS_CONFIG,Rounds:,Rodadas:
 RESUME_BUTTON,Resume,Continuar
 LEAVE_GAME,Leave Game,Sair
 MASTER_SOUND,Master  ,Geral   

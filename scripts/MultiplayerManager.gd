@@ -14,7 +14,7 @@ signal new_room()
 func _ready() -> void:
 	multiplayer.allow_object_decoding = true
 	Signals.change_player_character.connect(change_player_character)
-
+	
 
 func _on_main_menu_create_room(playerName: String) -> void:	
 	var ip : String
@@ -39,7 +39,7 @@ func _on_main_menu_create_room(playerName: String) -> void:
 	MainMenu.hide()
 	
 	WaitingRoom.ip = ip + ":" + str(port)
-	WaitingRoom.StartButton.visible = true
+	WaitingRoom.enable_config()
 	WaitingRoom.show()
 	new_room.emit()
 
@@ -75,7 +75,7 @@ func _on_main_menu_join_room(playerName: String, ipPort: String) -> void:
 	MainMenu.hide()
 	WaitingRoom.ip = ipPort
 
-	WaitingRoom.StartButton.visible = false
+	WaitingRoom.enable_config(false)
 	WaitingRoom.show()
 
 
@@ -96,6 +96,7 @@ func back() -> void:
 	# tá dando um "erro" porque o cliente tenta fechar a conexão que o servidor já fechou
 	# mas funciona igual
 	#multiplayer.peer_disconnected.disconnect(player_disconnected)
+	$"../CanvasLayer/Countdown".visible = false
 	Signals.set_crosshair.emit(false)
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	peer.close()

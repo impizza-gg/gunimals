@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_x5utg"]
 [ext_resource type="Script" path="res://scenes/player/GunManager.gd" id="2_8gubn"]
+[ext_resource type="SpriteFrames" uid="uid://d3ud5wii03kdx" path="res://scenes/player/sprites/sprite_frames/duck.tres" id="4_dkny4"]
 [ext_resource type="Theme" uid="uid://d4lekt35xyedk" path="res://assets/themes/health_bar_theme.tres" id="4_kkano"]
-[ext_resource type="SpriteFrames" uid="uid://7ll4uupgjlmy" path="res://scenes/player/sprites/sprite_frames/frog.tres" id="4_mb3il"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ac5a1"]
 outline_size = 5
@@ -33,7 +33,7 @@ properties/5/spawn = true
 properties/5/replication_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2g1q"]
-size = Vector2(34, 26)
+size = Vector2(35, 26)
 
 [sub_resource type="Animation" id="Animation_e5ver"]
 resource_name = "flatten"
@@ -116,7 +116,7 @@ replication_config = SubResource("SceneReplicationConfig_nleoe")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -13)
 scale = Vector2(1.36771, 1.45439)
-sprite_frames = ExtResource("4_mb3il")
+sprite_frames = ExtResource("4_dkny4")
 animation = &"idle"
 
 [node name="InteractionArea" type="Area2D" parent="."]
@@ -124,7 +124,7 @@ collision_layer = 32
 collision_mask = 48
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(1, -3)
+position = Vector2(0.5, -3)
 shape = SubResource("RectangleShape2D_h2g1q")
 
 [node name="Measuring" type="Node2D" parent="."]

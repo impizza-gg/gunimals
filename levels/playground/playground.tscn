@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d0ghjlejhnjuf"]
+[gd_scene load_steps=45 format=3 uid="uid://d0ghjlejhnjuf"]
 
 [ext_resource type="Script" path="res://levels/playground/playground.gd" id="1_0pddj"]
 [ext_resource type="PackedScene" uid="uid://lhqyh7712go1" path="res://scenes/dummy/dummy.tscn" id="3_o48ih"]
@@ -14,8 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://ddxxshcbnij1f" path="res://assets/sprites/world/Decor.png" id="11_h75k2"]
 [ext_resource type="Script" path="res://scripts/DamageZone.gd" id="12_i0p3j"]
 [ext_resource type="PackedScene" uid="uid://bflpq0xb600wk" path="res://scenes/button/button.tscn" id="13_gt2oi"]
-[ext_resource type="Script" path="res://scenes/moving_saw/PathFollow2D.gd" id="14_brs5g"]
-[ext_resource type="Script" path="res://scenes/stomper/stomper.gd" id="15_cn3n6"]
+[ext_resource type="PackedScene" uid="uid://b6ysi1hvvwsnm" path="res://scenes/obstacles/stomper/stomper.tscn" id="15_wfiof"]
+[ext_resource type="Texture2D" uid="uid://d1yv0or6jd5mw" path="res://assets/sprites/saw.png" id="16_deg8m"]
+[ext_resource type="Texture2D" uid="uid://kcy5r533ld7t" path="res://assets/sprites/saw_still.png" id="17_tn7nc"]
+[ext_resource type="Texture2D" uid="uid://uh4a008cu5vl" path="res://assets/sprites/saw_moving.png" id="18_hg7hb"]
+[ext_resource type="Script" path="res://scripts/moving_saw.gd" id="21_1451s"]
 
 [sub_resource type="Environment" id="Environment_u1seb"]
 background_mode = 3
@@ -868,10 +871,74 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wjww1"]
-radius = 8.06226
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0ul1"]
+atlas = ExtResource("17_tn7nc")
+region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jukq7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssqqp"]
+atlas = ExtResource("18_hg7hb")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vkbj"]
+atlas = ExtResource("18_hg7hb")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwfgd"]
+atlas = ExtResource("18_hg7hb")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onjo0"]
+atlas = ExtResource("18_hg7hb")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3c8y"]
+atlas = ExtResource("18_hg7hb")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sowcc"]
+atlas = ExtResource("18_hg7hb")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tojoi"]
+atlas = ExtResource("18_hg7hb")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0hr4v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0ul1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssqqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vkbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwfgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onjo0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3c8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sowcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tojoi")
+}],
+"loop": true,
+"name": &"spinning",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_6fhp4"]
 length = 0.001
@@ -911,50 +978,8 @@ _data = {
 "rotate": SubResource("Animation_2k5hq")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtp42"]
-size = Vector2(124, 43)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v31xh"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7al7i"]
-size = Vector2(126, 6)
-
-[sub_resource type="Animation" id="Animation_q3hek"]
-resource_name = "return"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StaticBody2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 70), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_dfym7"]
-resource_name = "stomp"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StaticBody2D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 70)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_if0k5"]
-_data = {
-"return": SubResource("Animation_q3hek"),
-"stomp": SubResource("Animation_dfym7")
-}
+[sub_resource type="CircleShape2D" id="CircleShape2D_wjww1"]
+radius = 10.0499
 
 [node name="Playground" type="Node2D"]
 script = ExtResource("1_0pddj")
@@ -969,7 +994,7 @@ position = Vector2(428, 516)
 position = Vector2(473, 519)
 
 [node name="MagicCliffs" parent="." instance=ExtResource("7_hjqdl")]
-position = Vector2(702, 32)
+position = Vector2(3344, 503)
 
 [node name="ConveyorBelt" parent="." instance=ExtResource("5_7eews")]
 position = Vector2(978, 636)
@@ -1049,21 +1074,47 @@ position = Vector2(576, 326)
 [node name="Center" type="Node2D" parent="."]
 position = Vector2(557, 426)
 
-[node name="Button" parent="." instance=ExtResource("13_gt2oi")]
+[node name="Button_ConveyorBelt" parent="." instance=ExtResource("13_gt2oi")]
 position = Vector2(680, 615)
 interact_with = "../ConveyorBelt"
 
+[node name="Stomper" parent="." instance=ExtResource("15_wfiof")]
+
+[node name="Button_Saw" parent="." instance=ExtResource("13_gt2oi")]
+position = Vector2(617, 536)
+interact_with = "../MovingSaw"
+
 [node name="MovingSaw" type="Node2D" parent="."]
-position = Vector2(923, 467)
+position = Vector2(923, 456)
+script = ExtResource("21_1451s")
 
 [node name="Path2D" type="Path2D" parent="MovingSaw"]
+position = Vector2(1, -5)
 curve = SubResource("Curve2D_s6471")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="MovingSaw/Path2D"]
 position = Vector2(-195, 0)
-script = ExtResource("14_brs5g")
 
 [node name="Node2D" type="Node2D" parent="MovingSaw/Path2D/PathFollow2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="MovingSaw/Path2D/PathFollow2D/Node2D"]
+position = Vector2(0.999975, 1.46627e-05)
+scale = Vector2(0.693767, 0.662025)
+texture = ExtResource("16_deg8m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MovingSaw/Path2D/PathFollow2D/Node2D"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_0hr4v")
+animation = &"spinning"
+autoplay = "spinning"
+speed_scale = 4.0
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MovingSaw/Path2D/PathFollow2D/Node2D"]
+libraries = {
+"": SubResource("AnimationLibrary_xa3rl")
+}
+speed_scale = 2.0
 
 [node name="Area2D" type="Area2D" parent="MovingSaw/Path2D/PathFollow2D/Node2D"]
 collision_layer = 64
@@ -1071,56 +1122,9 @@ collision_mask = 2
 script = ExtResource("12_i0p3j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D"]
+position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_wjww1")
-
-[node name="Sprite2D" type="Sprite2D" parent="MovingSaw/Path2D/PathFollow2D/Node2D"]
-position = Vector2(-1.19209e-07, 1.78814e-07)
-scale = Vector2(14.6003, 14.1549)
-texture = SubResource("PlaceholderTexture2D_jukq7")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MovingSaw/Path2D/PathFollow2D/Node2D"]
-libraries = {
-"": SubResource("AnimationLibrary_xa3rl")
-}
-
-[node name="Stomper" type="Node2D" parent="."]
-position = Vector2(576, 464)
-script = ExtResource("15_cn3n6")
-
-[node name="RayCast2D" type="RayCast2D" parent="Stomper"]
-position = Vector2(-1, 13)
-collision_mask = 2
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Stomper" groups=["wall"]]
-collision_mask = 14
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stomper/StaticBody2D"]
-position = Vector2(-1, -11.5)
-shape = SubResource("RectangleShape2D_mtp42")
-
-[node name="Sprite2D" type="Sprite2D" parent="Stomper/StaticBody2D"]
-position = Vector2(-1, -10.875)
-scale = Vector2(126, 44.25)
-texture = SubResource("PlaceholderTexture2D_v31xh")
-
-[node name="StompArea" type="Area2D" parent="Stomper/StaticBody2D"]
-collision_layer = 64
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stomper/StaticBody2D/StompArea"]
-position = Vector2(-1, 14)
-shape = SubResource("RectangleShape2D_7al7i")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Stomper"]
-libraries = {
-"": SubResource("AnimationLibrary_if0k5")
-}
-
-[node name="Cooldown" type="Timer" parent="Stomper"]
-one_shot = true
 
 [connection signal="body_entered" from="Killzones/Area2D" to="Killzones/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Spike" to="Spike" method="_on_body_entered"]
 [connection signal="body_entered" from="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" to="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" method="_on_body_entered"]
-[connection signal="body_entered" from="Stomper/StaticBody2D/StompArea" to="Stomper" method="_on_area_2d_body_entered"]
-[connection signal="animation_finished" from="Stomper/AnimationPlayer" to="Stomper" method="_on_animation_player_animation_finished"]

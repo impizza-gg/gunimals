@@ -2,16 +2,19 @@ extends Control
 
 signal leave_room
 signal game_started
+signal add_round(add: bool)
 
 @onready var PlayerList := %PlayerList
 @onready var PlayerName := preload("res://scenes/player_label/player_label.tscn")
 @onready var spawner := %MultiplayerSpawner
 @onready var StartButton := %StartButton
+@onready var SubRound := %SubRound
+@onready var AddRound := %AddRound
 
 func _ready() -> void:
 	# foi uma desgraça chegar aqui
 	spawner.spawn_function = spawnMenuPlayer
-	
+
 
 var ip: String : 
 	set(value):
@@ -21,6 +24,12 @@ var ip: String :
 
 func _on_back_button_pressed() -> void:
 	leave_room.emit()
+
+
+func enable_config(enable = true) -> void:
+	SubRound.visible = enable
+	AddRound.visible = enable
+	StartButton.visible = enable
 
 
 func spawnMenuPlayer(data: Dictionary):
@@ -68,3 +77,17 @@ func _on_start_button_pressed() -> void:
 	if multiplayer.is_server():
 		game_started.emit()
 	
+
+
+func _on_sub_round_pressed() -> void:
+	add_round.emit(false)
+
+
+func _on_add_round_pressed() -> void:
+	add_round.emit(true)
+
+
+@rpc("any_peer", "call_local")
+func config_updates(configs: Dictionary) -> void:
+	if configs.has("max_rounds"):
+		%RoundsNum.text = str(configs["max_rounds"])

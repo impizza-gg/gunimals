@@ -33,7 +33,7 @@ func _ready() -> void:
 	PlayerSpawner.spawn_function = playerSpawnFunction
 	MapSpawner.spawn_function = mapSpawnFunction
 	Signals.player_death.connect(on_player_death)
-	
+	WaitingRoom.add_round.connect(round_config)
 	WaitTimer2.timeout.connect(transition)
 	WaitTimer.timeout.connect(round_end)
 
@@ -167,4 +167,13 @@ func _on_main_menu_start_playground() -> void:
 		"player_name": "Player",
 		"id": 1,
 		"counter": 0
+	})
+
+
+func round_config(add: bool) -> void:
+	var i = 1 if add else -1
+	max_rounds += i
+	max_rounds = clamp(max_rounds, 1, 9999)
+	WaitingRoom.rpc("config_updates", {
+		"max_rounds": max_rounds
 	})

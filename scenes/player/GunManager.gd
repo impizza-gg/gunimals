@@ -75,13 +75,22 @@ func lock() -> void:
 func _process(_delta: float) -> void:
 	#current_gun.look_at(get_global_mouse_position())
 	#var direction = Vector2.RIGHT.rotated(current_gun.rotation)
-	if locked:
+	if locked or not current_gun:
 		return
-		
-	if is_multiplayer_authority():
-		if not current_gun:
-			return
+
+	if current_gun.Sprite:
+		var deg := rad_to_deg(rotation)
+		if deg > -90 and deg < 90:
+			current_gun.Sprite.flip_v = false
+		else:
+			current_gun.Sprite.flip_v = true
 			
+		#if mouse_pos.x < global_position.x:
+			#current_gun.Sprite.flip_v = true
+		#else:
+			#current_gun.Sprite.flip_v = false
+			
+	if is_multiplayer_authority():
 		if Input.is_action_just_pressed("reload"):
 			if current_gun.can_reload():
 				ReloadTimer.start()
@@ -94,12 +103,7 @@ func _process(_delta: float) -> void:
 		var mouse_pos = get_global_mouse_position()
 		var gun_rotation = global_position.angle_to_point(mouse_pos)
 		rotation = gun_rotation
-		
-		if current_gun.Sprite:
-			if mouse_pos.x < global_position.x:
-				current_gun.Sprite.flip_v = true
-			else:
-				current_gun.Sprite.flip_v = false
+			
 			
 @rpc("any_peer", "call_local")
 func drop() -> void:

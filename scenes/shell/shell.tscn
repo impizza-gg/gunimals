@@ -13,7 +13,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgrga"]
-size = Vector2(7.98438, 3.25)
+size = Vector2(9.74805, 5.3125)
 
 [node name="Shell" type="RigidBody2D"]
 top_level = true
@@ -31,7 +31,8 @@ libraries = {
 }
 
 [node name="Shell" type="Sprite2D" parent="."]
-scale = Vector2(0.633333, 0.5)
+position = Vector2(-2.38419e-07, -5.96046e-08)
+scale = Vector2(0.783333, 0.65)
 texture = ExtResource("2_4ieh8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
