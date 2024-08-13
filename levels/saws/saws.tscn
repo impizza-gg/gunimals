@@ -1,7 +1,7 @@
 [gd_scene load_steps=44 format=3 uid="uid://b2falnecdyto7"]
 
 [ext_resource type="PackedScene" uid="uid://lhqyh7712go1" path="res://scenes/dummy/dummy.tscn" id="1_knrti"]
-[ext_resource type="PackedScene" uid="uid://cc0cm7mkoi21m" path="res://levels/MagicCliffs.tscn" id="2_pmxt3"]
+[ext_resource type="PackedScene" uid="uid://cc05sgyybeoja" path="res://levels/Forest.tscn" id="2_1md7i"]
 [ext_resource type="PackedScene" uid="uid://ck10vlm4ryxih" path="res://scenes/obstacles/conveyor_belt/conveyor_belt.tscn" id="3_h7drm"]
 [ext_resource type="PackedScene" uid="uid://bgi8lcckv30nb" path="res://scenes/pickupables/machine_gun_pickup/machine_gun_pickup.tscn" id="4_4grl2"]
 [ext_resource type="PackedScene" uid="uid://du8d2k7flouhi" path="res://scenes/pickupables/laser_gun_pickup/laser_gun_pickup.tscn" id="5_1k3ax"]
@@ -991,7 +991,7 @@ position = Vector2(261, 528)
 [node name="Dummy" parent="." instance=ExtResource("1_knrti")]
 position = Vector2(238, 49)
 
-[node name="MagicCliffs" parent="." instance=ExtResource("2_pmxt3")]
+[node name="Forest" parent="." instance=ExtResource("2_1md7i")]
 position = Vector2(3738, 423)
 
 [node name="ConveyorBelt" parent="." instance=ExtResource("3_h7drm")]
@@ -1027,36 +1027,40 @@ shape = SubResource("RectangleShape2D_isqqe")
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_m2sjg")
 format = 2
+layer_0/tile_data = PackedInt32Array(2359296, 196608, 12, 2359297, 196608, 12, 2359298, 196608, 12, 2359299, 196608, 12, 2359300, 196608, 12, 2359301, 196608, 12, 2359302, 196608, 12, 2359303, 196608, 12, 2359304, 196608, 12, 2359305, 196608, 12, 2359306, 196608, 12, 2359307, 196608, 12, 2359308, 196608, 12, 2359309, 196608, 12, 2359310, 196608, 12, 2359311, 196608, 12, 2359312, 196608, 12, 2359313, 196608, 12, 2359314, 196608, 12, 2359315, 196608, 12, 2359316, 196608, 12, 2359317, 196608, 12, 2424831, 131072, 12, 2359295, 131072, 11, 2293760, 720897, 8, 2293761, 720897, 8, 2293762, 196608, 11, 2293763, 196608, 11, 2293764, 196608, 11, 2293765, 196608, 11, 2293766, 196608, 11, 2293767, 196608, 11, 2293768, 196608, 11, 2293769, 196608, 11, 2293770, 196608, 11, 2293771, 196608, 11, 2293772, 196608, 11, 2293773, 196608, 11, 2293774, 196608, 11, 2293775, 196608, 11, 2293776, 196608, 11, 2293777, 327680, 11, 2293778, 393216, 11, 2293779, 458752, 11, 2293780, 262144, 11, 2293781, 196608, 11, 2359318, 131072, 268435468, 2293782, 196608, 11, 2359339, 196608, 12, 2359362, 196608, 12, 2359340, 262144, 12, 2359341, 262144, 12, 2359342, 262144, 12, 2359343, 262144, 12, 2359344, 262144, 12, 2359345, 262144, 12, 2359346, 262144, 12, 2359347, 262144, 12, 2359348, 262144, 12, 2359349, 262144, 12, 2359350, 262144, 12, 2359351, 262144, 12, 2359352, 262144, 12, 2359353, 262144, 12, 2359354, 262144, 12, 2359355, 262144, 12, 2359356, 262144, 12, 2359357, 262144, 12, 2359358, 262144, 12, 2359359, 262144, 12, 2359360, 262144, 12, 2359361, 262144, 12, 2293820, 1769472, 11, 2293821, 1835008, 11, 2228284, 1769472, 10, 2228285, 1835008, 10, 2359338, 131072, 12, 2359363, 131072, 268435468, 2293802, 131072, 11, 2293827, 131072, 268435467, 2293803, 196608, 11, 2293826, 720897, 8, 2359280, 196608, 11, 1769473, 1310720, 3, 1769474, 1376256, 3, 1769475, 1441792, 3, 1769476, 1507328, 3, 1769511, 1310720, 3, 1769512, 1376256, 3, 1769513, 1441792, 3, 1769514, 1507328, 3, 1769494, 1769472, 3, 1769495, 1835008, 3, 1769496, 1900544, 3, 1769497, 1966080, 3, 1769534, 1769472, 3, 1769535, 1835008, 3, 1769536, 1900544, 3, 1769537, 1966080, 3, 1769477, 1638400, 3, 1769478, 1638400, 3, 1769479, 1638400, 3, 1769480, 1638400, 3, 1769481, 1638400, 3, 1769482, 1638400, 3, 1769483, 1638400, 3, 1769484, 1638400, 3, 1769485, 1638400, 3, 1769486, 1638400, 3, 1769487, 1638400, 3, 1769488, 1638400, 3, 1769489, 1638400, 3, 1769490, 1638400, 3, 1769491, 1638400, 3, 1769492, 1638400, 3, 1769493, 1638400, 3, 1769515, 1638400, 3, 1769516, 1638400, 3, 1769517, 1638400, 3, 1769518, 1638400, 3, 1769519, 1638400, 3, 1769520, 1638400, 3, 1769521, 1638400, 3, 1769522, 1638400, 3, 1769523, 1638400, 3, 1769524, 1638400, 3, 1769525, 1638400, 3, 1769526, 1638400, 3, 1769527, 1638400, 3, 1769528, 1638400, 3, 1769529, 1638400, 3, 1769530, 1638400, 3, 1769531, 1638400, 3, 1769532, 1638400, 3, 1769533, 1638400, 3, 1703942, 1638400, 2, 1703943, 1638400, 2, 1703944, 1638400, 2, 1703945, 1638400, 2, 1703946, 1638400, 2, 1703947, 1638400, 2, 1703948, 1638400, 2, 1703949, 1638400, 2, 1703950, 1638400, 2, 1703951, 1638400, 2, 1703952, 1638400, 2, 1703953, 1638400, 2, 1703954, 1638400, 2, 1703955, 1638400, 2, 1703956, 1638400, 2, 1703957, 1638400, 2, 1703958, 1638400, 2, 1703959, 1638400, 2, 1703960, 1638400, 2, 1703941, 1638400, 2, 1703940, 1638400, 2, 1703939, 1638400, 2, 1703938, 1638400, 2, 1703976, 1638400, 2, 1703977, 1638400, 2, 1703978, 1638400, 2, 1703979, 1638400, 2, 1703980, 1638400, 2, 1703981, 1638400, 2, 1703982, 1638400, 2, 1703983, 1638400, 2, 1703984, 1638400, 2, 1703985, 1638400, 2, 1703986, 1638400, 2, 1703987, 1638400, 2, 1703988, 1638400, 2, 1703989, 1638400, 2, 1703990, 1638400, 2, 1703991, 1638400, 2, 1703992, 1638400, 2, 1703993, 1638400, 2, 1703994, 1638400, 2, 1703995, 1638400, 2, 1703996, 1638400, 2, 1703997, 1638400, 2, 1703998, 1638400, 2, 1703999, 1638400, 2, 1704000, 1638400, 2, 2293825, 720897, 8)
 
 [node name="Collisions" type="Node2D" parent="."]
 
 [node name="GroundCollision" type="StaticBody2D" parent="Collisions" groups=["wall"]]
+position = Vector2(176, 583)
+scale = Vector2(1.04855, 1.0188)
 collision_mask = 30
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/GroundCollision"]
-position = Vector2(174, 582)
 shape = SubResource("RectangleShape2D_0ustu")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Collisions" groups=["wall"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D"]
-position = Vector2(211, 447)
+position = Vector2(216, 439)
 shape = SubResource("RectangleShape2D_gv1no")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Collisions" groups=["wall"]]
+position = Vector2(880, 585)
+scale = Vector2(1.04279, 0.987404)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D2"]
-position = Vector2(887, 578)
 shape = SubResource("RectangleShape2D_dvbwg")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Collisions" groups=["wall"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D3"]
-position = Vector2(835, 447)
+position = Vector2(839, 440)
 shape = SubResource("RectangleShape2D_je77b")
 
 [node name="Spike" type="Area2D" parent="."]
-position = Vector2(12, 567)
+position = Vector2(16, 569)
+scale = Vector2(1.02794, 1)
 collision_layer = 64
 collision_mask = 2
 script = ExtResource("12_qa452")
@@ -1065,7 +1069,8 @@ script = ExtResource("12_qa452")
 shape = SubResource("RectangleShape2D_uw31o")
 
 [node name="Spike2" type="Area2D" parent="."]
-position = Vector2(1063, 565)
+position = Vector2(1056, 571)
+scale = Vector2(1.07803, 0.976747)
 collision_layer = 64
 collision_mask = 2
 script = ExtResource("12_qa452")
@@ -1081,14 +1086,14 @@ position = Vector2(576, 326)
 position = Vector2(557, 426)
 
 [node name="Button_ConveyorBelt" parent="." instance=ExtResource("13_j8bkv")]
-position = Vector2(708, 562)
+position = Vector2(701, 569)
 interact_with = "../ConveyorBelt"
 
 [node name="Stomper" parent="." instance=ExtResource("14_v35gx")]
 position = Vector2(516, 234)
 
 [node name="Button_Saw" parent="." instance=ExtResource("13_j8bkv")]
-position = Vector2(385, 430)
+position = Vector2(387, 425)
 interact_with = "../MovingSaw"
 
 [node name="MovingSaw" type="Node2D" parent="."]
@@ -1178,7 +1183,7 @@ position = Vector2(337, 566)
 interact_with = "../ConveyorBelt"
 
 [node name="Button_Saw2" parent="." instance=ExtResource("13_j8bkv")]
-position = Vector2(644, 430)
+position = Vector2(645, 424)
 interact_with = "../MovingSaw"
 
 [node name="ConveyorBelt2" parent="." instance=ExtResource("3_h7drm")]

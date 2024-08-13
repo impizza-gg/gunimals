@@ -14,10 +14,10 @@ motion_scale = Vector2(2, 2)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerSky"]
 self_modulate = Color(0.907942, 0.907942, 0.907942, 1)
-offset_left = -5728.0
-offset_top = -288.0
-offset_right = 7718.0
-offset_bottom = 159.0
+offset_left = -5751.0
+offset_top = -434.0
+offset_right = 7695.0
+offset_bottom = 13.0
 scale = Vector2(1, 4.3)
 texture = ExtResource("1_cabp6")
 stretch_mode = 1
@@ -26,10 +26,10 @@ stretch_mode = 1
 motion_scale = Vector2(0.05, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerClouds"]
-offset_left = -5703.0
-offset_top = 598.0
-offset_right = 7699.0
-offset_bottom = 836.0
+offset_left = -5707.0
+offset_top = 450.0
+offset_right = 7695.0
+offset_bottom = 688.0
 texture = ExtResource("2_0s0lk")
 stretch_mode = 1
 
@@ -37,10 +37,10 @@ stretch_mode = 1
 motion_scale = Vector2(0.075, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerSea"]
-offset_left = -5705.0
-offset_top = 833.0
-offset_right = 7717.0
-offset_bottom = 929.0
+offset_left = -5725.0
+offset_top = 685.0
+offset_right = 7697.0
+offset_bottom = 781.0
 scale = Vector2(1, 2)
 texture = ExtResource("3_osyvw")
 stretch_mode = 1
@@ -49,9 +49,9 @@ stretch_mode = 1
 motion_scale = Vector2(0.15, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerFarground"]
-offset_left = -529.0
-offset_top = 680.0
-offset_right = 843.0
-offset_bottom = 950.0
+offset_left = -527.0
+offset_top = 541.0
+offset_right = 845.0
+offset_bottom = 811.0
 texture = ExtResource("4_2dy0i")
 metadata/_edit_use_anchors_ = true
