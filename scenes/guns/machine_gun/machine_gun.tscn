@@ -1,19 +1,45 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0v8l7dfj1tqg"]
+[gd_scene load_steps=7 format=3 uid="uid://b0v8l7dfj1tqg"]
 
 [ext_resource type="Script" path="res://scenes/guns/machine_gun/machine_gun.gd" id="1_lyv2l"]
 [ext_resource type="PackedScene" uid="uid://bgi8lcckv30nb" path="res://scenes/pickupables/machine_gun_pickup/machine_gun_pickup.tscn" id="2_3mbau"]
+[ext_resource type="AudioStream" uid="uid://dp3y20qdm78ii" path="res://assets/sounds/reload.mp3" id="3_4yulh"]
+[ext_resource type="AudioStream" uid="uid://cay4feaq2psp2" path="res://assets/sounds/noAmmo.mp3" id="3_mcsb8"]
+[ext_resource type="AudioStream" uid="uid://by3mds4fkbad0" path="res://assets/sounds/bullet_sound.wav" id="3_yi6iu"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_33oqs"]
 
-[node name="Node2D" type="Node2D"]
+[node name="MachineGun" type="Node2D" node_paths=PackedStringArray("ShootPlayer")]
 script = ExtResource("1_lyv2l")
 offset_x = 30.0
+max_ammo = 300
 automatic = true
 cooldown = 0.05
+ShootPlayer = NodePath("Shoot")
 knockback_x = 25.0
 knocks_back = true
+vary_pitch = false
 PickUpScene = ExtResource("2_3mbau")
+slows_down = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(76, 21.5)
 texture = SubResource("PlaceholderTexture2D_33oqs")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(39, -1)
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_yi6iu")
+pitch_scale = 0.6
+max_polyphony = 20
+
+[node name="Reload" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4yulh")
+volume_db = 3.0
+pitch_scale = 0.5
+bus = &"sfx"
+
+[node name="NoAmmo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mcsb8")
+max_polyphony = 10
+bus = &"sfx"

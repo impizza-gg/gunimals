@@ -107,12 +107,16 @@ func _physics_process(delta: float) -> void:
 				locked = true
 			else:
 				velocity.x = direction * speed
+				if GunManager.current_gun and GunManager.current_gun.slows_down:
+					velocity.x += -direction * GunManager.current_gun.slow_down_factor
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 		
 		if Input.is_action_just_pressed("jump"):
 			if is_on_floor():
 				velocity.y = jump_velocity
+				if GunManager.current_gun and GunManager.current_gun.slows_down:
+					velocity.y += GunManager.current_gun.slow_down_factor
 			else:
 				if canDoubleJump and not doubleJumpUsed:
 					velocity.y = jump_velocity

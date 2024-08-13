@@ -1,23 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://3lm010thuj5v"]
+[gd_scene load_steps=7 format=3 uid="uid://3lm010thuj5v"]
 
 [ext_resource type="Script" path="res://scenes/guns/example_automatic/automatic_gun.gd" id="1_5mesx"]
 [ext_resource type="AudioStream" uid="uid://by3mds4fkbad0" path="res://assets/sounds/bullet_sound.wav" id="2_h0uiv"]
 [ext_resource type="PackedScene" uid="uid://bra8tijjia8bp" path="res://scenes/pickupables/automatic_gun_pickup/automatic_gun_pickup.tscn" id="2_ky4qy"]
 [ext_resource type="Texture2D" uid="uid://b5untiqse6nj8" path="res://assets/sprites/guns/arma.png" id="3_mu3yy"]
+[ext_resource type="AudioStream" uid="uid://cay4feaq2psp2" path="res://assets/sounds/noAmmo.mp3" id="5_ww5rm"]
+[ext_resource type="AudioStream" uid="uid://dp3y20qdm78ii" path="res://assets/sounds/reload.mp3" id="6_vipxb"]
 
-[node name="AutomaticGun" type="Node2D" node_paths=PackedStringArray("ShootPlayer")]
+[node name="AutomaticGun" type="Node2D" node_paths=PackedStringArray("ShootPlayer", "NoAmmoPlayer", "ReloadPlayer")]
 script = ExtResource("1_5mesx")
+max_ammo = 45
+max_clips = 4
 automatic = true
 cooldown = 0.05
-ShootPlayer = NodePath("AudioStreamPlayer")
+ShootPlayer = NodePath("Shoot")
+NoAmmoPlayer = NodePath("NoAmmo")
+ReloadPlayer = NodePath("Reload")
 PickUpScene = ExtResource("2_ky4qy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.036, 1)
 texture = ExtResource("3_mu3yy")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(27, -7)
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_h0uiv")
 volume_db = -9.976
 max_polyphony = 10
+bus = &"sfx"
+
+[node name="NoAmmo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ww5rm")
+bus = &"sfx"
+
+[node name="Reload" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_vipxb")
 bus = &"sfx"

@@ -17,12 +17,13 @@ signal update_ui(current_ammo: int)
 @export var NoAmmoPlayer: AudioStreamPlayer
 @export var ReloadPlayer : AudioStreamPlayer
 @export var drop_shells := true
-@export var ShootSound : AudioStream
 @export var knockback_x := 0.0
 @export var knockback_y := 0.0
 @export var knocks_back := false
 @export var vary_pitch := true
 @export var PickUpScene := preload("res://scenes/pickupables/default_pickup/default_pickup.tscn")
+@export var slows_down := false
+@export var slow_down_factor := 200.0
 
 @onready var CooldownTimer := Timer.new()
 @onready var Shell := preload("res://scenes/shell/shell.tscn")
@@ -33,7 +34,7 @@ signal update_ui(current_ammo: int)
 @onready var clips := max_clips
 @onready var current_ammo := max_ammo
 @onready var reloading := false
-
+var SpawnPoint : Node2D
 var Sprite : Sprite2D
 
 func _enter_tree() -> void:
@@ -46,7 +47,8 @@ func _ready() -> void:
 	CooldownTimer.one_shot = true
 	add_child(CooldownTimer)
 	Sprite = get_node_or_null("Sprite2D")
-	
+	SpawnPoint = get_node_or_null("SpawnPoint")
+
 
 func updateHUD() -> void:
 	if is_multiplayer_authority():
@@ -84,7 +86,10 @@ func create_bullets(initial_position: Vector2, bullet_rotation: float, direction
 		#player.knockback = -Vector2(dir_factor * knockback_x, knockback_y)
 		player.knockback = -direction * Vector2(knockback_x, knockback_y)
 	
-	bullet.position = initial_position
+	if SpawnPoint:
+		bullet.position = SpawnPoint.global_position
+	else:
+		bullet.position = initial_position
 	bullet.rotation = bullet_rotation
 	bullet.direction = direction
 	bullet.owner_id = owner_id
@@ -126,8 +131,6 @@ func reload(reset := false) -> void:
 		clips = max_clips
 	else:
 		clips -= 1
-	if ReloadPlayer:
-		ReloadPlayer.play()
 	updateHUD()
 	reloading = false
 

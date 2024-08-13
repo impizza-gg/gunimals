@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://xtmllb3s5bfv"]
+[gd_scene load_steps=24 format=3 uid="uid://xtmllb3s5bfv"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_11qyb"]
 [ext_resource type="Script" path="res://scripts/MultiplayerManager.gd" id="2_d5ynk"]
@@ -15,9 +15,12 @@
 [ext_resource type="PackedScene" uid="uid://q5dsdiffu7uu" path="res://menus/slider/audio_slider.tscn" id="7_85um5"]
 [ext_resource type="Texture2D" uid="uid://bwd2tj7wspp8y" path="res://assets/sprites/menus/br_color.png" id="8_nh7du"]
 [ext_resource type="Texture2D" uid="uid://bnqi2gmq5dhg8" path="res://assets/sprites/menus/en_gray.png" id="9_u3mv2"]
+[ext_resource type="PackedScene" uid="uid://d0r8i3701lj7f" path="res://menus/menu_button.tscn" id="9_wsq4w"]
 [ext_resource type="Texture2D" uid="uid://khomtcsq0uas" path="res://assets/sprites/menus/en_color.png" id="10_do353"]
 [ext_resource type="PackedScene" uid="uid://8i05aiqvo68j" path="res://scenes/scene_transition.tscn" id="13_olxy7"]
 [ext_resource type="PackedScene" uid="uid://rk3ptl5wf086" path="res://scenes/countdown.tscn" id="14_pt04r"]
+[ext_resource type="AudioStream" uid="uid://3uqwvlddx3my" path="res://assets/sounds/UI_MenuSelections.mp3" id="20_uy25r"]
+[ext_resource type="AudioStream" uid="uid://dq4q6emfl5ii0" path="res://assets/sounds/UI_Confirm.mp3" id="21_th0jc"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_di85f"]
 
@@ -118,34 +121,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="ResumeButton" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer" instance=ExtResource("9_wsq4w")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../LeaveGame")
-focus_neighbor_bottom = NodePath("../SettingsButton")
-focus_next = NodePath("../SettingsButton")
-focus_previous = NodePath("../LeaveGame")
-mouse_default_cursor_shape = 2
-action_mode = 0
 text = "RESUME_BUTTON"
 
-[node name="SettingsButton" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="SettingsButton" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer" instance=ExtResource("9_wsq4w")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../ResumeButton")
-focus_neighbor_bottom = NodePath("../LeaveGame")
-focus_next = NodePath("../LeaveGame")
-focus_previous = NodePath("../ResumeButton")
-mouse_default_cursor_shape = 2
-action_mode = 0
 text = "SETTINGS_BUTTON"
 
-[node name="LeaveGame" type="Button" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer"]
+[node name="LeaveGame" parent="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer" instance=ExtResource("9_wsq4w")]
 layout_mode = 2
-focus_neighbor_top = NodePath("../SettingsButton")
-focus_neighbor_bottom = NodePath("../ResumeButton")
-focus_next = NodePath("../ResumeButton")
-focus_previous = NodePath("../SettingsButton")
-mouse_default_cursor_shape = 2
-action_mode = 0
 text = "LEAVE_GAME"
 
 [node name="SettingsMenu" type="Control" parent="CanvasLayer"]
@@ -209,15 +194,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 bus_name = "sfx"
 
-[node name="BackButton" type="Button" parent="CanvasLayer/SettingsMenu/VBoxContainer"]
+[node name="BackButton" parent="CanvasLayer/SettingsMenu/VBoxContainer" instance=ExtResource("9_wsq4w")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_default_cursor_shape = 2
 text = "BACK_BUTTON"
 
 [node name="MainMenu" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -294,68 +277,34 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_neighbor_top = NodePath("../PlaygroundButton")
-focus_neighbor_bottom = NodePath("../HostButton")
-focus_next = NodePath("../HostButton")
 focus_previous = NodePath("../PlaygroundButton")
 mouse_default_cursor_shape = 2
 disabled = true
 action_mode = 0
 text = "LOCAL_BUTTON"
 
-[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox"]
+[node name="HostButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox" instance=ExtResource("9_wsq4w")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_neighbor_top = NodePath("../LocalButton")
-focus_neighbor_bottom = NodePath("../JoinButton")
-focus_next = NodePath("../JoinButton")
-focus_previous = NodePath("../LocalButton")
-mouse_default_cursor_shape = 2
-action_mode = 0
 text = "HOST_BUTTON"
 
-[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox"]
+[node name="JoinButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox" instance=ExtResource("9_wsq4w")]
 layout_mode = 2
-size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../HostButton")
-focus_neighbor_bottom = NodePath("../SettingsButton")
-focus_next = NodePath("../SettingsButton")
-focus_previous = NodePath("../HostButton")
-mouse_default_cursor_shape = 2
-action_mode = 0
 text = "JOIN_BUTTON"
 
-[node name="SettingsButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox"]
+[node name="SettingsButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox" instance=ExtResource("9_wsq4w")]
 layout_mode = 2
-size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../JoinButton")
-focus_neighbor_bottom = NodePath("../QuitButton")
-focus_next = NodePath("../QuitButton")
-focus_previous = NodePath("../JoinButton")
-mouse_default_cursor_shape = 2
-action_mode = 0
 text = "SETTINGS_BUTTON"
 
-[node name="QuitButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox"]
+[node name="QuitButton" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox" instance=ExtResource("9_wsq4w")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_neighbor_top = NodePath("../SettingsButton")
-focus_neighbor_bottom = NodePath("../PlaygroundButton")
-focus_next = NodePath("../PlaygroundButton")
-focus_previous = NodePath("../SettingsButton")
-mouse_default_cursor_shape = 2
-action_mode = 0
 text = "QUIT_BUTTON"
 
 [node name="PlaygroundButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/ButtonsVBox"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../QuitButton")
 focus_neighbor_bottom = NodePath("../LocalButton")
 focus_next = NodePath("../LocalButton")
-focus_previous = NodePath("../QuitButton")
 mouse_default_cursor_shape = 2
 action_mode = 0
 text = "PLAYGROUND_BUTTON"
@@ -451,6 +400,36 @@ text = "JOIN_BUTTON"
 unique_name_in_owner = true
 visible = false
 
+[node name="EndScreen" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_11amd")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/EndScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="PlayerList" type="VBoxContainer" parent="CanvasLayer/EndScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="BackButton" parent="CanvasLayer/EndScreen/MarginContainer" instance=ExtResource("9_wsq4w")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "BACK_BUTTON"
+
 [node name="SceneTransition" parent="CanvasLayer" instance=ExtResource("13_olxy7")]
 visible = false
 
@@ -481,6 +460,17 @@ spawn_path = NodePath("../GameContainer")
 
 [node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("../GameContainer")
+
+[node name="HoverPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_uy25r")
+volume_db = -12.0
+max_polyphony = 4
+bus = &"sfx"
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_th0jc")
+volume_db = -8.0
+bus = &"sfx"
 
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/ResumeButton" to="CanvasLayer" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/SettingsButton" to="CanvasLayer/SettingsMenu" method="_on_settings_button_pressed"]

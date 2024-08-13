@@ -8,7 +8,7 @@ signal shoot(bullet: Node, location: Vector2)
 @onready var ReloadBar := $"../ReloadBar"
 @onready var ReloadTimer : Timer = $"../ReloadTimer"
 @onready var locked := true
-
+var flipped = false
 var current_gun: Gun
 
 func _ready() -> void:
@@ -80,19 +80,24 @@ func _process(_delta: float) -> void:
 
 	if current_gun.Sprite:
 		var deg := rad_to_deg(rotation)
-		if deg > -90 and deg < 90:
+		var check = deg > -90 and deg < 90
+		if flipped and check:
+			flipped = false
 			current_gun.Sprite.flip_v = false
-		else:
+			if current_gun.SpawnPoint:
+				current_gun.SpawnPoint.position.y *= -1
+		elif not flipped and not check:
+			flipped = true
 			current_gun.Sprite.flip_v = true
+			if current_gun.SpawnPoint:
+				current_gun.SpawnPoint.position.y *= -1
 			
-		#if mouse_pos.x < global_position.x:
-			#current_gun.Sprite.flip_v = true
-		#else:
-			#current_gun.Sprite.flip_v = false
-			
+
 	if is_multiplayer_authority():
 		if Input.is_action_just_pressed("reload"):
 			if current_gun.can_reload():
+				if current_gun.ReloadPlayer:
+					current_gun.ReloadPlayer.play()
 				ReloadTimer.start()
 				current_gun.reloading = true
 				ReloadBar.visible = true
@@ -103,8 +108,8 @@ func _process(_delta: float) -> void:
 		var mouse_pos = get_global_mouse_position()
 		var gun_rotation = global_position.angle_to_point(mouse_pos)
 		rotation = gun_rotation
-			
-			
+
+
 @rpc("any_peer", "call_local")
 func drop() -> void:
 	if not current_gun:

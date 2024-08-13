@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cq5jogagp2fgv"]
+[gd_scene load_steps=6 format=3 uid="uid://cq5jogagp2fgv"]
 
 [ext_resource type="Script" path="res://menus/waiting_room.gd" id="1_4g615"]
 [ext_resource type="Theme" uid="uid://b7q6nhv8tdmuy" path="res://assets/themes/default_theme.tres" id="2_lrvm7"]
 [ext_resource type="StyleBox" uid="uid://carfjrrwdyj05" path="res://assets/themes/panel_style.tres" id="3_k7d6c"]
+[ext_resource type="PackedScene" uid="uid://d0r8i3701lj7f" path="res://menus/menu_button.tscn" id="4_ii43b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhln3"]
 bg_color = Color(0.0802295, 0.0076866, 0.185958, 1)
@@ -61,11 +62,8 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "127.0.0.1:555"
 
-[node name="CopyButton" type="Button" parent="MarginContainer/VBoxContainer/TopContainer"]
+[node name="CopyButton" parent="MarginContainer/VBoxContainer/TopContainer" instance=ExtResource("4_ii43b")]
 layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_constants/outline_size = 6
-action_mode = 0
 text = "COPY_BUTTON"
 
 [node name="BodyContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -146,19 +144,14 @@ text = "+"
 [node name="BottomContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer"]
+[node name="StartButton" parent="MarginContainer/VBoxContainer/BottomContainer" instance=ExtResource("4_ii43b")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-mouse_default_cursor_shape = 2
-theme = ExtResource("2_lrvm7")
-action_mode = 0
 text = "START_BUTTON"
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer"]
+[node name="BackButton" parent="MarginContainer/VBoxContainer/BottomContainer" instance=ExtResource("4_ii43b")]
 layout_mode = 2
-mouse_default_cursor_shape = 2
-action_mode = 0
 text = "BACK_BUTTON"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopContainer/CopyButton" to="." method="_on_copy_button_pressed"]

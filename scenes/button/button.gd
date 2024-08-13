@@ -3,7 +3,7 @@ extends Node2D
 @onready var CooldownTimer := $"../Cooldown"
 
 @rpc("any_peer", "call_local")
-func interact(user: Node) -> void:
+func interact(_user: Node) -> void:
 	if not CooldownTimer.is_stopped():
 		print("button is in cooldown")
 		return

@@ -70,9 +70,25 @@ func transition() -> void:
 	WaitTimer.start()
 
 
+@rpc("any_peer", "call_local")
+func end_of_game() -> void:
+	$"../CanvasLayer/EndScreen".show()
+	$"../CanvasLayer/PauseMenu".hide()
+	$"../CanvasLayer/SceneTransition".playTransition()
+	Signals.paused = false
+	Signals.set_crosshair.emit(false)
+	$"../CanvasLayer/Background".show()
+	for child in get_children():
+		child.queue_free()
+
+
 func round_end() -> void:
-	var new_map = mapPool.pick_random()
-	call_deferred("change_map", new_map)
+	if current_round >= max_rounds:
+		rpc("end_of_game")
+		#$"../CanvasLayer/SceneTransition".rpc("playTransition")
+	else:
+		var new_map = mapPool.pick_random()
+		call_deferred("change_map", new_map)
 	
 
 #@rpc("any_peer", "call_local")

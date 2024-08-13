@@ -31,3 +31,5 @@ func set_visibility(visibility: bool) -> void:
 
 func set_clip_label_visibility(visibility: bool) -> void:
 	ClipLabel.visible = visibility
+
+

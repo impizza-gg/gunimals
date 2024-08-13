@@ -12,3 +12,6 @@ signal toggle_pause_menu()
 signal player_death(name: String)
 signal unlock()
 signal set_crosshair(is_crosshair: bool)
+
+signal button_hovered
+signal button_click

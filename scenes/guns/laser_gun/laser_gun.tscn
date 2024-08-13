@@ -1,15 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://b21vypyewuvll"]
+[gd_scene load_steps=6 format=3 uid="uid://b21vypyewuvll"]
 
 [ext_resource type="Script" path="res://scenes/guns/laser_gun/laser_gun.gd" id="1_j4fjj"]
 [ext_resource type="PackedScene" uid="uid://1b6rehf7vtka" path="res://scenes/guns/laser_gun/laser_projectile.tscn" id="2_ih60l"]
 [ext_resource type="PackedScene" uid="uid://du8d2k7flouhi" path="res://scenes/pickupables/laser_gun_pickup/laser_gun_pickup.tscn" id="3_xkgrp"]
 [ext_resource type="Texture2D" uid="uid://dus753oo5hikl" path="res://assets/sprites/guns/beam rifle.png" id="4_nh1so"]
+[ext_resource type="AudioStream" uid="uid://2la844wgxmrf" path="res://assets/sounds/laser.mp3" id="5_nwju1"]
 
-[node name="LaserGun" type="Node2D"]
+[node name="LaserGun" type="Node2D" node_paths=PackedStringArray("ShootPlayer")]
 script = ExtResource("1_j4fjj")
 projectile = ExtResource("2_ih60l")
+max_ammo = 40
+max_clips = 3
 automatic = true
 cooldown = 0.15
+ShootPlayer = NodePath("Shoot")
 drop_shells = false
 PickUpScene = ExtResource("3_xkgrp")
 
@@ -17,3 +21,11 @@ PickUpScene = ExtResource("3_xkgrp")
 position = Vector2(3.8147e-06, 0)
 scale = Vector2(0.953, 1)
 texture = ExtResource("4_nh1so")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(22, -1)
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_nwju1")
+max_polyphony = 10
+bus = &"sfx"

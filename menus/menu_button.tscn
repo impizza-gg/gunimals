@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0r8i3701lj7f"]
+
+[ext_resource type="Script" path="res://scripts/Button.gd" id="1_aiyev"]
+
+[node name="Button" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+action_mode = 0
+script = ExtResource("1_aiyev")
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
