@@ -73,6 +73,8 @@ collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_x5utg")
 
+[node name="Position" type="Node2D" parent="."]
+
 [node name="Name" type="Label" parent="."]
 offset_left = -25.0
 offset_top = -53.0

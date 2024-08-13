@@ -66,6 +66,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	#$AnimatedSprite2D.position = lerp($AnimatedSprite2D.position, position, 0.4) + Vector2(1, -13)
+	
 	if not is_multiplayer_authority() or locked:
 		return
 	if Input.is_action_just_pressed("esc"):
@@ -168,6 +170,7 @@ func update_health(change: int) -> void:
 		return
 	current_health += change
 	current_health = min(current_health, max_health)
+
 	HealthBar.value = current_health
 	if change < 0:
 		Sprite.play("hurt")
@@ -178,8 +181,6 @@ func update_health(change: int) -> void:
 func death(play_animation = true) -> void:
 	locked = true
 	dead = true
-	GunManager.call_deferred("drop")
-	GunManager.lock()
 	
 	if play_animation:
 		Sprite.play("death")
@@ -190,17 +191,31 @@ func death(play_animation = true) -> void:
 	isDashing = false
 	
 	$Name.self_modulate = Color(1, 0, 0, 0.5)
-	
+
 	if is_multiplayer_authority():
 		Signals.set_hud_visibility.emit(false)
 	if multiplayer.is_server():
 		Signals.player_death.emit(name.to_int())
 
+	
+	for interactable in interactables:
+		if interactable.has_method("unhover"):
+			interactable.unhover()
+	
+	for pickable in pickables:
+		if pickable.has_method("unhover"):
+			pickable.unhover()
+			
+	interactables.clear()
+	pickables.clear()
+	GunManager.call_deferred("drop")
+	GunManager.lock()
+
 
 func _on_interaction_area_area_entered(area: Area2D) -> void:
-	if not is_multiplayer_authority() or dead:
+	if (not is_multiplayer_authority()) or dead:
 		return
-	
+
 	if area.is_in_group("pickable"):
 		pickables.append(area)
 	elif area.is_in_group("interactable"):

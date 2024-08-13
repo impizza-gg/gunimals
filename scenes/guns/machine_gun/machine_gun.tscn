@@ -5,8 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dp3y20qdm78ii" path="res://assets/sounds/reload.mp3" id="3_4yulh"]
 [ext_resource type="AudioStream" uid="uid://cay4feaq2psp2" path="res://assets/sounds/noAmmo.mp3" id="3_mcsb8"]
 [ext_resource type="AudioStream" uid="uid://by3mds4fkbad0" path="res://assets/sounds/bullet_sound.wav" id="3_yi6iu"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_33oqs"]
+[ext_resource type="Texture2D" uid="uid://b3nn4l56dbyun" path="res://assets/sprites/machine_gun.png" id="6_rowpf"]
 
 [node name="MachineGun" type="Node2D" node_paths=PackedStringArray("ShootPlayer")]
 script = ExtResource("1_lyv2l")
@@ -20,13 +19,6 @@ knocks_back = true
 vary_pitch = false
 PickUpScene = ExtResource("2_3mbau")
 slows_down = true
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(76, 21.5)
-texture = SubResource("PlaceholderTexture2D_33oqs")
-
-[node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2(39, -1)
 
 [node name="Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_yi6iu")
@@ -43,3 +35,10 @@ bus = &"sfx"
 stream = ExtResource("3_mcsb8")
 max_polyphony = 10
 bus = &"sfx"
+
+[node name="MachineGun" type="Sprite2D" parent="."]
+scale = Vector2(0.150781, 0.210937)
+texture = ExtResource("6_rowpf")
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(35, -5)

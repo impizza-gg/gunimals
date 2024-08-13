@@ -1,41 +1,40 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgi8lcckv30nb"]
+[gd_scene load_steps=7 format=3 uid="uid://b0dkofsa0ygxb"]
 
-[ext_resource type="Texture2D" uid="uid://b3nn4l56dbyun" path="res://assets/sprites/machine_gun.png" id="1_k07hq"]
-[ext_resource type="Script" path="res://scenes/pickupables/PickableArea.gd" id="3_6i1p4"]
-[ext_resource type="Texture2D" uid="uid://ct5v37p3l4kcm" path="res://assets/prompts/e_light.png" id="3_o1pn0"]
+[ext_resource type="Texture2D" uid="uid://bm2k5e4o766n7" path="res://assets/sprites/guns/BELG_Five_seven.png" id="1_utcaf"]
+[ext_resource type="Script" path="res://scenes/pickupables/PickableArea.gd" id="2_a6wu3"]
+[ext_resource type="Texture2D" uid="uid://ct5v37p3l4kcm" path="res://assets/prompts/e_light.png" id="3_fjhij"]
 
 [sub_resource type="GDScript" id="GDScript_pcs3y"]
 script/source = "extends Pickup
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1v00f"]
-size = Vector2(65, 21)
+size = Vector2(19, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kckre"]
-size = Vector2(65, 20.5)
+size = Vector2(19, 17)
 
 [node name="PickUpGun" type="RigidBody2D"]
 collision_layer = 16
 collision_mask = 33
 script = SubResource("GDScript_pcs3y")
-item_scene = "res://scenes/guns/machine_gun/machine_gun.tscn"
+item_scene = "res://scenes/guns/example_gun/example_gun.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, -6.5)
+position = Vector2(-0.5, -5)
 shape = SubResource("RectangleShape2D_1v00f")
 
-[node name="MachineGun" type="Sprite2D" parent="."]
-position = Vector2(2, -5)
-scale = Vector2(0.134896, 0.191667)
-texture = ExtResource("1_k07hq")
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(1, -4)
+texture = ExtResource("1_utcaf")
 
 [node name="PickableArea" type="Area2D" parent="." groups=["pickable"]]
 collision_layer = 32
 collision_mask = 32
-script = ExtResource("3_6i1p4")
+script = ExtResource("2_a6wu3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickableArea"]
-position = Vector2(1.5, -6.75)
+position = Vector2(-0.5, -5)
 shape = SubResource("RectangleShape2D_kckre")
 
 [node name="LabelContainer" type="Node2D" parent="."]
@@ -45,7 +44,7 @@ top_level = true
 visible = false
 position = Vector2(0, -80)
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("3_o1pn0")
+texture = ExtResource("3_fjhij")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 remote_path = NodePath("../LabelContainer")

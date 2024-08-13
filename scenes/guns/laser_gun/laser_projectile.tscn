@@ -9,7 +9,7 @@ size = Vector2(11.5, 2.14844)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_8rude")
-speed = 1500.0
+speed = 2000.0
 bounces = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]

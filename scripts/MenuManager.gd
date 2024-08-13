@@ -22,3 +22,7 @@ func _on_leave_game_pressed() -> void:
 	$"../MultiplayerManager".back()
 	PauseMenu.visible = false
 	Signals.paused = false
+
+
+func _on_end_game_button_pressed() -> void:
+	$"../MultiplayerManager".back()

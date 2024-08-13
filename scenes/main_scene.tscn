@@ -200,7 +200,6 @@ text = "BACK_BUTTON"
 
 [node name="MainMenu" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -401,6 +400,7 @@ unique_name_in_owner = true
 visible = false
 
 [node name="EndScreen" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -424,7 +424,7 @@ theme_override_constants/margin_bottom = 64
 [node name="PlayerList" type="VBoxContainer" parent="CanvasLayer/EndScreen/MarginContainer"]
 layout_mode = 2
 
-[node name="BackButton" parent="CanvasLayer/EndScreen/MarginContainer" instance=ExtResource("9_wsq4w")]
+[node name="EndGameButton" parent="CanvasLayer/EndScreen/MarginContainer" instance=ExtResource("9_wsq4w")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -490,5 +490,6 @@ bus = &"sfx"
 [connection signal="pressed" from="CanvasLayer/MainMenu/HostPopup/VBoxContainer/PopupHostButton" to="CanvasLayer/MainMenu" method="_on_popup_host_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/JoinPopup/VBoxContainer/PopupJoinButton" to="CanvasLayer/MainMenu" method="_on_popup_join_button_pressed"]
 [connection signal="leave_room" from="CanvasLayer/WaitingRoom" to="MultiplayerManager" method="_on_waiting_room_leave_room"]
+[connection signal="pressed" from="CanvasLayer/EndScreen/MarginContainer/EndGameButton" to="CanvasLayer" method="_on_end_game_button_pressed"]
 [connection signal="player_added" from="MultiplayerManager" to="CanvasLayer/WaitingRoom" method="_on_multiplayer_manager_player_added"]
 [connection signal="player_disconnected_signal" from="MultiplayerManager" to="CanvasLayer/WaitingRoom" method="_on_multiplayer_manager_player_disconnected_signal"]

@@ -1,24 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://d5epx6nf6dg"]
+[gd_scene load_steps=6 format=3 uid="uid://d5epx6nf6dg"]
 
 [ext_resource type="Script" path="res://scenes/guns/example_gun/gun.gd" id="1_6s02t"]
 [ext_resource type="AudioStream" uid="uid://by3mds4fkbad0" path="res://assets/sounds/bullet_sound.wav" id="2_7ebvi"]
+[ext_resource type="Texture2D" uid="uid://bm2k5e4o766n7" path="res://assets/sprites/guns/BELG_Five_seven.png" id="2_ukjl1"]
+[ext_resource type="AudioStream" uid="uid://dp3y20qdm78ii" path="res://assets/sounds/reload.mp3" id="4_kdjv2"]
+[ext_resource type="AudioStream" uid="uid://cay4feaq2psp2" path="res://assets/sounds/noAmmo.mp3" id="5_1udmr"]
 
-[sub_resource type="Gradient" id="Gradient_y4pmx"]
-colors = PackedColorArray(0.717647, 0, 0, 1, 0.317647, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vui0q"]
-gradient = SubResource("Gradient_y4pmx")
-
-[node name="ExamepleGun" type="Node2D" node_paths=PackedStringArray("ShootPlayer")]
+[node name="ExamepleGun" type="Node2D" node_paths=PackedStringArray("ShootPlayer", "NoAmmoPlayer", "ReloadPlayer")]
 script = ExtResource("1_6s02t")
-ShootPlayer = NodePath("AudioStreamPlayer")
+max_ammo = 30
+max_clips = 5
+ShootPlayer = NodePath("Shoot")
+NoAmmoPlayer = NodePath("NoAmmo")
+ReloadPlayer = NodePath("Reload")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.203125, 0.15625)
-texture = SubResource("GradientTexture2D_vui0q")
+position = Vector2(2, 0)
+texture = ExtResource("2_ukjl1")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7ebvi")
 volume_db = -9.976
 max_polyphony = 10
+bus = &"sfx"
+
+[node name="Reload" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kdjv2")
+bus = &"sfx"
+
+[node name="NoAmmo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1udmr")
 bus = &"sfx"

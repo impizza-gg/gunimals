@@ -9,7 +9,6 @@ extends Node
 @onready var mapPool : Array[String] = [
 	"res://levels/playground/playground.tscn"
 ]
-@onready var firstMap := mapPool[0]
 
 @onready var MultiplayerManager := $"../MultiplayerManager"
 @onready var MapSpawner := $"../MapSpawner"
@@ -138,7 +137,7 @@ func playerSpawnFunction(player_data: Dictionary) -> Node:
 	player.name = str(player_data.id) # nome do nodo
 	player.player_name = player_data.player_name
 	player.character_type = player_data.character
-	player.position = Vector2(400, 500) + player_data.counter * Vector2(700, 0)
+	player.position = player_data.spawnPoint
 	return player
 
 
@@ -148,15 +147,15 @@ func game_started() -> void:
 	$"../CanvasLayer/SceneTransition".rpc("playTransition", true)
 	
 	MapSpawner.spawn({
-		"map": firstMap
+		"map": mapPool.pick_random()
 	})
-	
-	print(MultiplayerManager.connected_players)
+
 	var counter := 0
 	for id in MultiplayerManager.connected_players:
 		var player_data = MultiplayerManager.connected_players[id]
 		player_data.counter = counter
 		player_data.id = id
+		player_data.spawnPoint = level.spawnPoints[counter]
 		PlayerSpawner.spawn(player_data)
 		counter += 1
 		

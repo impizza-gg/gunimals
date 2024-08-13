@@ -22,6 +22,7 @@ func _physics_process(delta: float) -> void:
 			if bounces:
 				velocity = velocity.bounce(collision.get_normal())
 				rotation = velocity.angle()
+				
 				bounce += 1
 				if bounce >= max_bounces:
 					queue_free()

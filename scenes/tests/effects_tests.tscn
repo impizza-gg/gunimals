@@ -1,25 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bhrltblknjtnv"]
 
 [ext_resource type="PackedScene" uid="uid://dqiyrkm1i6ayb" path="res://scenes/effects/explosions/explosion.tscn" id="1_khswr"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ktl6m"]
-particle_flag_disable_z = true
-emission_shape_offset = Vector3(1, 0, 0)
-emission_shape_scale = Vector3(25, 1, 1)
-emission_shape = 1
-emission_sphere_radius = 40.0
-angle_min = 180.0
-angle_max = 270.0
-direction = Vector3(0.9, 0.5, 0)
-spread = 0.0
-flatness = 1.0
-initial_velocity_min = 500.0
-initial_velocity_max = 600.0
-gravity = Vector3(0, 98, 0)
-color = Color(0.12549, 0, 0.909804, 0.517647)
-hue_variation_min = 1.0
-hue_variation_max = 1.0
-turbulence_noise_strength = 7.53
+[ext_resource type="PackedScene" uid="uid://cnmfrw5hfk8qf" path="res://scenes/effects/rain.tscn" id="1_nhir1"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_410gu"]
 particle_flag_disable_z = true
@@ -51,14 +33,10 @@ glow_hdr_luminance_cap = 256.0
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Rain" type="GPUParticles2D" parent="."]
-visible = false
-position = Vector2(134, -15)
-amount = 600
-process_material = SubResource("ParticleProcessMaterial_ktl6m")
-lifetime = 2.0
+[node name="Rain" parent="." instance=ExtResource("1_nhir1")]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
 position = Vector2(-428, -22)
 emitting = false
 amount = 4
@@ -66,6 +44,7 @@ process_material = SubResource("ParticleProcessMaterial_410gu")
 lifetime = 0.01
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+visible = false
 position = Vector2(-338, -99)
 process_material = SubResource("ParticleProcessMaterial_uhjf2")
 
@@ -73,4 +52,5 @@ process_material = SubResource("ParticleProcessMaterial_uhjf2")
 environment = SubResource("Environment_h8f0q")
 
 [node name="GPUParticles2D3" parent="." instance=ExtResource("1_khswr")]
+visible = false
 position = Vector2(-416, -12)
