@@ -7,7 +7,8 @@ extends Node
 @onready var PlayerScene := preload("res://scenes/player/player.tscn")
 
 @onready var mapPool : Array[String] = [
-	"res://levels/playground/playground.tscn"
+	"res://levels/playground/playground.tscn",
+	#"res://levels/saws/saws.tscn"
 ]
 
 @onready var MultiplayerManager := $"../MultiplayerManager"

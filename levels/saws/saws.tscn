@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://b2falnecdyto7"]
+[gd_scene load_steps=45 format=3 uid="uid://b2falnecdyto7"]
 
 [ext_resource type="PackedScene" uid="uid://lhqyh7712go1" path="res://scenes/dummy/dummy.tscn" id="1_knrti"]
 [ext_resource type="PackedScene" uid="uid://cc05sgyybeoja" path="res://levels/Forest.tscn" id="2_1md7i"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://d1yv0or6jd5mw" path="res://assets/sprites/saw.png" id="16_7pjeb"]
 [ext_resource type="Texture2D" uid="uid://kcy5r533ld7t" path="res://assets/sprites/saw_still.png" id="17_j156p"]
 [ext_resource type="Texture2D" uid="uid://uh4a008cu5vl" path="res://assets/sprites/saw_moving.png" id="18_samp5"]
+[ext_resource type="Script" path="res://levels/saws/saws.gd" id="19_yalt3"]
 
 [sub_resource type="Environment" id="Environment_dduf1"]
 background_mode = 3
@@ -981,18 +982,19 @@ _data = {
 radius = 10.0499
 
 [node name="Saws" type="Node2D"]
+script = ExtResource("19_yalt3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dduf1")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2(261, 528)
+position = Vector2(278, 478)
 
 [node name="Dummy" parent="." instance=ExtResource("1_knrti")]
-position = Vector2(238, 49)
+position = Vector2(218, 546)
 
 [node name="Forest" parent="." instance=ExtResource("2_1md7i")]
-position = Vector2(3738, 423)
+position = Vector2(3752, 606)
 
 [node name="ConveyorBelt" parent="." instance=ExtResource("3_h7drm")]
 position = Vector2(517, 545)
@@ -1002,16 +1004,16 @@ scale = Vector2(0.3, 0.7)
 position = Vector2(-1, 0)
 
 [node name="MachineGun" parent="Pickupables" instance=ExtResource("4_4grl2")]
-position = Vector2(370, 46)
+position = Vector2(118, 395)
 
 [node name="LaserGun" parent="Pickupables" instance=ExtResource("5_1k3ax")]
-position = Vector2(539, 51)
+position = Vector2(919, 391)
 
 [node name="Grenade" parent="Pickupables" instance=ExtResource("6_55rmq")]
-position = Vector2(614, 38)
+position = Vector2(513, 315)
 
 [node name="Shotgun" parent="Pickupables" instance=ExtResource("7_vhp1w")]
-position = Vector2(445, 41)
+position = Vector2(814, 559)
 
 [node name="Killzones" type="Node2D" parent="."]
 
@@ -1139,7 +1141,7 @@ shape = SubResource("CircleShape2D_qnl8p")
 
 [node name="MovingSaw2" type="Node2D" parent="."]
 position = Vector2(218, 421)
-script = ExtResource("15_i4r3a")
+script = ExtResource("19_yalt3")
 
 [node name="Path2D" type="Path2D" parent="MovingSaw2"]
 position = Vector2(1, -5)
@@ -1180,7 +1182,7 @@ shape = SubResource("CircleShape2D_qnl8p")
 
 [node name="Button_ConveyorBelt2" parent="." instance=ExtResource("13_j8bkv")]
 position = Vector2(337, 566)
-interact_with = "../ConveyorBelt"
+script = ExtResource("19_yalt3")
 
 [node name="Button_Saw2" parent="." instance=ExtResource("13_j8bkv")]
 position = Vector2(645, 424)
@@ -1189,6 +1191,7 @@ interact_with = "../MovingSaw"
 [node name="ConveyorBelt2" parent="." instance=ExtResource("3_h7drm")]
 position = Vector2(512, 344)
 scale = Vector2(0.6, 0.7)
+script = ExtResource("19_yalt3")
 
 [connection signal="body_entered" from="Killzones/Area2D" to="Killzones/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Spike" to="Spike" method="_on_body_entered"]

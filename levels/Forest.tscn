@@ -25,7 +25,7 @@ offset_left = -6099.0
 offset_top = -91.0
 offset_right = 7347.0
 offset_bottom = 702.0
-scale = Vector2(0.93064, 1.22879)
+scale = Vector2(0.974157, 2.11605)
 texture = ExtResource("1_05qic")
 stretch_mode = 1
 
@@ -38,7 +38,6 @@ offset_right = 299.0
 offset_bottom = 467.0
 scale = Vector2(2.32903, 0.411365)
 texture = ExtResource("2_8mbic")
-metadata/_edit_use_anchors_ = true
 
 [node name="ParallaxLayerTrees5" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(-168, -608)
@@ -133,11 +132,11 @@ position = Vector2(20, 0)
 scale = Vector2(1.11078, 1.01039)
 motion_scale = Vector2(0.075, 1)
 
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerGround"]
-offset_left = -5894.0
-offset_top = -881.0
-offset_right = 7528.0
-offset_bottom = -88.0
+[node name="TextureRectgrass" type="TextureRect" parent="ParallaxBackground/ParallaxLayerGround"]
+offset_left = -6273.97
+offset_top = -2201.13
+offset_right = 7148.03
+offset_bottom = -1408.13
 scale = Vector2(1, 2)
 texture = ExtResource("4_db7r6")
 stretch_mode = 1
@@ -151,4 +150,3 @@ offset_top = -145.0
 offset_right = 1210.0
 offset_bottom = 648.0
 texture = ExtResource("5_nach1")
-metadata/_edit_use_anchors_ = true
