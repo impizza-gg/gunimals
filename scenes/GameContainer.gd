@@ -8,7 +8,7 @@ extends Node
 
 @onready var mapPool : Array[String] = [
 	"res://levels/playground/playground.tscn",
-	#"res://levels/saws/saws.tscn"
+	"res://levels/saws/saws.tscn"
 ]
 
 @onready var MultiplayerManager := $"../MultiplayerManager"
@@ -138,30 +138,56 @@ func playerSpawnFunction(player_data: Dictionary) -> Node:
 	player.name = str(player_data.id) # nome do nodo
 	player.player_name = player_data.player_name
 	player.character_type = player_data.character
-	player.position = player_data.spawnPoint
+	player.global_position = player_data.spawnPoint
 	return player
 
 
 # chamado somente no server
 # players são instanciados no server e replicados pelo MultiplayerSpawner
+#func game_started() -> void:
+	#$"../CanvasLayer/SceneTransition".rpc("playTransition", true)
+	#
+	#MapSpawner.spawn({
+		#"map": mapPool.pick_random()
+	#})
+#
+	#var counter := 0
+	#for id in MultiplayerManager.connected_players:
+		#var player_data = MultiplayerManager.connected_players[id]
+		#player_data.counter = counter
+		#player_data.id = id
+		#player_data.spawnPoint = level.spawnPoints[counter]
+		#PlayerSpawner.spawn(player_data)
+		#counter += 1
+		#
+	#game_started_all.rpc()
+	
 func game_started() -> void:
 	$"../CanvasLayer/SceneTransition".rpc("playTransition", true)
-	
+
+	var map = mapPool.pick_random()
 	MapSpawner.spawn({
-		"map": mapPool.pick_random()
+		"map": map
 	})
+	var playgroundSpawns : Array[Vector2] = [Vector2(400, 500), Vector2(1100, 500), Vector2(700, 500)]
+	var sawsSpawns : Array[Vector2] = [Vector2(100, 500), Vector2(900, 500), Vector2(510, 160)]
+	var spawns : Array[Vector2] = [] 
+	if map == "res://levels/playground/playground.tscn":
+		spawns = playgroundSpawns
+	else:
+		spawns = sawsSpawns
 
 	var counter := 0
 	for id in MultiplayerManager.connected_players:
 		var player_data = MultiplayerManager.connected_players[id]
 		player_data.counter = counter
 		player_data.id = id
-		player_data.spawnPoint = level.spawnPoints[counter]
+		player_data.spawnPoint = spawns[counter]
 		PlayerSpawner.spawn(player_data)
 		counter += 1
-		
-	game_started_all.rpc()
-	
+
+		game_started_all.rpc()
+
 
 @rpc("authority", "call_local")
 func game_started_all() -> void:

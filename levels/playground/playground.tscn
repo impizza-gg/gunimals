@@ -1,7 +1,6 @@
-[gd_scene load_steps=45 format=3 uid="uid://d0ghjlejhnjuf"]
+[gd_scene load_steps=44 format=3 uid="uid://d0ghjlejhnjuf"]
 
 [ext_resource type="Script" path="res://levels/playground/playground.gd" id="1_0pddj"]
-[ext_resource type="PackedScene" uid="uid://lhqyh7712go1" path="res://scenes/dummy/dummy.tscn" id="3_o48ih"]
 [ext_resource type="PackedScene" uid="uid://ck10vlm4ryxih" path="res://scenes/obstacles/conveyor_belt/conveyor_belt.tscn" id="5_7eews"]
 [ext_resource type="PackedScene" uid="uid://byeo264dv3ep" path="res://scenes/pickupables/grenade_pickup/grenade_pickup.tscn" id="5_a85fh"]
 [ext_resource type="PackedScene" uid="uid://bgi8lcckv30nb" path="res://scenes/pickupables/machine_gun_pickup/machine_gun_pickup.tscn" id="7_esehv"]
@@ -982,6 +981,7 @@ _data = {
 radius = 10.0499
 
 [node name="Playground" type="Node2D"]
+position = Vector2(70, -27)
 script = ExtResource("1_0pddj")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -989,9 +989,6 @@ environment = SubResource("Environment_u1seb")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(428, 516)
-
-[node name="Dummy" parent="." instance=ExtResource("3_o48ih")]
-position = Vector2(473, 519)
 
 [node name="MagicCliffs" parent="." instance=ExtResource("7_hjqdl")]
 position = Vector2(3344, 503)
@@ -1079,6 +1076,7 @@ position = Vector2(680, 615)
 interact_with = "../ConveyorBelt"
 
 [node name="Stomper" parent="." instance=ExtResource("15_wfiof")]
+position = Vector2(536, 471)
 
 [node name="Button_Saw" parent="." instance=ExtResource("13_gt2oi")]
 position = Vector2(617, 536)
