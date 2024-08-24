@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cc05sgyybeoja"]
+[gd_scene load_steps=11 format=3 uid="uid://cc05sgyybeoja"]
 
 [ext_resource type="Texture2D" uid="uid://dfk3lft774s75" path="res://assets/sprites/world/forest/Layer_0011_0.png" id="1_05qic"]
 [ext_resource type="Texture2D" uid="uid://ch6r2ponlccje" path="res://assets/sprites/world/forest/Layer_0010_1.png" id="2_8mbic"]
-[ext_resource type="Texture2D" uid="uid://bgpsmn6yi8p0f" path="res://assets/sprites/world/forest/Layer_0009_2.png" id="3_3fbte"]
 [ext_resource type="Texture2D" uid="uid://f5edtf8x43lf" path="res://assets/sprites/world/forest/Layer_0002_7.png" id="3_5174f"]
 [ext_resource type="Texture2D" uid="uid://bn1jmndoke6db" path="res://assets/sprites/world/forest/Layer_0008_3.png" id="4_17bii"]
 [ext_resource type="Texture2D" uid="uid://o32gj78ccrva" path="res://assets/sprites/world/forest/Layer_0001_8.png" id="4_db7r6"]
@@ -17,7 +16,8 @@
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayerSky" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(2, 2)
+position = Vector2(-179, -857)
+scale = Vector2(1.85121, 2.05828)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerSky"]
 self_modulate = Color(0.907942, 0.907942, 0.907942, 1)
@@ -25,11 +25,13 @@ offset_left = -6099.0
 offset_top = -91.0
 offset_right = 7347.0
 offset_bottom = 702.0
-scale = Vector2(0.93064, 1.22879)
+scale = Vector2(0.974157, 2.11605)
 texture = ExtResource("1_05qic")
 stretch_mode = 1
 
 [node name="ParallaxLayerSky2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-683, -47)
+scale = Vector2(2.64286, 5.57826)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerSky2"]
 offset_left = -629.0
@@ -38,19 +40,11 @@ offset_right = 299.0
 offset_bottom = 467.0
 scale = Vector2(2.32903, 0.411365)
 texture = ExtResource("2_8mbic")
-metadata/_edit_use_anchors_ = true
-
-[node name="ParallaxLayerTrees5" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(-168, -608)
-scale = Vector2(1.61417, 1.74255)
-
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerTrees5"]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("3_3fbte")
 
 [node name="ParallaxLayerTrees4" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(-44, 2)
+position = Vector2(-1064, -586)
+scale = Vector2(2.59272, 2.39495)
+motion_scale = Vector2(0.08, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerTrees4"]
 offset_left = -87.0
@@ -62,24 +56,26 @@ texture = ExtResource("4_17bii")
 
 [node name="ParallaxLayerTrees3" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(39, 3)
+motion_scale = Vector2(0.2, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerTrees3"]
-offset_left = -242.0
-offset_top = -507.0
-offset_right = 686.0
-offset_bottom = 286.0
-scale = Vector2(1.58871, 1.50962)
+offset_left = -768.0
+offset_top = -1453.0
+offset_right = 160.0
+offset_bottom = -660.0
+scale = Vector2(3.33506, 3.13156)
 texture = ExtResource("5_6ga5m")
 
 [node name="ParallaxLayerTrees2" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(63, -55)
+motion_scale = Vector2(0.4, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerTrees2"]
-offset_left = -170.0
-offset_top = -483.0
-offset_right = 758.0
-offset_bottom = 310.0
-scale = Vector2(1.40931, 1.55785)
+offset_left = -646.0
+offset_top = -1140.0
+offset_right = 282.0
+offset_bottom = -347.0
+scale = Vector2(2.33966, 2.7185)
 texture = ExtResource("6_jjbn5")
 
 [node name="ParallaxLayerLightBack" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -88,67 +84,68 @@ scale = Vector2(1.9611, 1.67391)
 skew = 0.150098
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerLightBack"]
-offset_top = -1.52588e-05
-offset_right = 928.0
-offset_bottom = 793.0
-scale = Vector2(0.392407, 0.575643)
+offset_left = -201.536
+offset_top = -284.577
+offset_right = 726.464
+offset_bottom = 508.423
+scale = Vector2(0.674278, 0.987353)
 texture = ExtResource("6_kuemo")
 metadata/_edit_use_anchors_ = true
 
 [node name="ParallaxLayerTrees1" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(54, -18)
+position = Vector2(714, -491)
+scale = Vector2(2.08176, 1.44956)
+motion_scale = Vector2(0.6, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerTrees1"]
-offset_left = -138.0
-offset_top = -400.0
-offset_right = 790.0
-offset_bottom = 393.0
-scale = Vector2(1.36764, 1.40287)
+offset_left = -718.0
+offset_top = -611.0
+offset_right = 210.0
+offset_bottom = 182.0
+scale = Vector2(1.37039, 2.05398)
 texture = ExtResource("7_anhhp")
 
 [node name="ParallaxLayerLightFront" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(76, -29)
-skew = -0.0314159
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerLightFront"]
-offset_left = 416.0
-offset_top = -208.0
-offset_right = 1344.0
-offset_bottom = 585.0
+offset_left = 436.0
+offset_top = -363.0
+offset_right = 1364.0
+offset_bottom = 430.0
 texture = ExtResource("6_kuemo")
 
 [node name="ParallaxLayerTreetop" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.05, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerTreetop"]
-offset_left = -5769.0
-offset_top = -203.0
-offset_right = 7633.0
-offset_bottom = 590.0
+offset_left = -5854.0
+offset_top = -374.0
+offset_right = 7548.0
+offset_bottom = 419.0
 texture = ExtResource("3_5174f")
 stretch_mode = 1
 
-[node name="ParallaxLayerGround" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(20, 0)
-scale = Vector2(1.11078, 1.01039)
-motion_scale = Vector2(0.075, 1)
-
-[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerGround"]
-offset_left = -5894.0
-offset_top = -881.0
-offset_right = 7528.0
-offset_bottom = -88.0
-scale = Vector2(1, 2)
-texture = ExtResource("4_db7r6")
-stretch_mode = 1
-
 [node name="ParallaxLayerDarkground" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.15, 1)
+motion_scale = Vector2(1.1, 1)
+motion_mirroring = Vector2(927.705, 0)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerDarkground"]
-offset_left = -162.0
-offset_top = -145.0
-offset_right = 1210.0
-offset_bottom = 648.0
+offset_left = -573.005
+offset_top = 26.0034
+offset_right = 798.995
+offset_bottom = 819.003
 texture = ExtResource("5_nach1")
-metadata/_edit_use_anchors_ = true
+
+[node name="ParallaxLayerGround" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(99, -47)
+scale = Vector2(1.11078, 1.01039)
+motion_scale = Vector2(1.1, 1)
+
+[node name="TextureRectgrass" type="TextureRect" parent="ParallaxBackground/ParallaxLayerGround"]
+offset_left = -1217.16
+offset_top = -1754.77
+offset_right = 12204.8
+offset_bottom = -961.768
+scale = Vector2(0.329375, 3.56746)
+texture = ExtResource("4_db7r6")
+stretch_mode = 1
