@@ -77,6 +77,8 @@ func _on_popup_join_button_pressed() -> void:
 func ip_validity(input: LineEdit) -> bool:
 	input.text = input.text.strip_edges()
 	var ip_valid := input.text.is_valid_ip_address()
+	ip_valid = ip_valid and input.text.split(":").size() > 1
+	
 	if ip_valid:
 		input.placeholder_text = "IP"
 	else:

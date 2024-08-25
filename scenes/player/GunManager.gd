@@ -73,12 +73,7 @@ func lock() -> void:
 
 
 func _process(_delta: float) -> void:
-	#current_gun.look_at(get_global_mouse_position())
-	#var direction = Vector2.RIGHT.rotated(current_gun.rotation)
-	if locked or not current_gun:
-		return
-
-	if current_gun.Sprite:
+	if current_gun and current_gun.Sprite:
 		var deg := rad_to_deg(rotation)
 		var check = deg > -90 and deg < 90
 		if flipped and check:
@@ -91,7 +86,9 @@ func _process(_delta: float) -> void:
 			current_gun.Sprite.flip_v = true
 			if current_gun.SpawnPoint:
 				current_gun.SpawnPoint.position.y *= -1
-			
+				
+	if locked or not current_gun:
+		return
 
 	if is_multiplayer_authority():
 		if Input.is_action_just_pressed("reload"):

@@ -13,6 +13,7 @@ func _ready() -> void:
 	Signals.button_hovered.connect(button_hover)
 	Signals.button_click.connect(button_click)
 
+
 func change_cursor(is_crosshair: bool) -> void:
 	if is_crosshair:
 		Input.set_custom_mouse_cursor(crosshair, Input.CURSOR_ARROW, Vector2(26, 26))

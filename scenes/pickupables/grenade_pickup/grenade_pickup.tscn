@@ -11,7 +11,7 @@ size = Vector2(12, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kckre"]
 size = Vector2(32, 25)
 
-[node name="PickUpGun" type="RigidBody2D"]
+[node name="PickUpGun" type="RigidBody2D" groups=["pickup"]]
 collision_layer = 16
 collision_mask = 33
 script = ExtResource("1_prpsb")

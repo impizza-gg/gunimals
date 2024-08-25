@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iw2w7"]
 size = Vector2(11.5, 2.14844)
 
-[node name="LaserProjectile" type="CharacterBody2D"]
+[node name="LaserProjectile" type="CharacterBody2D" groups=["projectile"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_8rude")

@@ -48,21 +48,34 @@ func on_player_death(id: int) -> void:
 	if MultiplayerManager.connected_players.has(id):
 		MultiplayerManager.connected_players[id]["alive"] = false
 		
-		var winner := 0
-		for pid in MultiplayerManager.connected_players:
-			if pid == id:
-				continue 
-			if MultiplayerManager.connected_players[pid]["alive"]:
-				if winner == 0:
-					winner = pid
-				else:
-					winner = 0
-					break
-					
-		if winner != 0:
-			MultiplayerManager.connected_players[winner]["points"] += 1
-			current_round += 1
-			WaitTimer2.start()
+	var count_alive := 0
+	for pid in MultiplayerManager.connected_players:
+		if MultiplayerManager.connected_players[pid]["alive"]:
+			count_alive += 1
+	if count_alive == 0:
+		current_round += 1
+		WaitTimer2.start()
+		return
+	print(count_alive)
+	
+	
+	var winner := 0
+	for pid in MultiplayerManager.connected_players:
+		if pid == id:
+			continue 
+			
+		if MultiplayerManager.connected_players[pid]["alive"]:
+			if winner == 0: 
+				winner = pid
+			else: # tem outro jogador vivo
+				winner = 0
+				break
+				
+	if winner != 0:
+		MultiplayerManager.connected_players[winner]["points"] += 1
+		current_round += 1
+		WaitTimer2.start()
+		return
 
 
 func transition() -> void:
@@ -103,6 +116,19 @@ func clear_game() -> void:
 		child.queue_free()
 	
 	
+func get_spawns(map: String) -> Array[Vector2]:
+	var playgroundSpawns : Array[Vector2] = [Vector2(400, 500), Vector2(1100, 500), Vector2(700, 500)]
+	var sawsSpawns : Array[Vector2] = [Vector2(100, 500), Vector2(900, 500), Vector2(510, 160)]
+	var spawns : Array[Vector2] = [] 
+	if map == "res://levels/playground/playground.tscn":
+		spawns = playgroundSpawns
+	else:
+		spawns = sawsSpawns
+	
+	spawns.shuffle()
+	return spawns
+	
+	
 func change_map(map: String) -> void:	
 	for child in get_children():
 		remove_child(child)
@@ -113,6 +139,8 @@ func change_map(map: String) -> void:
 	MapSpawner.spawn({
 		"map": map
 	})
+		
+	var spawns := get_spawns(map)
 	
 	var counter := 0
 	for id in MultiplayerManager.connected_players:
@@ -120,8 +148,10 @@ func change_map(map: String) -> void:
 		var player_data = MultiplayerManager.connected_players[id]
 		player_data.counter = counter
 		player_data.id = id
+		player_data.spawnPoint = spawns[counter]
 		PlayerSpawner.spawn(player_data)
 		counter += 1
+		
 	$"../CanvasLayer/SceneTransition".rpc("playTransition")
 	$"../CanvasLayer/Countdown".rpc("playCountdown")
 
@@ -169,13 +199,8 @@ func game_started() -> void:
 	MapSpawner.spawn({
 		"map": map
 	})
-	var playgroundSpawns : Array[Vector2] = [Vector2(400, 500), Vector2(1100, 500), Vector2(700, 500)]
-	var sawsSpawns : Array[Vector2] = [Vector2(100, 500), Vector2(900, 500), Vector2(510, 160)]
-	var spawns : Array[Vector2] = [] 
-	if map == "res://levels/playground/playground.tscn":
-		spawns = playgroundSpawns
-	else:
-		spawns = sawsSpawns
+	
+	var spawns := get_spawns(map)
 
 	var counter := 0
 	for id in MultiplayerManager.connected_players:

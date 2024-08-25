@@ -241,7 +241,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 
 [node name="StudioLabel" type="RichTextLabel" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/TitleVBox"]
-auto_translate_mode = 2
 modulate = Color(1, 0.650605, 0.22393, 1)
 layout_mode = 2
 size_flags_vertical = 4
@@ -255,7 +254,6 @@ scroll_active = false
 autowrap_mode = 2
 
 [node name="TitleLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/TitleVBox"]
-auto_translate_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

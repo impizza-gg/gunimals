@@ -3,15 +3,6 @@
 [ext_resource type="Script" path="res://scenes/stomper/stomper.gd" id="1_g73lh"]
 [ext_resource type="Texture2D" uid="uid://bikbuei3h1tqw" path="res://assets/sprites/Stomper2.png" id="2_804ab"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtp42"]
-size = Vector2(135, 32.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ne67"]
-size = Vector2(124, 9)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7al7i"]
-size = Vector2(126, 6)
-
 [sub_resource type="Animation" id="Animation_q3hek"]
 resource_name = "return"
 tracks/0/type = "value"
@@ -49,37 +40,17 @@ _data = {
 "stomp": SubResource("Animation_dfym7")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtp42"]
+size = Vector2(136.5, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ne67"]
+size = Vector2(124, 9.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7al7i"]
+size = Vector2(126, 6)
+
 [node name="Stomper" type="Node2D"]
-position = Vector2(176, 547)
 script = ExtResource("1_g73lh")
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(-1, 13)
-collision_mask = 2
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["wall"]]
-collision_mask = 14
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(-1.4375, -29)
-scale = Vector2(2.13867, 2.42529)
-texture = ExtResource("2_804ab")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-1, -7.25)
-shape = SubResource("RectangleShape2D_mtp42")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-1, -28.5)
-shape = SubResource("RectangleShape2D_4ne67")
-
-[node name="StompArea" type="Area2D" parent="StaticBody2D"]
-collision_layer = 64
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StompArea"]
-position = Vector2(-2, 13)
-shape = SubResource("RectangleShape2D_7al7i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -89,5 +60,34 @@ libraries = {
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="body_entered" from="StaticBody2D/StompArea" to="." method="_on_area_2d_body_entered"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["wall"]]
+collision_mask = 14
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(2, -18)
+scale = Vector2(2.13867, 2.42529)
+texture = ExtResource("2_804ab")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3, 4)
+shape = SubResource("RectangleShape2D_mtp42")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2, -17)
+shape = SubResource("RectangleShape2D_4ne67")
+
+[node name="StompArea" type="Area2D" parent="StaticBody2D"]
+position = Vector2(3, 24)
+collision_layer = 64
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StompArea"]
+shape = SubResource("RectangleShape2D_7al7i")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 20)
+target_position = Vector2(0, 60)
+collision_mask = 2
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="StaticBody2D/StompArea" to="." method="_on_area_2d_body_entered"]

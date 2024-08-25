@@ -10,7 +10,7 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_77u4m"]
 radius = 134.015
 
-[node name="GrenadeProjectile" type="RigidBody2D"]
+[node name="GrenadeProjectile" type="RigidBody2D" groups=["projectile"]]
 collision_layer = 0
 mass = 0.03
 script = ExtResource("1_7dgfg")

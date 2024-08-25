@@ -29,7 +29,7 @@ var canGlide := false
 var character_type := 0
 var dash_timer := Timer.new()
 const DASH_DURATION := 0.25
-
+var camera = null
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int(), true)
@@ -60,7 +60,7 @@ func _ready() -> void:
 	
 	if is_multiplayer_authority():
 		var cameraScene := load("res://scenes/player/player_camera.tscn")
-		var camera = cameraScene.instantiate()
+		camera = cameraScene.instantiate()
 		add_child(camera)
 		camera.make_current()
 
@@ -249,6 +249,7 @@ func _on_timer_timeout() -> void:
 @rpc("any_peer", "call_local")
 func change_camera() -> void:
 	var level = get_parent().level
+	print(level)
 	if level:
 		var center = level.get_node("Center")
 		GunManager.remove()
@@ -261,7 +262,9 @@ func change_camera() -> void:
 		$InteractionArea.set_deferred("monitoring", false)
 		if is_multiplayer_authority():
 			position = center.position
-		
+			velocity = Vector2.ZERO
+			gravity = 0
+
 
 @rpc("any_peer", "call_local")
 func set_knockback(kb: Vector2) -> void:
