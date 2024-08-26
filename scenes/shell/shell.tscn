@@ -15,7 +15,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgrga"]
 size = Vector2(9.74805, 5.3125)
 
-[node name="Shell" type="RigidBody2D"]
+[node name="Shell" type="RigidBody2D" groups=["shell"]]
 top_level = true
 collision_layer = 8
 script = ExtResource("1_wqb7a")

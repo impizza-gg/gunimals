@@ -1,8 +1,7 @@
 extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("projectile") or body.is_in_group("pickup"):
-		print("killzone free")
+	if body.is_in_group("projectile") or body.is_in_group("pickup") or body.is_in_group("shell"):
 		body.queue_free()
 		
 	if multiplayer.is_server():
