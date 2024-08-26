@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://xtmllb3s5bfv"]
+[gd_scene load_steps=25 format=3 uid="uid://xtmllb3s5bfv"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_11qyb"]
 [ext_resource type="Script" path="res://scripts/MultiplayerManager.gd" id="2_d5ynk"]
+[ext_resource type="PackedScene" uid="uid://c66ac3mt2gssy" path="res://main_menu_background.tscn" id="2_qbe1d"]
 [ext_resource type="PackedScene" uid="uid://cq5jogagp2fgv" path="res://menus/waiting_room.tscn" id="2_ry4pq"]
 [ext_resource type="Script" path="res://scripts/MenuManager.gd" id="2_yhugk"]
 [ext_resource type="LabelSettings" uid="uid://4rt4k3vs13is" path="res://assets/themes/hud_label_settings.tres" id="3_upor5"]
@@ -44,6 +45,8 @@ corner_radius_bottom_left = 12
 [node name="Game" type="Node2D"]
 script = ExtResource("1_11qyb")
 
+[node name="Forest" parent="." instance=ExtResource("2_qbe1d")]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("2_yhugk")
 
@@ -82,6 +85,7 @@ text = "1"
 label_settings = ExtResource("3_upor5")
 
 [node name="Background" type="ColorRect" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -144,6 +148,16 @@ grow_vertical = 2
 theme = ExtResource("5_11amd")
 script = ExtResource("6_e2615")
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/SettingsMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.231373)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SettingsMenu"]
 layout_mode = 1
 anchors_preset = 8
@@ -163,6 +177,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsMenu/VBoxContainer/Master"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
 text = "MASTER_SOUND"
 
 [node name="MasterSlider" parent="CanvasLayer/SettingsMenu/VBoxContainer/Master" instance=ExtResource("7_85um5")]
@@ -175,6 +191,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsMenu/VBoxContainer/Music"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
 text = "MUSIC_SOUND"
 
 [node name="MusicSlider" parent="CanvasLayer/SettingsMenu/VBoxContainer/Music" instance=ExtResource("7_85um5")]
@@ -187,6 +205,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/SettingsMenu/VBoxContainer/SFX"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
 text = "EFFECTS_SOUND"
 
 [node name="EffectsSlider" parent="CanvasLayer/SettingsMenu/VBoxContainer/SFX" instance=ExtResource("7_85um5")]
@@ -245,10 +265,15 @@ modulate = Color(1, 0.650605, 0.22393, 1)
 layout_mode = 2
 size_flags_vertical = 4
 localize_numeral_system = false
+theme_override_colors/default_color = Color(0.896571, 0.431222, 9.62615e-07, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "
 [center]
-[wave amp=50 freq=3]Impizza[/wave][/center] "
+[wave amp=50 freq=3]Impizza[/wave][/center] 
+"
 fit_content = true
 scroll_active = false
 autowrap_mode = 2
@@ -256,11 +281,12 @@ autowrap_mode = 2
 [node name="TitleLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/TitleVBox"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.925353, 0.925353, 0.925353, 1)
+theme_override_colors/font_shadow_color = Color(0.159126, 1.25591e-07, 3.00817e-08, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 5
 theme_override_font_sizes/font_size = 88
-text = "Jogao"
+text = "gunimals"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -469,6 +495,9 @@ bus = &"sfx"
 stream = ExtResource("21_th0jc")
 volume_db = -8.0
 bus = &"sfx"
+
+[node name="MenuCamera" type="Camera2D" parent="."]
+position = Vector2(575, 324)
 
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/ResumeButton" to="CanvasLayer" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/MarginContainer/VBoxContainer/SettingsButton" to="CanvasLayer/SettingsMenu" method="_on_settings_button_pressed"]

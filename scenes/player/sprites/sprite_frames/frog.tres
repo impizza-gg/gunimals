@@ -1,10 +1,11 @@
-[gd_resource type="SpriteFrames" load_steps=22 format=3 uid="uid://7ll4uupgjlmy"]
+[gd_resource type="SpriteFrames" load_steps=24 format=3 uid="uid://7ll4uupgjlmy"]
 
 [ext_resource type="Texture2D" uid="uid://begrwd78f3i2r" path="res://assets/sprites/characters/frog/Death.png" id="2_jgufu"]
 [ext_resource type="Texture2D" uid="uid://dr5q6owrwcuxj" path="res://assets/sprites/characters/frog/Fall.png" id="3_shrvp"]
 [ext_resource type="Texture2D" uid="uid://dmjrf1to85wt4" path="res://assets/sprites/characters/frog/Idle.png" id="4_5ydwf"]
 [ext_resource type="Texture2D" uid="uid://ctxrc4bmv8ije" path="res://assets/sprites/characters/frog/Hurt.png" id="4_7p8f2"]
 [ext_resource type="Texture2D" uid="uid://blbtisnk28md1" path="res://assets/sprites/characters/frog/Jump.png" id="6_8dt33"]
+[ext_resource type="Texture2D" uid="uid://mfmlwrev7vs" path="res://assets/sprites/characters/frog/Land.png" id="6_b5qyh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l4j4a"]
 atlas = ExtResource("2_jgufu")
@@ -70,6 +71,10 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("3_shrvp")
 region = Rect2(0, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1440"]
+atlas = ExtResource("6_b5qyh")
+region = Rect2(0, 0, 32, 32)
+
 [resource]
 animations = [{
 "frames": [{
@@ -132,7 +137,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -148,8 +153,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1ysox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1440")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 3.0
 }]

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://0j3g1evhg8mi" path="res://assets/sprites/characters/dummy_single.png" id="2_bnjbu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nm6o4"]
-size = Vector2(41.625, 53.5)
+size = Vector2(28.8125, 53.5)
 
 [sub_resource type="Animation" id="Animation_4jmvp"]
 length = 0.001
@@ -52,7 +52,7 @@ scale = Vector2(1.96429, 2.21)
 texture = ExtResource("2_bnjbu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, -1)
+position = Vector2(2.40625, -1)
 shape = SubResource("RectangleShape2D_nm6o4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

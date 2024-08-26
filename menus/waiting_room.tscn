@@ -82,10 +82,10 @@ spawn_path = NodePath("../MarginContainer/PlayerList")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/BodyContainer/ScrollContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="PlayerList" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true

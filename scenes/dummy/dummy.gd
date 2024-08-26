@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	pass
-
+	
 
 @rpc("any_peer", "call_local")
 func update_health(change: int):

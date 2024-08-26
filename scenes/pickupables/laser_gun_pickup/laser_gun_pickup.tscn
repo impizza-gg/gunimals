@@ -39,6 +39,7 @@ top_level = true
 
 [node name="Label" type="Sprite2D" parent="LabelContainer"]
 visible = false
+z_index = 1000
 position = Vector2(0, -80)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_7g6cp")

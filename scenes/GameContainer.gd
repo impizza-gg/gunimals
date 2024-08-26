@@ -56,8 +56,6 @@ func on_player_death(id: int) -> void:
 		current_round += 1
 		WaitTimer2.start()
 		return
-	print(count_alive)
-	
 	
 	var winner := 0
 	for pid in MultiplayerManager.connected_players:
@@ -194,7 +192,7 @@ func playerSpawnFunction(player_data: Dictionary) -> Node:
 	
 func game_started() -> void:
 	$"../CanvasLayer/SceneTransition".rpc("playTransition", true)
-
+		
 	var map = mapPool.pick_random()
 	MapSpawner.spawn({
 		"map": map
@@ -216,6 +214,13 @@ func game_started() -> void:
 
 @rpc("authority", "call_local")
 func game_started_all() -> void:
+	var bg = $"..".get_node_or_null("Forest")
+	if bg:
+		print(bg)
+		$"..".remove_child(bg)
+		bg.queue_free()
+	$"../MenuCamera".enabled = false
+	
 	WaitingRoom.hide()
 	$"../CanvasLayer/Background".hide()
 	

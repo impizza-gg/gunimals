@@ -1,7 +1,9 @@
 extends Node
 
 var paused := false
+var settings_menu := false
 
+signal settings_back
 signal update_hud_ammo_current(new_value: int)
 signal update_hud_ammo_max(new_value: int)
 signal update_hud_clip_current(new_value: int)

@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Jogao"
+config/name="Gunimals"
 run/main_scene="res://scenes/main_scene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 

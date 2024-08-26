@@ -70,7 +70,7 @@ func _on_main_menu_join_room(playerName: String, ipPort: String) -> void:
 		
 	multiplayer.multiplayer_peer = peer
 	multiplayer.connected_to_server.connect(connected_to_server.bind(playerName))
-	multiplayer.server_disconnected.connect(back)
+	multiplayer.server_disconnected.connect(server_disconnect)
 	
 	MainMenu.hide()
 	WaitingRoom.ip = ipPort
@@ -89,21 +89,36 @@ func _on_waiting_room_leave_room() -> void:
 	back()
 
 
-func back() -> void:
-	# TODO: alert popup: Connection closed by host
+func server_disconnect() -> void:
+	back(true)
+
+
+func back(host_disconnect = false) -> void:
+	if host_disconnect:
+		print("host disconnected")
+		
 	WaitingRoom.clear_player_list()
-	
-	# tá dando um "erro" porque o cliente tenta fechar a conexão que o servidor já fechou
-	# mas funciona igual
-	#multiplayer.peer_disconnected.disconnect(player_disconnected)
+	Signals.set_hud_visibility.emit(false)
 	$"../CanvasLayer/Countdown".visible = false
 	Signals.set_crosshair.emit(false)
+	
+	if Signals.paused:
+		Signals.toggle_pause_menu.emit()
+	for children in $"../GameContainer".get_children():
+		children.queue_free()
+		
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	peer.close()
+	$"../MenuCamera".enabled = true
+		
+	var bg_scene := load("res://main_menu_background.tscn")
+	var bg = bg_scene.instantiate()
+	print(bg)
+	$"..".add_child(bg)
 	
 	WaitingRoom.hide()
 	MainMenu.show()
-	$"../CanvasLayer/Background".show()
+	#$"../CanvasLayer/Background".show()
 
 
 func player_disconnected(id: int) -> void:

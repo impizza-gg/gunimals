@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://b2falnecdyto7"]
+[gd_scene load_steps=46 format=3 uid="uid://b2falnecdyto7"]
 
 [ext_resource type="PackedScene" uid="uid://lhqyh7712go1" path="res://scenes/dummy/dummy.tscn" id="1_knrti"]
 [ext_resource type="PackedScene" uid="uid://cc05sgyybeoja" path="res://levels/Forest.tscn" id="2_1md7i"]
@@ -7,10 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://du8d2k7flouhi" path="res://scenes/pickupables/laser_gun_pickup/laser_gun_pickup.tscn" id="5_1k3ax"]
 [ext_resource type="PackedScene" uid="uid://byeo264dv3ep" path="res://scenes/pickupables/grenade_pickup/grenade_pickup.tscn" id="6_55rmq"]
 [ext_resource type="PackedScene" uid="uid://cnd2g7lqjwcjm" path="res://scenes/pickupables/shotgun_pickup/shotgun_pickup.tscn" id="7_vhp1w"]
-[ext_resource type="Script" path="res://scripts/Killzone.gd" id="8_mmv6q"]
 [ext_resource type="Texture2D" uid="uid://v0syu0pelecj" path="res://assets/sprites/world/tileset.png" id="9_25ewa"]
 [ext_resource type="Texture2D" uid="uid://vfsvmy82ajx0" path="res://assets/sprites/world/Assets.png" id="10_vsfsr"]
 [ext_resource type="Texture2D" uid="uid://ddxxshcbnij1f" path="res://assets/sprites/world/Decor.png" id="11_88xvn"]
+[ext_resource type="PackedScene" uid="uid://cta6j5ciwsly6" path="res://scenes/killzone.tscn" id="11_xpf73"]
 [ext_resource type="Script" path="res://scripts/DamageZone.gd" id="12_qa452"]
 [ext_resource type="PackedScene" uid="uid://bflpq0xb600wk" path="res://scenes/button/button.tscn" id="13_j8bkv"]
 [ext_resource type="PackedScene" uid="uid://b6ysi1hvvwsnm" path="res://scenes/obstacles/stomper/stomper.tscn" id="14_v35gx"]
@@ -846,8 +846,11 @@ sources/0 = SubResource("TileSetAtlasSource_vrs1l")
 sources/1 = SubResource("TileSetAtlasSource_64160")
 sources/2 = SubResource("TileSetAtlasSource_23u8y")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_isqqe"]
-size = Vector2(12197, 172.25)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wok2"]
+size = Vector2(43, 873)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsu6c"]
+size = Vector2(3231, 53)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ustu"]
 size = Vector2(352.5, 17)
@@ -1028,14 +1031,31 @@ position = Vector2(814, 559)
 
 [node name="Killzones" type="Node2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="Killzones"]
-position = Vector2(544, 894)
-collision_mask = 6
-script = ExtResource("8_mmv6q")
+[node name="Left" parent="Killzones" instance=ExtResource("11_xpf73")]
+position = Vector2(-2656, 891)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Area2D"]
-position = Vector2(85.5, 2.875)
-shape = SubResource("RectangleShape2D_isqqe")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Left"]
+position = Vector2(2066, -439)
+shape = SubResource("RectangleShape2D_7wok2")
+
+[node name="Right" parent="Killzones" instance=ExtResource("11_xpf73")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Right"]
+position = Vector2(1075, -439)
+shape = SubResource("RectangleShape2D_7wok2")
+
+[node name="Bottom" parent="Killzones" instance=ExtResource("11_xpf73")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Bottom"]
+position = Vector2(-116.5, 16.5)
+shape = SubResource("RectangleShape2D_rsu6c")
+
+[node name="Top" parent="Killzones" instance=ExtResource("11_xpf73")]
+position = Vector2(552, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Top"]
+position = Vector2(-116.5, 16.5)
+shape = SubResource("RectangleShape2D_rsu6c")
 
 [node name="Collisions" type="Node2D" parent="."]
 
@@ -1226,7 +1246,6 @@ script = SubResource("GDScript_xm5qf")
 [node name="Measuring" type="Node2D" parent="."]
 position = Vector2(507, 260)
 
-[connection signal="body_entered" from="Killzones/Area2D" to="Killzones/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Spike" to="Spike" method="_on_body_entered"]
 [connection signal="body_entered" from="Spike2" to="Spike2" method="_on_body_entered"]
 [connection signal="body_entered" from="Spike3" to="Spike3" method="_on_body_entered"]

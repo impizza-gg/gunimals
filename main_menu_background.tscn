@@ -1,0 +1,197 @@
+[gd_scene load_steps=16 format=3 uid="uid://c66ac3mt2gssy"]
+
+[ext_resource type="Texture2D" uid="uid://dfk3lft774s75" path="res://assets/sprites/world/forest/Layer_0011_0.png" id="1_fw1ny"]
+[ext_resource type="Script" path="res://scripts/main_menu_background.gd" id="1_owxan"]
+[ext_resource type="Texture2D" uid="uid://bn1jmndoke6db" path="res://assets/sprites/world/forest/Layer_0008_3.png" id="2_ojjeq"]
+[ext_resource type="Texture2D" uid="uid://firdpc5h2cdx" path="res://assets/sprites/world/forest/Layer_0006_4.png" id="3_713id"]
+[ext_resource type="Texture2D" uid="uid://c7agm4r1a5fp" path="res://assets/sprites/world/forest/Layer_0003_6.png" id="4_wgcye"]
+[ext_resource type="Texture2D" uid="uid://ddvessgxtxx5" path="res://assets/sprites/world/forest/Layer_0000_9.png" id="5_otkvm"]
+[ext_resource type="Texture2D" uid="uid://o32gj78ccrva" path="res://assets/sprites/world/forest/Layer_0001_8.png" id="6_rabfi"]
+[ext_resource type="Texture2D" uid="uid://b258bu5xbsxdp" path="res://assets/sprites/world/forest/Layer_0007_Lights.png" id="7_kha7k"]
+[ext_resource type="SpriteFrames" uid="uid://c8fl1hbc8i8ws" path="res://scenes/player/sprites/sprite_frames/cat.tres" id="8_x4lq1"]
+[ext_resource type="SpriteFrames" uid="uid://d3ud5wii03kdx" path="res://scenes/player/sprites/sprite_frames/duck.tres" id="9_qkjse"]
+[ext_resource type="SpriteFrames" uid="uid://baonqyv5a1qvy" path="res://scenes/player/sprites/sprite_frames/penguin.tres" id="10_cvqiv"]
+[ext_resource type="SpriteFrames" uid="uid://7ll4uupgjlmy" path="res://scenes/player/sprites/sprite_frames/frog.tres" id="10_dmfo3"]
+
+[sub_resource type="Curve2D" id="Curve2D_1mng8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -755, 609, 0, 0, 0, 0, 2992, 620, 0, 0, 0, 0, -1027, 629)
+}
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_fm56y"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 0.757859, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lbvin"]
+_data = {
+"jump": SubResource("Animation_fm56y")
+}
+
+[node name="Forest" type="Node2D"]
+script = ExtResource("1_owxan")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
+offset_left = -336.0
+offset_top = -467.0
+offset_right = 1342.0
+offset_bottom = 692.0
+texture = ExtResource("1_fw1ny")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer5"]
+offset_left = -397.0
+offset_top = -847.0
+offset_right = 1541.0
+offset_bottom = 720.0
+texture = ExtResource("2_ojjeq")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer4"]
+offset_left = -200.0
+offset_top = -1001.0
+offset_right = 1524.0
+offset_bottom = 723.0
+texture = ExtResource("3_713id")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(646, 203)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3"]
+offset_left = -956.0
+offset_top = -1205.0
+offset_right = 856.0
+offset_bottom = 522.0
+texture = ExtResource("4_wgcye")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -95)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_left = -43.0
+offset_top = -67.0
+offset_right = 1159.0
+offset_bottom = 696.0
+texture = ExtResource("5_otkvm")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-3, -6)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+offset_left = -39.0
+offset_top = -128.0
+offset_right = 1274.0
+offset_bottom = 764.0
+texture = ExtResource("6_rabfi")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="Layer0007Lights" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(734, -72)
+texture = ExtResource("7_kha7k")
+
+[node name="Layer0007Lights2" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(401, -72)
+texture = ExtResource("7_kha7k")
+
+[node name="Cat" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(107, 600)
+scale = Vector2(2.125, 2.15625)
+sprite_frames = ExtResource("8_x4lq1")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.293114
+
+[node name="Duck" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(967, 593)
+scale = Vector2(1.5, 1.6875)
+sprite_frames = ExtResource("9_qkjse")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.787425
+flip_h = true
+
+[node name="Frog" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(1026, 610)
+scale = Vector2(1.6875, 1.53125)
+sprite_frames = ExtResource("10_dmfo3")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.39968
+flip_h = true
+
+[node name="Penguin" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(254, 582)
+scale = Vector2(1.6875, 1.9375)
+sprite_frames = ExtResource("10_cvqiv")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.203699
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_1mng8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-755, 609)
+rotation = 0.00746023
+rotates = false
+
+[node name="Cat" type="AnimatedSprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(11.8382, -14.1371)
+scale = Vector2(1.9375, 2)
+sprite_frames = ExtResource("8_x4lq1")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.401434
+
+[node name="Frog" type="AnimatedSprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(-207.021, -0.61872)
+scale = Vector2(1.45234, 1.32092)
+sprite_frames = ExtResource("10_dmfo3")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.247247
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path2D/PathFollow2D/Frog"]
+libraries = {
+"": SubResource("AnimationLibrary_lbvin")
+}
+autoplay = "jump"
+speed_scale = 0.75
+
+[node name="Duck" type="AnimatedSprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(-81.0522, -4.06794)
+scale = Vector2(1.30888, 1.31607)
+sprite_frames = ExtResource("9_qkjse")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.861462
+
+[node name="Penguin" type="AnimatedSprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(-131.083, -6.49258)
+scale = Vector2(1.46288, 1.58505)
+sprite_frames = ExtResource("10_cvqiv")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.386429

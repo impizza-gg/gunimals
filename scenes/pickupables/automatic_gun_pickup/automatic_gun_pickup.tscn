@@ -37,6 +37,7 @@ shape = SubResource("RectangleShape2D_kckre")
 top_level = true
 
 [node name="Label" type="Sprite2D" parent="LabelContainer"]
+z_index = 1000
 position = Vector2(0, -80)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_geclq")

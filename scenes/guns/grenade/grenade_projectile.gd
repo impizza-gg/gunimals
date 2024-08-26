@@ -33,7 +33,7 @@ func _on_timer_timeout() -> void:
 				if distance == 0:
 					return
 				body.rpc("rpc_impulse", force_vector)
-
-
+	
+	
 func _on_delete_timer_timeout() -> void:
 	queue_free()

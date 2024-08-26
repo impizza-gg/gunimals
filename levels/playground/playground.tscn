@@ -1,14 +1,14 @@
-[gd_scene load_steps=43 format=3 uid="uid://d0ghjlejhnjuf"]
+[gd_scene load_steps=44 format=3 uid="uid://d0ghjlejhnjuf"]
 
 [ext_resource type="PackedScene" uid="uid://ck10vlm4ryxih" path="res://scenes/obstacles/conveyor_belt/conveyor_belt.tscn" id="5_7eews"]
 [ext_resource type="PackedScene" uid="uid://byeo264dv3ep" path="res://scenes/pickupables/grenade_pickup/grenade_pickup.tscn" id="5_a85fh"]
 [ext_resource type="PackedScene" uid="uid://bgi8lcckv30nb" path="res://scenes/pickupables/machine_gun_pickup/machine_gun_pickup.tscn" id="7_esehv"]
 [ext_resource type="PackedScene" uid="uid://cc0cm7mkoi21m" path="res://levels/MagicCliffs.tscn" id="7_hjqdl"]
-[ext_resource type="Script" path="res://scripts/Killzone.gd" id="8_6uo7d"]
 [ext_resource type="PackedScene" uid="uid://du8d2k7flouhi" path="res://scenes/pickupables/laser_gun_pickup/laser_gun_pickup.tscn" id="8_c7ekx"]
 [ext_resource type="PackedScene" uid="uid://cnd2g7lqjwcjm" path="res://scenes/pickupables/shotgun_pickup/shotgun_pickup.tscn" id="8_ib03e"]
 [ext_resource type="Texture2D" uid="uid://v0syu0pelecj" path="res://assets/sprites/world/tileset.png" id="9_afmer"]
 [ext_resource type="Texture2D" uid="uid://vfsvmy82ajx0" path="res://assets/sprites/world/Assets.png" id="10_npp5d"]
+[ext_resource type="PackedScene" uid="uid://cta6j5ciwsly6" path="res://scenes/killzone.tscn" id="10_pds8e"]
 [ext_resource type="Texture2D" uid="uid://ddxxshcbnij1f" path="res://assets/sprites/world/Decor.png" id="11_h75k2"]
 [ext_resource type="Script" path="res://scripts/DamageZone.gd" id="12_i0p3j"]
 [ext_resource type="PackedScene" uid="uid://bflpq0xb600wk" path="res://scenes/button/button.tscn" id="13_gt2oi"]
@@ -845,8 +845,11 @@ sources/0 = SubResource("TileSetAtlasSource_vrs1l")
 sources/1 = SubResource("TileSetAtlasSource_64160")
 sources/2 = SubResource("TileSetAtlasSource_23u8y")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qbbr"]
-size = Vector2(12197, 172.25)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bqrb"]
+size = Vector2(52, 723)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0dk8"]
+size = Vector2(3887.5, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xow7"]
 size = Vector2(750, 17)
@@ -1019,14 +1022,31 @@ position = Vector2(303, 596)
 
 [node name="Killzones" type="Node2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="Killzones"]
-position = Vector2(544, 894)
-collision_mask = 6
-script = ExtResource("8_6uo7d")
+[node name="Left" parent="Killzones" instance=ExtResource("10_pds8e")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Area2D"]
-position = Vector2(85.5, 2.875)
-shape = SubResource("RectangleShape2D_6qbbr")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Left"]
+position = Vector2(-1264, -465.5)
+shape = SubResource("RectangleShape2D_4bqrb")
+
+[node name="Right" parent="Killzones" instance=ExtResource("10_pds8e")]
+position = Vector2(3119, 900)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Right"]
+position = Vector2(-1264, -465.5)
+shape = SubResource("RectangleShape2D_4bqrb")
+
+[node name="Bottom" parent="Killzones" instance=ExtResource("10_pds8e")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Bottom"]
+position = Vector2(14, -76)
+shape = SubResource("RectangleShape2D_n0dk8")
+
+[node name="Top" parent="Killzones" instance=ExtResource("10_pds8e")]
+position = Vector2(567, 127)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Top"]
+position = Vector2(5, -83)
+shape = SubResource("RectangleShape2D_n0dk8")
 
 [node name="Collisions" type="Node2D" parent="."]
 
@@ -1120,6 +1140,5 @@ script = ExtResource("12_i0p3j")
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_wjww1")
 
-[connection signal="body_entered" from="Killzones/Area2D" to="Killzones/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Spike" to="Spike" method="_on_body_entered"]
 [connection signal="body_entered" from="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" to="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" method="_on_body_entered"]
