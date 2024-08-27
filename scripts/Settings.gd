@@ -1,7 +1,7 @@
 extends Node
 
 const SETTINGS_PATH := "user://user_data.save"
-const default_settings := {
+var default_settings := {
 	"player_name": "",
 	"locale": "en",
 	"Master": 1,

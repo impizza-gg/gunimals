@@ -7,8 +7,9 @@ extends Node
 @onready var PlayerScene := preload("res://scenes/player/player.tscn")
 
 @onready var mapPool : Array[String] = [
-	"res://levels/playground/playground.tscn",
-	"res://levels/saws/saws.tscn"
+	#"res://levels/playground/playground.tscn",
+	#"res://levels/saws/saws.tscn",
+	"res://levels/cliffs/cliffs.tscn"
 ]
 
 @onready var MultiplayerManager := $"../MultiplayerManager"
@@ -117,12 +118,16 @@ func clear_game() -> void:
 func get_spawns(map: String) -> Array[Vector2]:
 	var playgroundSpawns : Array[Vector2] = [Vector2(400, 500), Vector2(1100, 500), Vector2(700, 500)]
 	var sawsSpawns : Array[Vector2] = [Vector2(100, 500), Vector2(900, 500), Vector2(510, 160)]
-	var spawns : Array[Vector2] = [] 
+	var cliffSpawns : Array[Vector2] = [Vector2(-80, 550), Vector2(250, 550), Vector2(1100, 400)]
+	var spawns : Array[Vector2] = []
+	
 	if map == "res://levels/playground/playground.tscn":
 		spawns = playgroundSpawns
-	else:
+	elif map == "res://levels/saws/saws.tscn":
 		spawns = sawsSpawns
-	
+	elif map == "res://levels/cliffs/cliffs.tscn":
+		spawns = cliffSpawns
+
 	spawns.shuffle()
 	return spawns
 	
