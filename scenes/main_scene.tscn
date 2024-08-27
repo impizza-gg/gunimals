@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://xtmllb3s5bfv"]
+[gd_scene load_steps=26 format=3 uid="uid://xtmllb3s5bfv"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_11qyb"]
 [ext_resource type="Script" path="res://scripts/MultiplayerManager.gd" id="2_d5ynk"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://khomtcsq0uas" path="res://assets/sprites/menus/en_color.png" id="10_do353"]
 [ext_resource type="PackedScene" uid="uid://8i05aiqvo68j" path="res://scenes/scene_transition.tscn" id="13_olxy7"]
 [ext_resource type="PackedScene" uid="uid://rk3ptl5wf086" path="res://scenes/countdown.tscn" id="14_pt04r"]
+[ext_resource type="Script" path="res://scripts/EndScreen.gd" id="16_k28j2"]
 [ext_resource type="AudioStream" uid="uid://3uqwvlddx3my" path="res://assets/sounds/UI_MenuSelections.mp3" id="20_uy25r"]
 [ext_resource type="AudioStream" uid="uid://dq4q6emfl5ii0" path="res://assets/sounds/UI_Confirm.mp3" id="21_th0jc"]
 
@@ -432,6 +433,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_11amd")
+script = ExtResource("16_k28j2")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/EndScreen"]
 layout_mode = 1

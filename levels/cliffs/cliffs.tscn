@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dt3lrey08cs1u"]
+[gd_scene load_steps=50 format=3 uid="uid://dt3lrey08cs1u"]
 
 [ext_resource type="Texture2D" uid="uid://v0syu0pelecj" path="res://assets/sprites/world/tileset.png" id="1_dwlqv"]
 [ext_resource type="Texture2D" uid="uid://vfsvmy82ajx0" path="res://assets/sprites/world/Assets.png" id="2_7nibq"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://d1yv0or6jd5mw" path="res://assets/sprites/saw.png" id="15_y2o7n"]
 [ext_resource type="Texture2D" uid="uid://kcy5r533ld7t" path="res://assets/sprites/saw_still.png" id="16_8qhrx"]
 [ext_resource type="Texture2D" uid="uid://uh4a008cu5vl" path="res://assets/sprites/saw_moving.png" id="17_l4koi"]
+[ext_resource type="Script" path="res://scenes/platform_path/platform_path.gd" id="18_q7b2v"]
+[ext_resource type="PackedScene" uid="uid://c0vn1evuhn47l" path="res://scenes/moving_platform.tscn" id="19_fsgft"]
 
 [sub_resource type="Environment" id="Environment_u1seb"]
 background_mode = 3
@@ -982,6 +984,39 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_wjww1"]
 radius = 10.0499
 
+[sub_resource type="Curve2D" id="Curve2D_yf60i"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -47, 98, 0, 0, 0, 0, 267, 100, 0, 0, 0, 0, -47, 98)
+}
+point_count = 3
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qx0p1"]
+properties/0/path = NodePath("Path2D/PathFollow2D:progress")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="Animation" id="Animation_1tc7o"]
+resource_name = "new_animation"
+length = 12.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6, 12),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kh8lw"]
+_data = {
+"new_animation": SubResource("Animation_1tc7o")
+}
+
 [node name="Cliffs" type="Node2D"]
 position = Vector2(70, -27)
 
@@ -1070,7 +1105,6 @@ collision_mask = 30
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/GroundCollision2"]
 position = Vector2(0.000246048, 1.45469e-05)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_7xow7")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Collisions" groups=["wall"]]
@@ -1155,6 +1189,31 @@ script = ExtResource("11_owui3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D"]
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_wjww1")
+
+[node name="PlatformPath" type="Node2D" parent="."]
+position = Vector2(385, 324)
+script = ExtResource("18_q7b2v")
+
+[node name="Path2D" type="Path2D" parent="PlatformPath"]
+curve = SubResource("Curve2D_yf60i")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PlatformPath/Path2D"]
+position = Vector2(-38.2091, 98.056)
+rotation = 0.00169205
+progress = 8.69043
+rotates = false
+
+[node name="Node2D" parent="PlatformPath/Path2D/PathFollow2D" instance=ExtResource("19_fsgft")]
+position = Vector2(2.0017, 0.996609)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="PlatformPath"]
+replication_config = SubResource("SceneReplicationConfig_qx0p1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlatformPath"]
+libraries = {
+"": SubResource("AnimationLibrary_kh8lw")
+}
+autoplay = "new_animation"
 
 [connection signal="body_entered" from="Spike" to="Spike" method="_on_body_entered"]
 [connection signal="body_entered" from="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" to="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" method="_on_body_entered"]

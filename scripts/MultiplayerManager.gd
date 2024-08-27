@@ -5,6 +5,7 @@ signal player_disconnected_signal(id: int)
 
 @onready var MainMenu := %MainMenu
 @onready var WaitingRoom := %WaitingRoom
+@onready var GameContainer := $"../GameContainer"
 
 var peer := ENetMultiplayerPeer.new()
 var connected_players := {}
@@ -57,6 +58,11 @@ func add_player(id: int, player_name: String, admin := false):
 		"character": 0,
 		"alive": true
 	}
+	WaitingRoom.rpc_id(id, "set_rounds", GameContainer.max_rounds)
+	for pid in connected_players:
+		if id == pid:
+			continue
+		WaitingRoom.rpc_id(id, "set_character", pid, connected_players[pid]["character"])
 	
 	
 func _on_main_menu_join_room(playerName: String, ipPort: String) -> void:
@@ -90,6 +96,8 @@ func _on_waiting_room_leave_room() -> void:
 
 
 func server_disconnect() -> void:
+	$"../CanvasLayer/EndScreen".visible = false
+	$"../CanvasLayer/Background".visible = false
 	back(true)
 
 

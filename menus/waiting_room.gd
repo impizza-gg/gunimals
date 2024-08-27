@@ -76,8 +76,7 @@ func _on_multiplayer_manager_player_disconnected_signal(id: int) -> void:
 func _on_start_button_pressed() -> void:
 	if multiplayer.is_server():
 		game_started.emit()
-	
-
+		
 
 func _on_sub_round_pressed() -> void:
 	add_round.emit(false)
@@ -91,3 +90,16 @@ func _on_add_round_pressed() -> void:
 func config_updates(configs: Dictionary) -> void:
 	if configs.has("max_rounds"):
 		%RoundsNum.text = str(configs["max_rounds"])
+
+
+@rpc("any_peer", "call_local")
+func set_rounds(rounds: int) -> void:
+	%RoundsNum.text = str(rounds)
+
+
+@rpc("any_peer", "call_local")
+func set_character(pid: int, character: int) -> void:
+	for child in %PlayerList.get_children():
+		if child.name == str(pid):
+			if child.has_method("set_sprite"):
+				child.set_sprite(character)

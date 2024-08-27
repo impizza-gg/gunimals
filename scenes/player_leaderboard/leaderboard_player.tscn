@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw6r6m11wojg6"]
+
+[ext_resource type="Theme" uid="uid://b7q6nhv8tdmuy" path="res://assets/themes/default_theme.tres" id="1_cikq3"]
+[ext_resource type="Script" path="res://scenes/player_leaderboard/LeaderboardPlayer.gd" id="2_ejbao"]
+[ext_resource type="SpriteFrames" uid="uid://c8fl1hbc8i8ws" path="res://scenes/player/sprites/sprite_frames/cat.tres" id="3_ywrdg"]
+
+[node name="LeaderboardPlayer" type="HBoxContainer"]
+offset_right = 144.0
+offset_bottom = 30.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_cikq3")
+theme_override_constants/separation = 20
+alignment = 1
+script = ExtResource("2_ejbao")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+text = "Player"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(9, 6)
+scale = Vector2(1.375, 1.21875)
+sprite_frames = ExtResource("3_ywrdg")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0228297
+
+[node name="Padding" type="Label" parent="."]
+layout_mode = 2
+
+[node name="Points" type="Label" parent="."]
+layout_mode = 2
+text = "0"

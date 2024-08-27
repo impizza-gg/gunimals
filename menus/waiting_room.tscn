@@ -1,9 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cq5jogagp2fgv"]
+[gd_scene load_steps=14 format=3 uid="uid://cq5jogagp2fgv"]
 
 [ext_resource type="Script" path="res://menus/waiting_room.gd" id="1_4g615"]
 [ext_resource type="Theme" uid="uid://b7q6nhv8tdmuy" path="res://assets/themes/default_theme.tres" id="2_lrvm7"]
 [ext_resource type="StyleBox" uid="uid://carfjrrwdyj05" path="res://assets/themes/panel_style.tres" id="3_k7d6c"]
 [ext_resource type="PackedScene" uid="uid://d0r8i3701lj7f" path="res://menus/menu_button.tscn" id="4_ii43b"]
+[ext_resource type="Texture2D" uid="uid://s4qor1jh14yg" path="res://assets/prompts/w_light.png" id="5_37iuv"]
+[ext_resource type="Texture2D" uid="uid://dxi3msxeub0hu" path="res://assets/prompts/a_key_light.png" id="6_veotx"]
+[ext_resource type="Texture2D" uid="uid://b6748htuooqt0" path="res://assets/prompts/s_light.png" id="7_bghwd"]
+[ext_resource type="Texture2D" uid="uid://dwwjdfbh1wo0b" path="res://assets/prompts/d_light.png" id="8_1gl2h"]
+[ext_resource type="Texture2D" uid="uid://ct5v37p3l4kcm" path="res://assets/prompts/e_light.png" id="9_iby2t"]
+[ext_resource type="Texture2D" uid="uid://c82oucqmup1yo" path="res://assets/prompts/left_mouse_button_light.png" id="10_ufx3m"]
+[ext_resource type="Texture2D" uid="uid://dibw5m7fxh1s7" path="res://assets/prompts/g_light.png" id="11_iiq0c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhln3"]
 bg_color = Color(0.0802295, 0.0076866, 0.185958, 1)
@@ -16,6 +23,9 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_fmuo0"]
+Label/font_sizes/font_size = 16
 
 [node name="WaitingRoom" type="Control"]
 layout_mode = 3
@@ -106,18 +116,115 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="SettingsList" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer"]
+[node name="Lists" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer"]
+layout_mode = 2
+theme = SubResource("Theme_fmuo0")
+theme_override_constants/separation = 30
+
+[node name="Controls" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists"]
 layout_mode = 2
 
-[node name="RoundsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/SettingsList"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "CONTROLS_TITLE"
+
+[node name="MoveBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls"]
+layout_mode = 2
+theme_override_constants/separation = 105
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/MoveBox"]
 layout_mode = 2
 
-[node name="RoundsTitle" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/SettingsList/RoundsContainer"]
+[node name="W" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/MoveBox/Control"]
+position = Vector2(8, 10)
+scale = Vector2(0.6, 0.594)
+texture = ExtResource("5_37iuv")
+
+[node name="A" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/MoveBox/Control"]
+position = Vector2(33, 10)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_veotx")
+
+[node name="S" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/MoveBox/Control"]
+position = Vector2(58, 10)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_bghwd")
+
+[node name="D" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/MoveBox/Control"]
+position = Vector2(83, 11)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_1gl2h")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/MoveBox"]
+layout_mode = 2
+text = "MOVEMENT_CONTROL"
+
+[node name="InteractBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/InteractBox"]
+layout_mode = 2
+
+[node name="E" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/InteractBox/Control"]
+position = Vector2(9, 11)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_iby2t")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/InteractBox"]
+layout_mode = 2
+text = "INTERACT_CONTROL"
+
+[node name="AimShootBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/AimShootBox"]
+layout_mode = 2
+
+[node name="Mouse" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/AimShootBox/Control"]
+position = Vector2(9, 12)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_ufx3m")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/AimShootBox"]
+layout_mode = 2
+text = "SHOOT_CONTROL"
+
+[node name="DropBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/DropBox"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/DropBox/Control"]
+position = Vector2(9, 13)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_iiq0c")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/DropBox"]
+layout_mode = 2
+text = "DROP_CONTROL"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "SETTINGS_BUTTON"
+
+[node name="RoundsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/VBoxContainer"]
+layout_mode = 2
+
+[node name="RoundsTitle" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/VBoxContainer/RoundsContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "ROUNDS_CONFIG"
 
-[node name="SubRound" type="Button" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/SettingsList/RoundsContainer"]
+[node name="SubRound" type="Button" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/VBoxContainer/RoundsContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -126,12 +233,12 @@ mouse_default_cursor_shape = 2
 action_mode = 0
 text = "-"
 
-[node name="RoundsNum" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/SettingsList/RoundsContainer"]
+[node name="RoundsNum" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/VBoxContainer/RoundsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "10"
 
-[node name="AddRound" type="Button" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/SettingsList/RoundsContainer"]
+[node name="AddRound" type="Button" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/VBoxContainer/RoundsContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -155,7 +262,7 @@ layout_mode = 2
 text = "BACK_BUTTON"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopContainer/CopyButton" to="." method="_on_copy_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/SettingsList/RoundsContainer/SubRound" to="." method="_on_sub_round_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/SettingsList/RoundsContainer/AddRound" to="." method="_on_add_round_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/VBoxContainer/RoundsContainer/SubRound" to="." method="_on_sub_round_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/VBoxContainer/RoundsContainer/AddRound" to="." method="_on_add_round_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -38,3 +38,5 @@ func _on_end_game_button_pressed() -> void:
 	PauseMenu.visible = false
 	Signals.paused = false
 	Signals.set_crosshair.emit(false)
+	$Background.visible = false
+	$EndScreen.visible = false

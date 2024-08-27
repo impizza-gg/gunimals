@@ -78,20 +78,24 @@ func transition() -> void:
 
 
 @rpc("any_peer", "call_local")
-func end_of_game() -> void:
+func end_of_game(players: Dictionary) -> void:
+	for child in $"../CanvasLayer/EndScreen/MarginContainer/PlayerList".get_children():
+		$"../CanvasLayer/EndScreen/MarginContainer/PlayerList".remove_child(child)
+		child.queue_free()
+		
+	$"../CanvasLayer/EndScreen".add_players(players)
 	$"../CanvasLayer/EndScreen".show()
 	$"../CanvasLayer/PauseMenu".hide()
 	$"../CanvasLayer/SceneTransition".playTransition()
 	Signals.paused = false
 	Signals.set_crosshair.emit(false)
-	$"../CanvasLayer/Background".show()
 	for child in get_children():
 		child.queue_free()
 
 
 func round_end() -> void:
 	if current_round >= max_rounds:
-		rpc("end_of_game")
+		rpc("end_of_game", MultiplayerManager.connected_players)
 		#$"../CanvasLayer/SceneTransition".rpc("playTransition")
 	else:
 		var new_map = mapPool.pick_random()

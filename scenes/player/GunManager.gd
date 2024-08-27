@@ -2,7 +2,7 @@ extends Node2D
 
 signal shoot(bullet: Node, location: Vector2)
 
-@export var CurrentGunScene: String = "res://scenes/guns/example_automatic/automatic_gun.tscn"
+@export var CurrentGunScene: String = "res://scenes/guns/example_gun/example_gun.tscn"
 
 @onready var parent := get_parent()
 @onready var ReloadBar := $"../ReloadBar"

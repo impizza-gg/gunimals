@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d5epx6nf6dg"]
+[gd_scene load_steps=7 format=3 uid="uid://d5epx6nf6dg"]
 
 [ext_resource type="Script" path="res://scenes/guns/example_gun/gun.gd" id="1_6s02t"]
 [ext_resource type="AudioStream" uid="uid://by3mds4fkbad0" path="res://assets/sounds/bullet_sound.wav" id="2_7ebvi"]
+[ext_resource type="PackedScene" uid="uid://b0dkofsa0ygxb" path="res://scenes/pickupables/pistol_pickup/pistol_pickup.tscn" id="2_br0fp"]
 [ext_resource type="Texture2D" uid="uid://bm2k5e4o766n7" path="res://assets/sprites/guns/BELG_Five_seven.png" id="2_ukjl1"]
 [ext_resource type="AudioStream" uid="uid://dp3y20qdm78ii" path="res://assets/sounds/reload.mp3" id="4_kdjv2"]
 [ext_resource type="AudioStream" uid="uid://cay4feaq2psp2" path="res://assets/sounds/noAmmo.mp3" id="5_1udmr"]
@@ -10,9 +11,12 @@
 script = ExtResource("1_6s02t")
 max_ammo = 30
 max_clips = 5
+damage = 10
+cooldown = 0.15
 ShootPlayer = NodePath("Shoot")
 NoAmmoPlayer = NodePath("NoAmmo")
 ReloadPlayer = NodePath("Reload")
+PickUpScene = ExtResource("2_br0fp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, 0)
@@ -31,3 +35,6 @@ bus = &"sfx"
 [node name="NoAmmo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_1udmr")
 bus = &"sfx"
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(13, -5)

@@ -19,3 +19,8 @@ LEAVE_GAME,Leave Game,Sair
 MASTER_SOUND,Master  ,Geral   
 MUSIC_SOUND,Music    ,Musica   
 EFFECTS_SOUND,Effects,Efeitos
+CONTROLS_TITLE,Controls,Controles
+MOVEMENT_CONTROL,Move,Mover
+INTERACT_CONTROL,Interact/Pick up,Interagir/Pegar
+DROP_CONTROL,Drop,Largar
+SHOOT_CONTROL,Shoot/Aim,Atirar/Mirar

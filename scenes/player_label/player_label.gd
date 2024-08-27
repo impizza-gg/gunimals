@@ -35,6 +35,10 @@ func _on_next_character_pressed() -> void:
 	character_btn()
 
 
+func set_sprite(character: int) -> void:
+	$Character/CharacterContainer/SelectCharacter.change_sprite_local(character)
+
+
 func character_btn(val := 1) -> void:
 	if not is_multiplayer_authority():
 		return
