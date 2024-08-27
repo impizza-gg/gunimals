@@ -846,6 +846,12 @@ sources/0 = SubResource("TileSetAtlasSource_vrs1l")
 sources/1 = SubResource("TileSetAtlasSource_64160")
 sources/2 = SubResource("TileSetAtlasSource_23u8y")
 
+[sub_resource type="GDScript" id="GDScript_xm5qf"]
+script/source = "extends Node2D
+
+var spawnPoints : Array[Vector2] = [Vector2(100, 500), Vector2(900, 500), Vector2(510, 160)]
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wok2"]
 size = Vector2(43, 873)
 
@@ -983,12 +989,6 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_qnl8p"]
 radius = 10.0499
 
-[sub_resource type="GDScript" id="GDScript_xm5qf"]
-script/source = "extends Node2D
-
-var spawnPoints : Array[Vector2] = [Vector2(100, 500), Vector2(900, 500), Vector2(510, 160)]
-"
-
 [node name="Saws" type="Node2D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -1013,6 +1013,11 @@ position = Vector2(3807, 638)
 [node name="ConveyorBelt" parent="." instance=ExtResource("3_h7drm")]
 position = Vector2(527, 544)
 scale = Vector2(0.3, 0.7)
+
+[node name="ConveyorBelt2" parent="." instance=ExtResource("3_h7drm")]
+position = Vector2(512, 344)
+scale = Vector2(0.6, 0.7)
+script = SubResource("GDScript_xm5qf")
 
 [node name="Pickupables" type="Node2D" parent="."]
 position = Vector2(-1, 0)
@@ -1237,11 +1242,6 @@ script = SubResource("GDScript_xm5qf")
 [node name="Button_Saw2" parent="." instance=ExtResource("13_j8bkv")]
 position = Vector2(645, 424)
 interact_with = "../MovingSaw"
-
-[node name="ConveyorBelt2" parent="." instance=ExtResource("3_h7drm")]
-position = Vector2(512, 344)
-scale = Vector2(0.6, 0.7)
-script = SubResource("GDScript_xm5qf")
 
 [node name="Measuring" type="Node2D" parent="."]
 position = Vector2(507, 260)
