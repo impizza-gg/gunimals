@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://clc1y4dby55tf"]
+
+[ext_resource type="Texture2D" uid="uid://bnjavcw8yapeq" path="res://assets/sprites/world/space/Space Background.png" id="1_c5ba7"]
+
+[node name="Forest" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayerSpace" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-597, -270)
+scale = Vector2(1.77312, 1.33166)
+motion_scale = Vector2(0, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerSpace"]
+self_modulate = Color(0.907942, 0.907942, 0.907942, 1)
+offset_left = 1.0
+offset_top = 1.5378e-05
+offset_right = 13447.0
+offset_bottom = 1080.0
+scale = Vector2(0.0936292, 0.912253)
+texture = ExtResource("1_c5ba7")

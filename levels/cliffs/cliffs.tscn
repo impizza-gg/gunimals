@@ -994,9 +994,6 @@ position = Vector2(576, 326)
 enabled = false
 position_smoothing_enabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(721, 194)
-
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-1, 1)
 tile_set = SubResource("TileSet_r42fo")

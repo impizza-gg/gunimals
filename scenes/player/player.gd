@@ -46,13 +46,13 @@ func _ready() -> void:
 	add_child(dash_timer)
 	
 	if character_type == Globals.Characters.PENGUIN:
-		canGlide = true
+		canDoubleJump = true
 	if character_type == Globals.Characters.CAT:
 		canDash = true
 	if character_type == Globals.Characters.FROG:
 		jump_velocity = -750.0
 	if character_type == Globals.Characters.DUCK:
-		canDoubleJump = true
+		canGlide = true
 	
 	# não tem segurança nenhuma hahahahahahahhaha
 	var path = Globals.CharacterArray[character_type]
