@@ -8,7 +8,7 @@ extends Node
 
 @onready var mapPool : Array[String] = [
 	"res://levels/playground/playground.tscn",
-	"res://levels/saws/saws.tscn"
+	#"res://levels/saws/saws.tscn"
 ]
 
 @onready var MultiplayerManager := $"../MultiplayerManager"
@@ -20,12 +20,6 @@ extends Node
 var max_rounds := 10
 var current_round := 0
 var level: Node
-
-#var default_settings := {
-	#"current_round": 0,
-	#"rounds": 10
-#}
-#var room_settings := {}
 
 func _ready() -> void:
 	WaitingRoom.connect("game_started", game_started)
@@ -39,7 +33,6 @@ func _ready() -> void:
 
 
 func new_room() -> void:
-	#room_settings = default_settings.duplicate(true)
 	max_rounds = 10
 	current_round = 0
 
@@ -100,11 +93,6 @@ func round_end() -> void:
 	else:
 		var new_map = mapPool.pick_random()
 		call_deferred("change_map", new_map)
-	
-
-#@rpc("any_peer", "call_local")
-#func clear_game_w() -> void:
-	#call_deferred("clear_game")
 
 
 @rpc("any_peer", "call_local")
@@ -169,26 +157,6 @@ func playerSpawnFunction(player_data: Dictionary) -> Node:
 	player.global_position = player_data.spawnPoint
 	return player
 
-
-# chamado somente no server
-# players são instanciados no server e replicados pelo MultiplayerSpawner
-#func game_started() -> void:
-	#$"../CanvasLayer/SceneTransition".rpc("playTransition", true)
-	#
-	#MapSpawner.spawn({
-		#"map": mapPool.pick_random()
-	#})
-#
-	#var counter := 0
-	#for id in MultiplayerManager.connected_players:
-		#var player_data = MultiplayerManager.connected_players[id]
-		#player_data.counter = counter
-		#player_data.id = id
-		#player_data.spawnPoint = level.spawnPoints[counter]
-		#PlayerSpawner.spawn(player_data)
-		#counter += 1
-		#
-	#game_started_all.rpc()
 	
 func game_started() -> void:
 	$"../CanvasLayer/SceneTransition".rpc("playTransition", true)

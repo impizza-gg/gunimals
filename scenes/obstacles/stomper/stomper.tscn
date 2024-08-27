@@ -60,7 +60,7 @@ libraries = {
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["wall"]]
+[node name="StaticBody2D" type="AnimatableBody2D" parent="." groups=["wall"]]
 collision_mask = 14
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]

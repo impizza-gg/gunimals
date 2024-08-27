@@ -1,6 +1,5 @@
-[gd_scene load_steps=21 format=3 uid="uid://bs8u75jus58gk"]
+[gd_scene load_steps=20 format=3 uid="uid://bs8u75jus58gk"]
 
-[ext_resource type="Script" path="res://scenes/moving_saw/PathFollow2D.gd" id="1_1va4p"]
 [ext_resource type="Script" path="res://scripts/DamageZone.gd" id="1_3esr5"]
 [ext_resource type="Script" path="res://scripts/moving_saw.gd" id="1_fjt1a"]
 [ext_resource type="Texture2D" uid="uid://d1yv0or6jd5mw" path="res://assets/sprites/saw.png" id="2_gg41u"]
@@ -126,7 +125,6 @@ script = ExtResource("1_fjt1a")
 curve = SubResource("Curve2D_uwgqx")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-script = ExtResource("1_1va4p")
 
 [node name="Node2D" type="Node2D" parent="Path2D/PathFollow2D"]
 
