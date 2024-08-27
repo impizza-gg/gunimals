@@ -1,14 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://cq5jogagp2fgv"]
+[gd_scene load_steps=20 format=3 uid="uid://cq5jogagp2fgv"]
 
 [ext_resource type="Script" path="res://menus/waiting_room.gd" id="1_4g615"]
 [ext_resource type="Theme" uid="uid://b7q6nhv8tdmuy" path="res://assets/themes/default_theme.tres" id="2_lrvm7"]
 [ext_resource type="StyleBox" uid="uid://carfjrrwdyj05" path="res://assets/themes/panel_style.tres" id="3_k7d6c"]
 [ext_resource type="PackedScene" uid="uid://d0r8i3701lj7f" path="res://menus/menu_button.tscn" id="4_ii43b"]
 [ext_resource type="Texture2D" uid="uid://s4qor1jh14yg" path="res://assets/prompts/w_light.png" id="5_37iuv"]
+[ext_resource type="SpriteFrames" uid="uid://c8fl1hbc8i8ws" path="res://scenes/player/sprites/sprite_frames/cat.tres" id="5_bo3kj"]
+[ext_resource type="Texture2D" uid="uid://c1vgfc13pujyt" path="res://assets/prompts/shift_light.png" id="6_m1r08"]
 [ext_resource type="Texture2D" uid="uid://dxi3msxeub0hu" path="res://assets/prompts/a_key_light.png" id="6_veotx"]
 [ext_resource type="Texture2D" uid="uid://b6748htuooqt0" path="res://assets/prompts/s_light.png" id="7_bghwd"]
+[ext_resource type="SpriteFrames" uid="uid://d3ud5wii03kdx" path="res://scenes/player/sprites/sprite_frames/duck.tres" id="7_rxuw6"]
 [ext_resource type="Texture2D" uid="uid://dwwjdfbh1wo0b" path="res://assets/prompts/d_light.png" id="8_1gl2h"]
+[ext_resource type="Texture2D" uid="uid://dvyhyxou0pwse" path="res://assets/prompts/space_light.png" id="8_g3h7k"]
+[ext_resource type="SpriteFrames" uid="uid://7ll4uupgjlmy" path="res://scenes/player/sprites/sprite_frames/frog.tres" id="9_axmmu"]
 [ext_resource type="Texture2D" uid="uid://ct5v37p3l4kcm" path="res://assets/prompts/e_light.png" id="9_iby2t"]
+[ext_resource type="SpriteFrames" uid="uid://baonqyv5a1qvy" path="res://scenes/player/sprites/sprite_frames/penguin.tres" id="10_pnhg7"]
 [ext_resource type="Texture2D" uid="uid://c82oucqmup1yo" path="res://assets/prompts/left_mouse_button_light.png" id="10_ufx3m"]
 [ext_resource type="Texture2D" uid="uid://dibw5m7fxh1s7" path="res://assets/prompts/g_light.png" id="11_iiq0c"]
 
@@ -121,6 +127,102 @@ layout_mode = 2
 theme = SubResource("Theme_fmuo0")
 theme_override_constants/separation = 30
 
+[node name="Characters" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "CHAR_TITLE"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer/Control"]
+position = Vector2(10, 4)
+scale = Vector2(1.1875, 1.125)
+sprite_frames = ExtResource("5_bo3kj")
+animation = &"idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer/Control"]
+position = Vector2(42, 9)
+scale = Vector2(0.401042, 0.542683)
+texture = ExtResource("6_m1r08")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer"]
+layout_mode = 2
+text = "DASH"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer2"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer2/Control"]
+position = Vector2(10, 4)
+scale = Vector2(1.1875, 1.125)
+sprite_frames = ExtResource("7_rxuw6")
+animation = &"idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer2/Control"]
+position = Vector2(50, 11)
+scale = Vector2(0.319445, 0.463415)
+texture = ExtResource("8_g3h7k")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer2"]
+layout_mode = 2
+text = "GLIDE_TR"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer3"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer3/Control"]
+position = Vector2(10, 4)
+scale = Vector2(1.1875, 1.125)
+sprite_frames = ExtResource("9_axmmu")
+animation = &"idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer3/Control"]
+position = Vector2(49.5312, 11.0313)
+scale = Vector2(0.319, 0.451)
+texture = ExtResource("8_g3h7k")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer3"]
+layout_mode = 2
+text = "HIGHJUMP_TR"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer4"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer4/Control"]
+position = Vector2(10, 4)
+scale = Vector2(1.1875, 1.125)
+sprite_frames = ExtResource("10_pnhg7")
+animation = &"idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer4/Control"]
+position = Vector2(49, 13)
+scale = Vector2(0.319, 0.432)
+texture = ExtResource("8_g3h7k")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Characters/HBoxContainer4"]
+layout_mode = 2
+text = "DOUBLEJUMP_TR"
+
 [node name="Controls" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists"]
 layout_mode = 2
 
@@ -152,7 +254,7 @@ scale = Vector2(0.6, 0.6)
 texture = ExtResource("7_bghwd")
 
 [node name="D" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/MoveBox/Control"]
-position = Vector2(83, 11)
+position = Vector2(83, 10)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("8_1gl2h")
 

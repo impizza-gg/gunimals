@@ -21,9 +21,10 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if active:
-		if body.has_method("flatten"):
-			body.flatten()
+	if multiplayer.is_server():
+		if active:
+			if body.has_method("flatten"):
+				body.rpc("flatten")
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

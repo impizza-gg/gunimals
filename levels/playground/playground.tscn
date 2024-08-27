@@ -1038,7 +1038,7 @@ shape = SubResource("RectangleShape2D_4bqrb")
 [node name="Bottom" parent="Killzones" instance=ExtResource("10_pds8e")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Bottom"]
-position = Vector2(14, -76)
+position = Vector2(14, -123)
 shape = SubResource("RectangleShape2D_n0dk8")
 
 [node name="Top" parent="Killzones" instance=ExtResource("10_pds8e")]
@@ -1093,7 +1093,7 @@ position = Vector2(680, 615)
 interact_with = "../ConveyorBelt"
 
 [node name="Stomper" parent="." instance=ExtResource("15_wfiof")]
-position = Vector2(527, 465)
+position = Vector2(528, 455)
 
 [node name="Button_Saw" parent="." instance=ExtResource("13_gt2oi")]
 position = Vector2(617, 536)

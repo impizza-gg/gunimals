@@ -82,7 +82,7 @@ func end_of_game(players: Dictionary) -> void:
 	for child in $"../CanvasLayer/EndScreen/MarginContainer/PlayerList".get_children():
 		$"../CanvasLayer/EndScreen/MarginContainer/PlayerList".remove_child(child)
 		child.queue_free()
-		
+	$"../CanvasLayer/Background".visible = true
 	$"../CanvasLayer/EndScreen".add_players(players)
 	$"../CanvasLayer/EndScreen".show()
 	$"../CanvasLayer/PauseMenu".hide()
@@ -142,13 +142,14 @@ func change_map(map: String) -> void:
 	})
 		
 	var spawns := get_spawns(map)
-	
+	var gravity_factor = 0.5 if map == "res://levels/space/space.tscn" else 1.0
 	var counter := 0
 	for id in MultiplayerManager.connected_players:
 		MultiplayerManager.connected_players[id]["alive"] = true
 		var player_data = MultiplayerManager.connected_players[id]
 		player_data.counter = counter
 		player_data.id = id
+		player_data.gravityFactor = gravity_factor
 		player_data.spawnPoint = spawns[counter]
 		PlayerSpawner.spawn(player_data)
 		counter += 1
@@ -169,6 +170,7 @@ func playerSpawnFunction(player_data: Dictionary) -> Node:
 	player.name = str(player_data.id) # nome do nodo
 	player.player_name = player_data.player_name
 	player.character_type = player_data.character
+	player.gravity_factor = player_data.gravityFactor
 	player.global_position = player_data.spawnPoint
 	return player
 
@@ -177,6 +179,9 @@ func game_started() -> void:
 	$"../CanvasLayer/SceneTransition".rpc("playTransition", true)
 		
 	var map = mapPool.pick_random()
+	while map == "res://levels/space/space.tscn":
+		map = mapPool.pick_random()
+		
 	MapSpawner.spawn({
 		"map": map
 	})
@@ -188,6 +193,7 @@ func game_started() -> void:
 		var player_data = MultiplayerManager.connected_players[id]
 		player_data.counter = counter
 		player_data.id = id
+		player_data.gravityFactor = 1.0
 		player_data.spawnPoint = spawns[counter]
 		PlayerSpawner.spawn(player_data)
 		counter += 1

@@ -24,3 +24,7 @@ MOVEMENT_CONTROL,Move,Mover
 INTERACT_CONTROL,Interact/Pick up,Interagir/Pegar
 DROP_CONTROL,Drop,Largar
 SHOOT_CONTROL,Shoot/Aim,Atirar/Mirar
+GLIDE_TR,Glide,Planar
+DOUBLEJUMP_TR,Double Jump,Pulo Duplo
+HIGHJUMP_TR,High Jump,Pulo Alto
+CHAR_TITLE,Characters,Personagens

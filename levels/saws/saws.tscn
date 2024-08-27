@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://b2falnecdyto7"]
+[gd_scene load_steps=52 format=3 uid="uid://b2falnecdyto7"]
 
 [ext_resource type="PackedScene" uid="uid://lhqyh7712go1" path="res://scenes/dummy/dummy.tscn" id="1_knrti"]
 [ext_resource type="PackedScene" uid="uid://cc05sgyybeoja" path="res://levels/Forest.tscn" id="2_1md7i"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bgi8lcckv30nb" path="res://scenes/pickupables/machine_gun_pickup/machine_gun_pickup.tscn" id="4_4grl2"]
 [ext_resource type="PackedScene" uid="uid://du8d2k7flouhi" path="res://scenes/pickupables/laser_gun_pickup/laser_gun_pickup.tscn" id="5_1k3ax"]
 [ext_resource type="PackedScene" uid="uid://byeo264dv3ep" path="res://scenes/pickupables/grenade_pickup/grenade_pickup.tscn" id="6_55rmq"]
+[ext_resource type="Script" path="res://levels/ConveyorBelt.gd" id="6_rcn68"]
+[ext_resource type="Texture2D" uid="uid://bwggdfsjxd07d" path="res://assets/sprites/world/tile_green.png" id="7_nut1t"]
 [ext_resource type="PackedScene" uid="uid://cnd2g7lqjwcjm" path="res://scenes/pickupables/shotgun_pickup/shotgun_pickup.tscn" id="7_vhp1w"]
 [ext_resource type="Texture2D" uid="uid://v0syu0pelecj" path="res://assets/sprites/world/tileset.png" id="9_25ewa"]
 [ext_resource type="Texture2D" uid="uid://vfsvmy82ajx0" path="res://assets/sprites/world/Assets.png" id="10_vsfsr"]
@@ -846,6 +848,47 @@ sources/0 = SubResource("TileSetAtlasSource_vrs1l")
 sources/1 = SubResource("TileSetAtlasSource_64160")
 sources/2 = SubResource("TileSetAtlasSource_23u8y")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h27f0"]
+size = Vector2(545, 25)
+
+[sub_resource type="Animation" id="Animation_jchqb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n0da6"]
+resource_name = "conveyor_belt"
+length = 0.15
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(4.5, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_samod"]
+_data = {
+"RESET": SubResource("Animation_jchqb"),
+"conveyor_belt": SubResource("Animation_n0da6")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wok2"]
 size = Vector2(43, 873)
 
@@ -1010,9 +1053,29 @@ position = Vector2(218, 551)
 [node name="Forest" parent="." instance=ExtResource("2_1md7i")]
 position = Vector2(3807, 638)
 
-[node name="ConveyorBelt" parent="." instance=ExtResource("3_h7drm")]
+[node name="ConveyorBelt" type="StaticBody2D" parent="." groups=["wall"]]
 position = Vector2(527, 544)
 scale = Vector2(0.3, 0.7)
+script = ExtResource("6_rcn68")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConveyorBelt"]
+position = Vector2(-1, -5.5)
+shape = SubResource("RectangleShape2D_h27f0")
+
+[node name="Sprite2D" type="Polygon2D" parent="ConveyorBelt"]
+texture_repeat = 2
+position = Vector2(-0.999996, -5)
+scale = Vector2(6.18182, 0.272727)
+texture = ExtResource("7_nut1t")
+texture_scale = Vector2(9, 1)
+polygon = PackedVector2Array(44, 44, -44, 44, -44, -44, 44, -44)
+uv = PackedVector2Array(88, 88, 0, 88, 0, 0, 88, 0)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ConveyorBelt"]
+libraries = {
+"": SubResource("AnimationLibrary_samod")
+}
 
 [node name="Pickupables" type="Node2D" parent="."]
 position = Vector2(-1, 0)
@@ -1049,6 +1112,7 @@ shape = SubResource("RectangleShape2D_7wok2")
 position = Vector2(512, 886)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Bottom"]
+position = Vector2(-5, -124)
 shape = SubResource("RectangleShape2D_rsu6c")
 
 [node name="Top" parent="Killzones" instance=ExtResource("11_xpf73")]
@@ -1138,7 +1202,7 @@ position = Vector2(701, 569)
 interact_with = "../ConveyorBelt"
 
 [node name="Stomper" parent="." instance=ExtResource("14_v35gx")]
-position = Vector2(523, 247)
+position = Vector2(523, 237)
 
 [node name="Button_Saw" parent="." instance=ExtResource("13_j8bkv")]
 position = Vector2(387, 425)

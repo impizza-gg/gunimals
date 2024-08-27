@@ -30,6 +30,7 @@ var character_type := 0
 var dash_timer := Timer.new()
 const DASH_DURATION := 0.25
 var camera = null
+var gravity_factor := 1.0
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int(), true)
@@ -39,6 +40,7 @@ func _ready() -> void:
 	NameLabel.text = player_name
 	HealthBar.max_value = max_health
 	HealthBar.value = current_health
+	gravity *= gravity_factor
 	Signals.unlock.connect(unlock)
 	dash_timer.wait_time = DASH_DURATION
 	dash_timer.one_shot = true
@@ -271,6 +273,7 @@ func set_knockback(kb: Vector2) -> void:
 	knockback = kb
 
 
+@rpc("any_peer", "call_local")
 func flatten() -> void:
 	death(false)
 	$AnimationPlayer.play("flatten")
