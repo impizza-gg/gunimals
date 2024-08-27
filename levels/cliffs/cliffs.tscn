@@ -1,0 +1,1160 @@
+[gd_scene load_steps=44 format=3 uid="uid://dt3lrey08cs1u"]
+
+[ext_resource type="Texture2D" uid="uid://v0syu0pelecj" path="res://assets/sprites/world/tileset.png" id="1_dwlqv"]
+[ext_resource type="Texture2D" uid="uid://vfsvmy82ajx0" path="res://assets/sprites/world/Assets.png" id="2_7nibq"]
+[ext_resource type="Texture2D" uid="uid://ddxxshcbnij1f" path="res://assets/sprites/world/Decor.png" id="3_2asjy"]
+[ext_resource type="PackedScene" uid="uid://cc0cm7mkoi21m" path="res://levels/MagicCliffs.tscn" id="4_vlpol"]
+[ext_resource type="PackedScene" uid="uid://ck10vlm4ryxih" path="res://scenes/obstacles/conveyor_belt/conveyor_belt.tscn" id="5_ujecy"]
+[ext_resource type="PackedScene" uid="uid://bgi8lcckv30nb" path="res://scenes/pickupables/machine_gun_pickup/machine_gun_pickup.tscn" id="6_07pqv"]
+[ext_resource type="PackedScene" uid="uid://du8d2k7flouhi" path="res://scenes/pickupables/laser_gun_pickup/laser_gun_pickup.tscn" id="7_x1gbr"]
+[ext_resource type="PackedScene" uid="uid://byeo264dv3ep" path="res://scenes/pickupables/grenade_pickup/grenade_pickup.tscn" id="8_rk1he"]
+[ext_resource type="PackedScene" uid="uid://cnd2g7lqjwcjm" path="res://scenes/pickupables/shotgun_pickup/shotgun_pickup.tscn" id="9_vhe1k"]
+[ext_resource type="PackedScene" uid="uid://cta6j5ciwsly6" path="res://scenes/killzone.tscn" id="10_5tm67"]
+[ext_resource type="Script" path="res://scripts/DamageZone.gd" id="11_owui3"]
+[ext_resource type="PackedScene" uid="uid://bflpq0xb600wk" path="res://scenes/button/button.tscn" id="12_5iilf"]
+[ext_resource type="PackedScene" uid="uid://b6ysi1hvvwsnm" path="res://scenes/obstacles/stomper/stomper.tscn" id="13_2v3rw"]
+[ext_resource type="Script" path="res://scripts/moving_saw.gd" id="14_jruri"]
+[ext_resource type="Texture2D" uid="uid://d1yv0or6jd5mw" path="res://assets/sprites/saw.png" id="15_y2o7n"]
+[ext_resource type="Texture2D" uid="uid://kcy5r533ld7t" path="res://assets/sprites/saw_still.png" id="16_8qhrx"]
+[ext_resource type="Texture2D" uid="uid://uh4a008cu5vl" path="res://assets/sprites/saw_moving.png" id="17_l4koi"]
+
+[sub_resource type="Environment" id="Environment_u1seb"]
+background_mode = 3
+tonemap_mode = 2
+glow_normalized = true
+glow_intensity = 8.0
+glow_strength = 1.61
+glow_mix = 0.0
+glow_hdr_threshold = 1.5
+glow_hdr_scale = 0.2
+glow_hdr_luminance_cap = 256.0
+glow_map_strength = 1.0
+adjustment_enabled = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vrs1l"]
+texture = ExtResource("1_dwlqv")
+0:0/0 = 0
+0:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+0:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+16:2/0 = 0
+17:2/0 = 0
+20:2/0 = 0
+21:2/0 = 0
+22:2/0 = 0
+23:2/0 = 0
+25:2/0 = 0
+27:2/0 = 0
+28:2/0 = 0
+29:2/0 = 0
+30:2/0 = 0
+0:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+17:3/0 = 0
+18:3/0 = 0
+20:3/0 = 0
+21:3/0 = 0
+22:3/0 = 0
+23:3/0 = 0
+25:3/0 = 0
+27:3/0 = 0
+28:3/0 = 0
+29:3/0 = 0
+30:3/0 = 0
+33:3/0 = 0
+34:3/0 = 0
+35:3/0 = 0
+37:3/0 = 0
+38:3/0 = 0
+39:3/0 = 0
+40:3/0 = 0
+43:3/0 = 0
+44:3/0 = 0
+45:3/0 = 0
+47:3/0 = 0
+48:3/0 = 0
+52:3/0 = 0
+53:3/0 = 0
+0:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+16:4/0 = 0
+17:4/0 = 0
+18:4/0 = 0
+19:4/0 = 0
+20:4/0 = 0
+21:4/0 = 0
+22:4/0 = 0
+23:4/0 = 0
+25:4/0 = 0
+27:4/0 = 0
+28:4/0 = 0
+29:4/0 = 0
+30:4/0 = 0
+33:4/0 = 0
+34:4/0 = 0
+35:4/0 = 0
+37:4/0 = 0
+38:4/0 = 0
+39:4/0 = 0
+40:4/0 = 0
+43:4/0 = 0
+44:4/0 = 0
+45:4/0 = 0
+47:4/0 = 0
+48:4/0 = 0
+52:4/0 = 0
+53:4/0 = 0
+0:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+16:5/0 = 0
+17:5/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+20:5/0 = 0
+21:5/0 = 0
+22:5/0 = 0
+23:5/0 = 0
+25:5/0 = 0
+27:5/0 = 0
+28:5/0 = 0
+29:5/0 = 0
+30:5/0 = 0
+33:5/0 = 0
+34:5/0 = 0
+35:5/0 = 0
+37:5/0 = 0
+38:5/0 = 0
+39:5/0 = 0
+40:5/0 = 0
+43:5/0 = 0
+44:5/0 = 0
+45:5/0 = 0
+0:6/0 = 0
+5:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+16:6/0 = 0
+17:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+20:6/0 = 0
+21:6/0 = 0
+22:6/0 = 0
+23:6/0 = 0
+25:6/0 = 0
+27:6/0 = 0
+28:6/0 = 0
+29:6/0 = 0
+30:6/0 = 0
+34:6/0 = 0
+35:6/0 = 0
+36:6/0 = 0
+37:6/0 = 0
+48:6/0 = 0
+49:6/0 = 0
+51:6/0 = 0
+52:6/0 = 0
+0:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+14:7/0 = 0
+15:7/0 = 0
+16:7/0 = 0
+17:7/0 = 0
+18:7/0 = 0
+21:7/0 = 0
+22:7/0 = 0
+23:7/0 = 0
+25:7/0 = 0
+27:7/0 = 0
+28:7/0 = 0
+29:7/0 = 0
+34:7/0 = 0
+35:7/0 = 0
+36:7/0 = 0
+37:7/0 = 0
+42:7/0 = 0
+44:7/0 = 0
+45:7/0 = 0
+48:7/0 = 0
+49:7/0 = 0
+51:7/0 = 0
+52:7/0 = 0
+0:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+13:8/0 = 0
+16:8/0 = 0
+17:8/0 = 0
+22:8/0 = 0
+23:8/0 = 0
+25:8/0 = 0
+27:8/0 = 0
+28:8/0 = 0
+34:8/0 = 0
+35:8/0 = 0
+36:8/0 = 0
+37:8/0 = 0
+44:8/0 = 0
+45:8/0 = 0
+0:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+16:9/0 = 0
+17:9/0 = 0
+46:9/0 = 0
+47:9/0 = 0
+48:9/0 = 0
+50:9/0 = 0
+53:9/0 = 0
+54:9/0 = 0
+55:9/0 = 0
+0:10/0 = 0
+27:10/0 = 0
+28:10/0 = 0
+46:10/0 = 0
+47:10/0 = 0
+48:10/0 = 0
+53:10/0 = 0
+54:10/0 = 0
+55:10/0 = 0
+0:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+6:11/0 = 0
+7:11/0 = 0
+9:11/0 = 0
+10:11/0 = 0
+12:11/0 = 0
+13:11/0 = 0
+14:11/0 = 0
+16:11/0 = 0
+17:11/0 = 0
+19:11/0 = 0
+20:11/0 = 0
+22:11/0 = 0
+24:11/0 = 0
+25:11/0 = 0
+27:11/0 = 0
+28:11/0 = 0
+30:11/0 = 0
+32:11/0 = 0
+33:11/0 = 0
+34:11/0 = 0
+36:11/0 = 0
+37:11/0 = 0
+38:11/0 = 0
+40:11/0 = 0
+41:11/0 = 0
+43:11/0 = 0
+44:11/0 = 0
+45:11/0 = 0
+0:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+9:12/0 = 0
+10:12/0 = 0
+12:12/0 = 0
+13:12/0 = 0
+14:12/0 = 0
+16:12/0 = 0
+17:12/0 = 0
+19:12/0 = 0
+20:12/0 = 0
+22:12/0 = 0
+24:12/0 = 0
+25:12/0 = 0
+27:12/0 = 0
+28:12/0 = 0
+30:12/0 = 0
+32:12/0 = 0
+33:12/0 = 0
+34:12/0 = 0
+36:12/0 = 0
+37:12/0 = 0
+38:12/0 = 0
+40:12/0 = 0
+41:12/0 = 0
+43:12/0 = 0
+44:12/0 = 0
+45:12/0 = 0
+47:12/0 = 0
+48:12/0 = 0
+49:12/0 = 0
+50:12/0 = 0
+51:12/0 = 0
+52:12/0 = 0
+0:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+12:13/0 = 0
+13:13/0 = 0
+14:13/0 = 0
+16:13/0 = 0
+17:13/0 = 0
+32:13/0 = 0
+33:13/0 = 0
+34:13/0 = 0
+36:13/0 = 0
+37:13/0 = 0
+38:13/0 = 0
+40:13/0 = 0
+41:13/0 = 0
+43:13/0 = 0
+44:13/0 = 0
+45:13/0 = 0
+47:13/0 = 0
+48:13/0 = 0
+49:13/0 = 0
+50:13/0 = 0
+51:13/0 = 0
+52:13/0 = 0
+0:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+5:14/0 = 0
+6:14/0 = 0
+7:14/0 = 0
+21:14/0 = 0
+23:14/0 = 0
+24:14/0 = 0
+26:14/0 = 0
+32:14/0 = 0
+33:14/0 = 0
+34:14/0 = 0
+47:14/0 = 0
+48:14/0 = 0
+50:14/0 = 0
+51:14/0 = 0
+52:14/0 = 0
+0:15/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+4:15/0 = 0
+5:15/0 = 0
+6:15/0 = 0
+7:15/0 = 0
+9:15/0 = 0
+10:15/0 = 0
+12:15/0 = 0
+13:15/0 = 0
+15:15/0 = 0
+16:15/0 = 0
+17:15/0 = 0
+18:15/0 = 0
+20:15/0 = 0
+21:15/0 = 0
+23:15/0 = 0
+24:15/0 = 0
+26:15/0 = 0
+27:15/0 = 0
+29:15/0 = 0
+30:15/0 = 0
+32:15/0 = 0
+33:15/0 = 0
+34:15/0 = 0
+37:15/0 = 0
+38:15/0 = 0
+39:15/0 = 0
+41:15/0 = 0
+42:15/0 = 0
+47:15/0 = 0
+48:15/0 = 0
+51:15/0 = 0
+52:15/0 = 0
+0:16/0 = 0
+2:16/0 = 0
+3:16/0 = 0
+4:16/0 = 0
+5:16/0 = 0
+6:16/0 = 0
+7:16/0 = 0
+9:16/0 = 0
+10:16/0 = 0
+12:16/0 = 0
+13:16/0 = 0
+15:16/0 = 0
+16:16/0 = 0
+17:16/0 = 0
+18:16/0 = 0
+20:16/0 = 0
+21:16/0 = 0
+23:16/0 = 0
+24:16/0 = 0
+26:16/0 = 0
+27:16/0 = 0
+29:16/0 = 0
+30:16/0 = 0
+32:16/0 = 0
+33:16/0 = 0
+34:16/0 = 0
+37:16/0 = 0
+38:16/0 = 0
+39:16/0 = 0
+41:16/0 = 0
+42:16/0 = 0
+47:16/0 = 0
+48:16/0 = 0
+49:16/0 = 0
+50:16/0 = 0
+51:16/0 = 0
+52:16/0 = 0
+0:17/0 = 0
+2:17/0 = 0
+3:17/0 = 0
+4:17/0 = 0
+5:17/0 = 0
+6:17/0 = 0
+7:17/0 = 0
+12:17/0 = 0
+13:17/0 = 0
+29:17/0 = 0
+30:17/0 = 0
+36:17/0 = 0
+37:17/0 = 0
+38:17/0 = 0
+39:17/0 = 0
+41:17/0 = 0
+42:17/0 = 0
+43:17/0 = 0
+47:17/0 = 0
+48:17/0 = 0
+49:17/0 = 0
+50:17/0 = 0
+51:17/0 = 0
+52:17/0 = 0
+0:18/0 = 0
+12:18/0 = 0
+13:18/0 = 0
+47:18/0 = 0
+48:18/0 = 0
+49:18/0 = 0
+50:18/0 = 0
+51:18/0 = 0
+52:18/0 = 0
+0:19/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_64160"]
+texture = ExtResource("2_7nibq")
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+17:3/0 = 0
+18:3/0 = 0
+19:3/0 = 0
+20:3/0 = 0
+0:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+16:4/0 = 0
+17:4/0 = 0
+21:4/0 = 0
+22:4/0 = 0
+23:4/0 = 0
+0:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+16:5/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+20:5/0 = 0
+21:5/0 = 0
+22:5/0 = 0
+23:5/0 = 0
+24:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+16:6/0 = 0
+17:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+20:6/0 = 0
+21:6/0 = 0
+22:6/0 = 0
+23:6/0 = 0
+24:6/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+15:7/0 = 0
+17:7/0 = 0
+18:7/0 = 0
+20:7/0 = 0
+21:7/0 = 0
+22:7/0 = 0
+23:7/0 = 0
+24:7/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+11:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+16:8/0 = 0
+18:8/0 = 0
+19:8/0 = 0
+21:8/0 = 0
+22:8/0 = 0
+23:8/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+11:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+15:9/0 = 0
+16:9/0 = 0
+17:9/0 = 0
+18:9/0 = 0
+19:9/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+9:10/0 = 0
+10:10/0 = 0
+11:10/0 = 0
+12:10/0 = 0
+15:10/0 = 0
+17:10/0 = 0
+18:10/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+7:11/0 = 0
+8:11/0 = 0
+9:11/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+7:12/0 = 0
+8:12/0 = 0
+9:12/0 = 0
+12:12/0 = 0
+13:12/0 = 0
+14:12/0 = 0
+17:12/0 = 0
+18:12/0 = 0
+19:12/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+8:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+11:13/0 = 0
+12:13/0 = 0
+13:13/0 = 0
+14:13/0 = 0
+15:13/0 = 0
+16:13/0 = 0
+17:13/0 = 0
+18:13/0 = 0
+19:13/0 = 0
+20:13/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+6:14/0 = 0
+7:14/0 = 0
+8:14/0 = 0
+9:14/0 = 0
+10:14/0 = 0
+11:14/0 = 0
+12:14/0 = 0
+13:14/0 = 0
+14:14/0 = 0
+15:14/0 = 0
+16:14/0 = 0
+17:14/0 = 0
+18:14/0 = 0
+19:14/0 = 0
+20:14/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+4:15/0 = 0
+6:15/0 = 0
+7:15/0 = 0
+8:15/0 = 0
+9:15/0 = 0
+10:15/0 = 0
+11:15/0 = 0
+12:15/0 = 0
+13:15/0 = 0
+14:15/0 = 0
+15:15/0 = 0
+16:15/0 = 0
+17:15/0 = 0
+18:15/0 = 0
+19:15/0 = 0
+20:15/0 = 0
+1:16/0 = 0
+2:16/0 = 0
+3:16/0 = 0
+4:16/0 = 0
+5:16/0 = 0
+7:16/0 = 0
+8:16/0 = 0
+9:16/0 = 0
+12:16/0 = 0
+13:16/0 = 0
+14:16/0 = 0
+17:16/0 = 0
+18:16/0 = 0
+19:16/0 = 0
+1:17/0 = 0
+2:17/0 = 0
+3:17/0 = 0
+4:17/0 = 0
+5:17/0 = 0
+6:17/0 = 0
+7:17/0 = 0
+8:17/0 = 0
+9:17/0 = 0
+10:17/0 = 0
+11:17/0 = 0
+12:17/0 = 0
+13:17/0 = 0
+1:18/0 = 0
+2:18/0 = 0
+3:18/0 = 0
+4:18/0 = 0
+5:18/0 = 0
+9:18/0 = 0
+10:18/0 = 0
+2:19/0 = 0
+3:19/0 = 0
+4:19/0 = 0
+5:19/0 = 0
+6:19/0 = 0
+7:19/0 = 0
+4:20/0 = 0
+5:20/0 = 0
+6:20/0 = 0
+7:20/0 = 0
+8:20/0 = 0
+4:21/0 = 0
+5:21/0 = 0
+6:21/0 = 0
+7:21/0 = 0
+8:21/0 = 0
+4:22/0 = 0
+5:22/0 = 0
+6:22/0 = 0
+7:22/0 = 0
+8:22/0 = 0
+5:23/0 = 0
+6:23/0 = 0
+7:23/0 = 0
+21:24/0 = 0
+22:24/0 = 0
+23:24/0 = 0
+24:24/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23u8y"]
+texture = ExtResource("3_2asjy")
+
+[sub_resource type="TileSet" id="TileSet_r42fo"]
+sources/0 = SubResource("TileSetAtlasSource_vrs1l")
+sources/1 = SubResource("TileSetAtlasSource_64160")
+sources/2 = SubResource("TileSetAtlasSource_23u8y")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bqrb"]
+size = Vector2(52, 723)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0dk8"]
+size = Vector2(3887.5, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xow7"]
+size = Vector2(640.065, 23.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jk8sg"]
+size = Vector2(221.354, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sf0bl"]
+size = Vector2(256.25, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pjnn"]
+size = Vector2(410.75, 13.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfdud"]
+size = Vector2(49, 10)
+
+[sub_resource type="Curve2D" id="Curve2D_s6471"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -195, 0, 0, 0, 0, 0, 185, 0, 0, 0, 0, 0, 185, 0, 0, 0, 0, 0, -195, 0)
+}
+point_count = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0ul1"]
+atlas = ExtResource("16_8qhrx")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssqqp"]
+atlas = ExtResource("17_l4koi")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vkbj"]
+atlas = ExtResource("17_l4koi")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwfgd"]
+atlas = ExtResource("17_l4koi")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onjo0"]
+atlas = ExtResource("17_l4koi")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3c8y"]
+atlas = ExtResource("17_l4koi")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sowcc"]
+atlas = ExtResource("17_l4koi")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tojoi"]
+atlas = ExtResource("17_l4koi")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0hr4v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0ul1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssqqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vkbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwfgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onjo0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3c8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sowcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tojoi")
+}],
+"loop": true,
+"name": &"spinning",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_6fhp4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2k5hq"]
+resource_name = "rotate"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xa3rl"]
+_data = {
+"RESET": SubResource("Animation_6fhp4"),
+"rotate": SubResource("Animation_2k5hq")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wjww1"]
+radius = 10.0499
+
+[node name="Cliffs" type="Node2D"]
+position = Vector2(70, -27)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u1seb")
+
+[node name="MapCamera" type="Camera2D" parent="."]
+top_level = true
+position = Vector2(576, 326)
+enabled = false
+position_smoothing_enabled = true
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(-1, 1)
+tile_set = SubResource("TileSet_r42fo")
+format = 2
+layer_0/tile_data = PackedInt32Array(2555908, 196609, 0, 2555909, 196609, 0, 2555910, 196609, 0, 2555911, 196609, 0, 2555912, 196609, 0, 2555913, 196609, 0, 2555914, 196609, 0, 2555915, 196609, 0, 2555916, 196609, 0, 2555917, 196609, 0, 2555918, 196609, 0, 2555919, 196609, 0, 2555920, 196609, 0, 2555921, 196609, 0, 2555922, 196609, 0, 2555923, 196609, 0, 2490376, 917505, 0, 2490378, 917505, 0, 2490381, 917505, 0, 2490382, 851969, 1, 2490383, 917505, 1, 2490384, 983041, 1, 2490377, 917505, 0, 2490374, 917505, 0, 2490373, 917505, 0, 2490387, 917505, 0, 2490386, 917505, 0, 2490385, 917505, 0, 2490380, 917505, 0, 2490379, 917505, 0, 2490375, 983041, 0, 2490372, 917505, 0, 1835008, 720897, 8, 1835009, 720897, 8, 1835010, 720897, 8, 1900587, 196608, 12, 1900588, 262144, 12, 1900589, 327680, 12, 1835054, 393216, 11, 1900590, 393216, 12, 1835055, 458752, 11, 1900591, 458752, 12, 1900592, 327680, 12, 1900593, 327680, 12, 1835058, 851968, 11, 1900594, 327680, 12, 1835059, 851968, 11, 1900595, 327680, 12, 1900596, 327680, 12, 1900597, 327680, 12, 1835062, 851968, 11, 1900598, 327680, 12, 1900599, 327680, 12, 1900600, 327680, 12, 1900601, 327680, 12, 1835066, 851968, 11, 1900602, 327680, 12, 1835067, 851968, 11, 1900603, 327680, 12, 1835068, 851968, 11, 1900604, 327680, 12, 1900605, 327680, 12, 1835070, 851968, 11, 1900606, 327680, 12, 1900607, 327680, 12, 1900608, 327680, 12, 1835073, 851968, 11, 1900609, 327680, 12, 1835074, 851968, 11, 1900610, 327680, 12, 1835075, 262144, 268435467, 1900611, 327680, 12, 1900612, 327680, 12, 1835053, 327680, 11, 1900586, 131072, 12, 1835050, 131072, 11, 1835051, 196608, 11, 1835052, 262144, 11, 1835056, 851968, 11, 1835057, 851968, 11, 1835060, 851968, 11, 1835061, 851968, 11, 1835063, 851968, 11, 1835064, 851968, 11, 1835065, 851968, 11, 1835069, 851968, 11, 1835071, 851968, 11, 1835072, 851968, 11, 1835076, 196608, 268435467, 1900613, 131072, 268435468, 1835077, 131072, 268435467, 2555889, 917505, 0, 2621425, 196609, 0, 2555890, 917505, 0, 2621426, 196609, 0, 2555891, 917505, 0, 2621427, 196609, 0, 2555892, 917505, 0, 2621428, 196609, 0, 2555893, 851969, 0, 2621429, 196609, 0, 2555894, 917505, 0, 2621430, 196609, 0, 2555895, 917505, 0, 2621431, 196609, 0, 2555896, 917505, 0, 2621432, 196609, 0, 2555897, 917505, 0, 2621433, 196609, 0, 2555898, 917505, 0, 2621434, 196609, 0, 2555899, 983041, 0, 2621435, 196609, 0, 2555900, 917505, 0, 2621436, 196609, 0, 2555901, 917505, 0, 2621437, 196609, 0, 2555902, 917505, 0, 2621438, 196609, 0, 2621424, 131072, 2, 2555888, 131072, 1, 2621439, 131072, 268435458, 2555924, 131072, 268435458, 2555907, 131072, 2, 2490446, 327680, 11, 2555982, 458752, 12, 2490447, 327680, 11, 2555983, 458752, 12, 2490448, 327680, 11, 2555984, 458752, 12, 2490449, 393216, 11, 2555985, 393216, 12, 2490450, 458752, 11, 2555986, 327680, 12, 2490451, 262144, 11, 2555987, 262144, 12, 2490452, 196608, 11, 2555988, 196608, 12, 2490453, 131072, 268435467, 2555989, 131072, 268435468, 1900523, 131072, 11, 1966059, 131072, 12, 1900524, 196608, 11, 1966060, 196608, 12, 1900525, 786432, 11, 1966061, 786432, 12, 1900526, 851968, 11, 1966062, 851968, 12, 1900527, 917504, 11, 1966063, 917504, 12)
+
+[node name="MagicCliffs" parent="." instance=ExtResource("4_vlpol")]
+position = Vector2(3931, 697)
+
+[node name="ConveyorBelt" parent="." instance=ExtResource("5_ujecy")]
+position = Vector2(978, 635)
+scale = Vector2(1, 0.7)
+
+[node name="ConveyorBelt2" parent="." instance=ExtResource("5_ujecy")]
+position = Vector2(21, 476)
+scale = Vector2(1.01638, 0.694075)
+
+[node name="Pickupables" type="Node2D" parent="."]
+
+[node name="MachineGun" parent="Pickupables" instance=ExtResource("6_07pqv")]
+position = Vector2(1297, 607)
+
+[node name="LaserGun" parent="Pickupables" instance=ExtResource("7_x1gbr")]
+position = Vector2(902, 456)
+
+[node name="Grenade" parent="Pickupables" instance=ExtResource("8_rk1he")]
+position = Vector2(-287, 450)
+
+[node name="Shotgun" parent="Pickupables" instance=ExtResource("9_vhe1k")]
+position = Vector2(246, 605)
+
+[node name="Killzones" type="Node2D" parent="."]
+
+[node name="Left" parent="Killzones" instance=ExtResource("10_5tm67")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Left"]
+position = Vector2(-1264, -465.5)
+shape = SubResource("RectangleShape2D_4bqrb")
+
+[node name="Right" parent="Killzones" instance=ExtResource("10_5tm67")]
+position = Vector2(3119, 900)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Right"]
+position = Vector2(-1264, -465.5)
+shape = SubResource("RectangleShape2D_4bqrb")
+
+[node name="Bottom" parent="Killzones" instance=ExtResource("10_5tm67")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Bottom"]
+position = Vector2(14, -76)
+shape = SubResource("RectangleShape2D_n0dk8")
+
+[node name="Top" parent="Killzones" instance=ExtResource("10_5tm67")]
+position = Vector2(561, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Top"]
+shape = SubResource("RectangleShape2D_n0dk8")
+
+[node name="Collisions" type="Node2D" parent="."]
+
+[node name="GroundCollision" type="StaticBody2D" parent="Collisions" groups=["wall"]]
+position = Vector2(-292, 472)
+scale = Vector2(0.311962, 0.850859)
+collision_mask = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/GroundCollision"]
+scale = Vector2(0.351537, 0.887293)
+shape = SubResource("RectangleShape2D_7xow7")
+
+[node name="GroundCollision2" type="StaticBody2D" parent="Collisions" groups=["wall"]]
+position = Vector2(1305, 631)
+scale = Vector2(0.173969, 0.747263)
+collision_mask = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/GroundCollision2"]
+position = Vector2(0.000246048, 1.45469e-05)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_7xow7")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Collisions" groups=["wall"]]
+position = Vector2(-128, 632)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D"]
+shape = SubResource("RectangleShape2D_jk8sg")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Collisions" groups=["wall"]]
+position = Vector2(192, 633)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_sf0bl")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Collisions" groups=["wall"]]
+position = Vector2(896, 472)
+scale = Vector2(1.03602, 1.25259)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_8pjnn")
+
+[node name="Spike" type="Area2D" parent="."]
+position = Vector2(23, 458)
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("11_owui3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike"]
+shape = SubResource("RectangleShape2D_sfdud")
+
+[node name="Center" type="Node2D" parent="."]
+position = Vector2(557, 426)
+
+[node name="Button_ConveyorBelt" parent="." instance=ExtResource("12_5iilf")]
+position = Vector2(-216, 615)
+interact_with = "../ConveyorBelt"
+
+[node name="Stomper" parent="." instance=ExtResource("13_2v3rw")]
+position = Vector2(904, 368)
+
+[node name="Button_Saw" parent="." instance=ExtResource("12_5iilf")]
+position = Vector2(802, 456)
+interact_with = "../MovingSaw"
+
+[node name="MovingSaw" type="Node2D" parent="."]
+position = Vector2(491, 288)
+script = ExtResource("14_jruri")
+
+[node name="Path2D" type="Path2D" parent="MovingSaw"]
+position = Vector2(1, -5)
+curve = SubResource("Curve2D_s6471")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="MovingSaw/Path2D"]
+position = Vector2(-195, 0)
+
+[node name="Node2D" type="Node2D" parent="MovingSaw/Path2D/PathFollow2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="MovingSaw/Path2D/PathFollow2D/Node2D"]
+position = Vector2(0.999975, 1.46627e-05)
+scale = Vector2(0.693767, 0.662025)
+texture = ExtResource("15_y2o7n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MovingSaw/Path2D/PathFollow2D/Node2D"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_0hr4v")
+animation = &"spinning"
+autoplay = "spinning"
+speed_scale = 4.0
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MovingSaw/Path2D/PathFollow2D/Node2D"]
+libraries = {
+"": SubResource("AnimationLibrary_xa3rl")
+}
+speed_scale = 2.0
+
+[node name="Area2D" type="Area2D" parent="MovingSaw/Path2D/PathFollow2D/Node2D"]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("11_owui3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_wjww1")
+
+[connection signal="body_entered" from="Spike" to="Spike" method="_on_body_entered"]
+[connection signal="body_entered" from="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" to="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" method="_on_body_entered"]

@@ -46,13 +46,13 @@ func _ready() -> void:
 	add_child(dash_timer)
 	
 	if character_type == Globals.Characters.PENGUIN:
-		canGlide = true
+		canDoubleJump = true
 	if character_type == Globals.Characters.CAT:
 		canDash = true
 	if character_type == Globals.Characters.FROG:
 		jump_velocity = -750.0
 	if character_type == Globals.Characters.DUCK:
-		canDoubleJump = true
+		canGlide = true
 	
 	# não tem segurança nenhuma hahahahahahahhaha
 	var path = Globals.CharacterArray[character_type]
@@ -89,7 +89,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	if not is_on_floor() and canGlide and Input.is_action_pressed("jump") and velocity.y > 0:
-		velocity.y = 50
+		velocity.y = 70
 		
 	if locked or Signals.paused:
 		if isDashing:
@@ -103,7 +103,7 @@ func _physics_process(delta: float) -> void:
 		if direction:
 			if Input.is_action_just_pressed("dash"):
 				isDashing = true
-				dashSpeed = Vector2(700 * direction, 0)
+				dashSpeed = Vector2(1000 * direction, 0)
 				dash_timer.start()
 				Sprite.play("dash")
 				locked = true
