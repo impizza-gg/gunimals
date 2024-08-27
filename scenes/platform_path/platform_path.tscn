@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://dd30u2jw5imnb"]
+
+[ext_resource type="Script" path="res://scenes/platform_path/platform_path.gd" id="1_0vxa6"]
+[ext_resource type="PackedScene" uid="uid://c0vn1evuhn47l" path="res://scenes/moving_platform.tscn" id="2_3yvmk"]
+
+[sub_resource type="Curve2D" id="Curve2D_mfj7g"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -83, 272, 0, 0, 0, 0, 508, 273, 0, 0, 0, 0, -83, 272)
+}
+point_count = 3
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qx0p1"]
+properties/0/path = NodePath("Path2D/PathFollow2D:progress")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="Animation" id="Animation_6twrm"]
+resource_name = "move_path"
+length = 20.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 11, 19.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5557i"]
+_data = {
+"move_path": SubResource("Animation_6twrm")
+}
+
+[node name="PlatformPath" type="Node2D"]
+script = ExtResource("1_0vxa6")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_mfj7g")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-19.4026, 272.108)
+rotation = 0.00169205
+progress = 63.6021
+rotates = false
+
+[node name="Node2D" parent="Path2D/PathFollow2D" instance=ExtResource("2_3yvmk")]
+position = Vector2(-14, -1)
+rotation = 1.5708
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_qx0p1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5557i")
+}
+autoplay = "move_path"
