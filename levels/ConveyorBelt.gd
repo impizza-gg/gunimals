@@ -13,7 +13,7 @@ func _process(_delta: float) -> void:
 
 @rpc("any_peer", "call_local")
 func interact() -> void:
-	print("interacting with conveyor belt")
+	#print("interacting with conveyor belt")
 	state += 1
 	if state > 1:
 		state = -1

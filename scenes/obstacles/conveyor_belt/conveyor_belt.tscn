@@ -47,6 +47,7 @@ _data = {
 [node name="StaticBody2D" type="StaticBody2D" groups=["wall"]]
 position = Vector2(979, 645)
 script = ExtResource("1_4m1v3")
+speed = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5.5)
