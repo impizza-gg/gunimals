@@ -1016,6 +1016,7 @@ position = Vector2(599, 597)
 
 [node name="Grenade" parent="Pickupables" instance=ExtResource("5_a85fh")]
 position = Vector2(380, 515)
+current_ammo = 12
 
 [node name="Shotgun" parent="Pickupables" instance=ExtResource("8_ib03e")]
 position = Vector2(303, 596)

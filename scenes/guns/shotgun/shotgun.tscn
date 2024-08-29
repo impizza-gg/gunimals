@@ -11,13 +11,13 @@
 script = ExtResource("1_m0kal")
 max_ammo = 12
 max_clips = 4
-bullet_num = 4
-damage = 8
+bullet_num = 6
+damage = 12
 ShootPlayer = NodePath("Shoot")
 PickUpScene = ExtResource("2_7x7cu")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2(23, -2)
+position = Vector2(26, -2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.048, 1)

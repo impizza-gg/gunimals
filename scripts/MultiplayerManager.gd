@@ -118,11 +118,13 @@ func back(host_disconnect = false) -> void:
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	peer.close()
 	$"../MenuCamera".enabled = true
-		
-	var bg_scene := load("res://main_menu_background.tscn")
-	var bg = bg_scene.instantiate()
-	print(bg)
-	$"..".add_child(bg)
+	
+	var prev_bg = $"..".get_node_or_null("Forest")
+	if not prev_bg:
+		var bg_scene := load("res://main_menu_background.tscn")
+		var bg = bg_scene.instantiate()
+		print(bg)
+		$"..".add_child(bg)
 	
 	WaitingRoom.hide()
 	MainMenu.show()

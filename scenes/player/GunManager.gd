@@ -76,12 +76,14 @@ func _process(_delta: float) -> void:
 	if current_gun and current_gun.Sprite:
 		var deg := rad_to_deg(rotation)
 		var check = deg > -90 and deg < 90
-		if flipped and check:
+		#if flipped and check:
+		if check:
 			flipped = false
 			current_gun.Sprite.flip_v = false
 			if current_gun.SpawnPoint:
 				current_gun.SpawnPoint.position.y *= -1
-		elif not flipped and not check:
+		#elif not flipped and not check:
+		else:
 			flipped = true
 			current_gun.Sprite.flip_v = true
 			if current_gun.SpawnPoint:

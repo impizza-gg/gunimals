@@ -50,9 +50,9 @@ stretch_mode = 1
 motion_scale = Vector2(0.15, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayerFarground"]
-offset_left = -537.0
-offset_top = 574.0
-offset_right = 835.0
-offset_bottom = 844.0
+offset_left = -546.0
+offset_top = 576.0
+offset_right = 826.0
+offset_bottom = 846.0
 texture = ExtResource("4_2dy0i")
 metadata/_edit_use_anchors_ = true

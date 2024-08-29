@@ -1122,6 +1122,7 @@ position = Vector2(918, 561)
 
 [node name="Grenade" parent="Pickupables" instance=ExtResource("9_p18yr")]
 position = Vector2(246, 201)
+current_ammo = 12
 
 [node name="Shotgun" parent="Pickupables" instance=ExtResource("10_4jfih")]
 position = Vector2(-38, 216)
@@ -1187,14 +1188,14 @@ shape = SubResource("RectangleShape2D_kc41a")
 position = Vector2(557, 426)
 
 [node name="Button_ConveyorBelt" parent="." instance=ExtResource("13_5soqv")]
-position = Vector2(214, 214)
+position = Vector2(211, 220)
 interact_with = "../ConveyorBelt"
 
 [node name="measuring" type="Node2D" parent="."]
-position = Vector2(728, 596)
+position = Vector2(708, 808)
 
 [node name="Button_Saw" parent="." instance=ExtResource("13_5soqv")]
-position = Vector2(695, 218)
+position = Vector2(695, 220)
 interact_with = "../MovingSaw"
 
 [node name="MovingSaw" type="Node2D" parent="."]
@@ -1239,7 +1240,7 @@ position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_uukim")
 
 [node name="MovingSaw2" type="Node2D" parent="."]
-position = Vector2(416, 547)
+position = Vector2(-1642, 254)
 script = ExtResource("15_4ys38")
 
 [node name="Path2D" type="Path2D" parent="MovingSaw2"]

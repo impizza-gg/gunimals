@@ -23,8 +23,8 @@ slows_down = true
 
 [node name="Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_yi6iu")
-volume_db = -8.0
-pitch_scale = 0.6
+volume_db = -12.0
+pitch_scale = 0.5
 max_polyphony = 20
 
 [node name="Reload" type="AudioStreamPlayer" parent="."]
@@ -38,7 +38,7 @@ stream = ExtResource("3_mcsb8")
 max_polyphony = 10
 bus = &"sfx"
 
-[node name="MachineGun" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.150781, 0.210937)
 texture = ExtResource("6_rowpf")
 

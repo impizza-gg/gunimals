@@ -266,10 +266,10 @@ modulate = Color(1, 0.650605, 0.22393, 1)
 layout_mode = 2
 size_flags_vertical = 4
 localize_numeral_system = false
-theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
 theme_override_colors/default_color = Color(0.896571, 0.431222, 9.62615e-07, 1)
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "
 [center]

@@ -8,7 +8,7 @@ extends Node
 
 @onready var mapPool : Array[String] = [
 	#"res://levels/playground/playground.tscn",
-	#"res://levels/saws/saws.tscn",
+	"res://levels/saws/saws.tscn",
 	"res://levels/cliffs/cliffs.tscn",
 	"res://levels/space/space.tscn"
 
@@ -48,7 +48,7 @@ func on_player_death(id: int) -> void:
 	for pid in MultiplayerManager.connected_players:
 		if MultiplayerManager.connected_players[pid]["alive"]:
 			count_alive += 1
-	if count_alive == 0:
+	if count_alive == 0 and WaitTimer2.is_stopped():
 		current_round += 1
 		WaitTimer2.start()
 		return
@@ -204,7 +204,6 @@ func game_started() -> void:
 func game_started_all() -> void:
 	var bg = $"..".get_node_or_null("Forest")
 	if bg:
-		print(bg)
 		$"..".remove_child(bg)
 		bg.queue_free()
 	$"../MenuCamera".enabled = false

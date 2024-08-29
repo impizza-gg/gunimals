@@ -1102,6 +1102,7 @@ position = Vector2(902, 456)
 
 [node name="Grenade" parent="Pickupables" instance=ExtResource("8_rk1he")]
 position = Vector2(415, 273)
+current_ammo = 12
 
 [node name="Shotgun" parent="Pickupables" instance=ExtResource("9_vhe1k")]
 position = Vector2(246, 605)
@@ -1176,8 +1177,8 @@ shape = SubResource("RectangleShape2D_sfdud")
 position = Vector2(557, 426)
 
 [node name="Button_ConveyorBelt" parent="." instance=ExtResource("12_5iilf")]
-position = Vector2(-216, 615)
-interact_with = "../ConveyorBelt"
+position = Vector2(-213, 615)
+interact_with = "../ConveyorBelt2"
 
 [node name="Stomper" parent="." instance=ExtResource("13_2v3rw")]
 position = Vector2(904, 368)
@@ -1280,7 +1281,7 @@ libraries = {
 autoplay = "new_animation"
 
 [node name="measuring" type="Node2D" parent="."]
-position = Vector2(1030, 397)
+position = Vector2(857, 800)
 
 [connection signal="body_entered" from="Spike" to="Spike" method="_on_body_entered"]
 [connection signal="body_entered" from="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" to="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" method="_on_body_entered"]

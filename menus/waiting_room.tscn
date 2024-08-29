@@ -1,14 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://cq5jogagp2fgv"]
+[gd_scene load_steps=19 format=3 uid="uid://cq5jogagp2fgv"]
 
 [ext_resource type="Script" path="res://menus/waiting_room.gd" id="1_4g615"]
 [ext_resource type="Theme" uid="uid://b7q6nhv8tdmuy" path="res://assets/themes/default_theme.tres" id="2_lrvm7"]
 [ext_resource type="StyleBox" uid="uid://carfjrrwdyj05" path="res://assets/themes/panel_style.tres" id="3_k7d6c"]
 [ext_resource type="PackedScene" uid="uid://d0r8i3701lj7f" path="res://menus/menu_button.tscn" id="4_ii43b"]
-[ext_resource type="Texture2D" uid="uid://s4qor1jh14yg" path="res://assets/prompts/w_light.png" id="5_37iuv"]
 [ext_resource type="SpriteFrames" uid="uid://c8fl1hbc8i8ws" path="res://scenes/player/sprites/sprite_frames/cat.tres" id="5_bo3kj"]
 [ext_resource type="Texture2D" uid="uid://c1vgfc13pujyt" path="res://assets/prompts/shift_light.png" id="6_m1r08"]
 [ext_resource type="Texture2D" uid="uid://dxi3msxeub0hu" path="res://assets/prompts/a_key_light.png" id="6_veotx"]
-[ext_resource type="Texture2D" uid="uid://b6748htuooqt0" path="res://assets/prompts/s_light.png" id="7_bghwd"]
 [ext_resource type="SpriteFrames" uid="uid://d3ud5wii03kdx" path="res://scenes/player/sprites/sprite_frames/duck.tres" id="7_rxuw6"]
 [ext_resource type="Texture2D" uid="uid://dwwjdfbh1wo0b" path="res://assets/prompts/d_light.png" id="8_1gl2h"]
 [ext_resource type="Texture2D" uid="uid://dvyhyxou0pwse" path="res://assets/prompts/space_light.png" id="8_g3h7k"]
@@ -17,6 +15,7 @@
 [ext_resource type="SpriteFrames" uid="uid://baonqyv5a1qvy" path="res://scenes/player/sprites/sprite_frames/penguin.tres" id="10_pnhg7"]
 [ext_resource type="Texture2D" uid="uid://c82oucqmup1yo" path="res://assets/prompts/left_mouse_button_light.png" id="10_ufx3m"]
 [ext_resource type="Texture2D" uid="uid://dibw5m7fxh1s7" path="res://assets/prompts/g_light.png" id="11_iiq0c"]
+[ext_resource type="Texture2D" uid="uid://c00emnfmruo7b" path="res://assets/prompts/r_light.png" id="16_ylkjv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhln3"]
 bg_color = Color(0.0802295, 0.0076866, 0.185958, 1)
@@ -125,7 +124,7 @@ theme_override_constants/margin_bottom = 10
 [node name="Lists" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer"]
 layout_mode = 2
 theme = SubResource("Theme_fmuo0")
-theme_override_constants/separation = 30
+theme_override_constants/separation = 20
 
 [node name="Characters" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists"]
 layout_mode = 2
@@ -233,28 +232,18 @@ text = "CONTROLS_TITLE"
 
 [node name="MoveBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls"]
 layout_mode = 2
-theme_override_constants/separation = 105
+theme_override_constants/separation = 55
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/MoveBox"]
 layout_mode = 2
 
-[node name="W" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/MoveBox/Control"]
-position = Vector2(8, 10)
-scale = Vector2(0.6, 0.594)
-texture = ExtResource("5_37iuv")
-
 [node name="A" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/MoveBox/Control"]
-position = Vector2(33, 10)
+position = Vector2(8, 9)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("6_veotx")
 
-[node name="S" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/MoveBox/Control"]
-position = Vector2(58, 10)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("7_bghwd")
-
 [node name="D" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/MoveBox/Control"]
-position = Vector2(83, 10)
+position = Vector2(34, 9)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("8_1gl2h")
 
@@ -309,6 +298,22 @@ texture = ExtResource("11_iiq0c")
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/DropBox"]
 layout_mode = 2
 text = "DROP_CONTROL"
+
+[node name="ReloadBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/ReloadBox"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/ReloadBox/Control"]
+position = Vector2(9, 13)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("16_ylkjv")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists/Controls/ReloadBox"]
+layout_mode = 2
+text = "RELOAD_CONTROL"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BodyContainer/SettingsContainer/MarginContainer/Lists"]
 layout_mode = 2
