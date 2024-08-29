@@ -24,6 +24,7 @@ var canDoubleJump := false
 var doubleJumpUsed := false
 var canDash := false
 var isDashing := false
+var dashUsed := false
 var dashSpeed := Vector2.ZERO
 var canGlide := false
 var character_type := 0
@@ -87,6 +88,7 @@ func _physics_process(delta: float) -> void:
 	
 	if is_on_floor():
 		doubleJumpUsed = false
+		dashUsed = false
 		
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -97,14 +99,16 @@ func _physics_process(delta: float) -> void:
 		if isDashing:
 			Sprite.play("dash")
 			velocity = dashSpeed
+			dashUsed = true
 		#else:
 			#velocity = Vector2.ZERO
 		
 	if not locked and not Signals.paused: 
 		var direction := Input.get_axis("move_left", "move_right")
 		if direction:
-			if Input.is_action_just_pressed("dash"):
+			if Input.is_action_just_pressed("dash") and not dashUsed:
 				isDashing = true
+				dashUsed = true
 				dashSpeed = Vector2(1000 * direction, 0)
 				dash_timer.start()
 				Sprite.play("dash")

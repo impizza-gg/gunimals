@@ -9,7 +9,7 @@ extends Node
 @onready var mapPool : Array[String] = [
 	#"res://levels/playground/playground.tscn",
 	#"res://levels/saws/saws.tscn",
-	#"res://levels/cliffs/cliffs.tscn",
+	"res://levels/cliffs/cliffs.tscn",
 	"res://levels/space/space.tscn"
 
 ]
@@ -112,7 +112,8 @@ func clear_game() -> void:
 func get_spawns(map: String) -> Array[Vector2]:
 	var playgroundSpawns : Array[Vector2] = [Vector2(400, 500), Vector2(1100, 500), Vector2(700, 500)]
 	var sawsSpawns : Array[Vector2] = [Vector2(100, 500), Vector2(900, 500), Vector2(510, 160)]
-	var cliffSpawns : Array[Vector2] = [Vector2(220, 600), Vector2(320, 600), Vector2(520, 600), Vector2(720, 600)]
+	var cliffSpawns : Array[Vector2] = [Vector2(-100, 600), Vector2(170, 600), Vector2(820, 400), Vector2(1080, 400)]
+	var spaceSpawns : Array[Vector2] = [Vector2(220, 600), Vector2(320, 600), Vector2(520, 600), Vector2(720, 600)]
 	var spawns : Array[Vector2] = []
 	
 	if map == "res://levels/playground/playground.tscn":
@@ -122,7 +123,7 @@ func get_spawns(map: String) -> Array[Vector2]:
 	elif map == "res://levels/cliffs/cliffs.tscn":
 		spawns = cliffSpawns
 	elif map == "res://levels/space/space.tscn":
-		spawns = cliffSpawns
+		spawns = spaceSpawns
 	else:
 		spawns = playgroundSpawns
 
@@ -179,8 +180,6 @@ func game_started() -> void:
 	$"../CanvasLayer/SceneTransition".rpc("playTransition", true)
 		
 	var map = mapPool.pick_random()
-	while map == "res://levels/space/space.tscn":
-		map = mapPool.pick_random()
 		
 	MapSpawner.spawn({
 		"map": map

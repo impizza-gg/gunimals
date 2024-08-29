@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://dt3lrey08cs1u"]
+[gd_scene load_steps=55 format=3 uid="uid://dt3lrey08cs1u"]
 
 [ext_resource type="Texture2D" uid="uid://v0syu0pelecj" path="res://assets/sprites/world/tileset.png" id="1_dwlqv"]
 [ext_resource type="Texture2D" uid="uid://vfsvmy82ajx0" path="res://assets/sprites/world/Assets.png" id="2_7nibq"]
@@ -6,10 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cc0cm7mkoi21m" path="res://levels/MagicCliffs.tscn" id="4_vlpol"]
 [ext_resource type="PackedScene" uid="uid://ck10vlm4ryxih" path="res://scenes/obstacles/conveyor_belt/conveyor_belt.tscn" id="5_ujecy"]
 [ext_resource type="PackedScene" uid="uid://bgi8lcckv30nb" path="res://scenes/pickupables/machine_gun_pickup/machine_gun_pickup.tscn" id="6_07pqv"]
-[ext_resource type="Texture2D" uid="uid://dxrphko4y3vl3" path="res://assets/sprites/conveyor_belt/Converyor Left.png" id="6_vemty"]
-[ext_resource type="SpriteFrames" uid="uid://b7j2gppmkfcwk" path="res://assets/sprites/conveyor_belt/spriteframes/conveyor_middle.tres" id="7_qukh7"]
 [ext_resource type="PackedScene" uid="uid://du8d2k7flouhi" path="res://scenes/pickupables/laser_gun_pickup/laser_gun_pickup.tscn" id="7_x1gbr"]
-[ext_resource type="Texture2D" uid="uid://b4j36riiblue4" path="res://assets/sprites/conveyor_belt/Conveyor Right.png" id="8_8q6d1"]
 [ext_resource type="PackedScene" uid="uid://byeo264dv3ep" path="res://scenes/pickupables/grenade_pickup/grenade_pickup.tscn" id="8_rk1he"]
 [ext_resource type="PackedScene" uid="uid://cnd2g7lqjwcjm" path="res://scenes/pickupables/shotgun_pickup/shotgun_pickup.tscn" id="9_vhe1k"]
 [ext_resource type="PackedScene" uid="uid://cta6j5ciwsly6" path="res://scenes/killzone.tscn" id="10_5tm67"]
@@ -850,134 +847,6 @@ sources/0 = SubResource("TileSetAtlasSource_o5d1n")
 sources/1 = SubResource("TileSetAtlasSource_7juhw")
 sources/2 = SubResource("TileSetAtlasSource_17nme")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k35lm"]
-atlas = ExtResource("6_vemty")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mf70m"]
-atlas = ExtResource("6_vemty")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_whmty"]
-atlas = ExtResource("6_vemty")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ri8rg"]
-atlas = ExtResource("6_vemty")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_adtes"]
-atlas = ExtResource("6_vemty")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4b11c"]
-atlas = ExtResource("6_vemty")
-region = Rect2(80, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qb8sh"]
-atlas = ExtResource("6_vemty")
-region = Rect2(96, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bhyjm"]
-atlas = ExtResource("6_vemty")
-region = Rect2(112, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_fy5a1"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k35lm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mf70m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_whmty")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ri8rg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_adtes")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4b11c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qb8sh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bhyjm")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0bc6h"]
-atlas = ExtResource("8_8q6d1")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2owyn"]
-atlas = ExtResource("8_8q6d1")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_meiyq"]
-atlas = ExtResource("8_8q6d1")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_loa3v"]
-atlas = ExtResource("8_8q6d1")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1g6kd"]
-atlas = ExtResource("8_8q6d1")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xmwgm"]
-atlas = ExtResource("8_8q6d1")
-region = Rect2(80, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dkn1f"]
-atlas = ExtResource("8_8q6d1")
-region = Rect2(96, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0b16u"]
-atlas = ExtResource("8_8q6d1")
-region = Rect2(112, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_643hy"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0bc6h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2owyn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_meiyq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_loa3v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1g6kd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xmwgm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dkn1f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0b16u")
-}],
-"loop": true,
-"name": &"right",
-"speed": 5.0
-}]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bqrb"]
 size = Vector2(52, 723)
 
@@ -1117,9 +986,9 @@ radius = 10.0499
 
 [sub_resource type="Curve2D" id="Curve2D_yf60i"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2, -48, 0, 0, 0, 0, -2, -48, 0, 0, 0, 0, -2, 321, 0, 0, 0, 0, -2, -48)
+"points": PackedVector2Array(0, 0, 0, 0, -1, -41, 0, 0, 0, 0, -2, 321, 0, 0, 0, 0, -1, -41)
 }
-point_count = 4
+point_count = 3
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qx0p1"]
 properties/0/path = NodePath("Path2D/PathFollow2D:progress")
@@ -1156,6 +1025,21 @@ point_count = 3
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_a7igj"]
 
+[sub_resource type="Animation" id="Animation_cxnh0"]
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6.16667, 12.2667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
+}
+
 [sub_resource type="Animation" id="Animation_b053u"]
 resource_name = "new_animation"
 length = 12.0
@@ -1171,21 +1055,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_cxnh0"]
-length = 12.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 6.16667, 12.2667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ugq3b"]
@@ -1223,103 +1092,6 @@ scale = Vector2(1, 0.7)
 position = Vector2(21, 476)
 scale = Vector2(1.01638, 0.694075)
 
-[node name="ConveyorLeft" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(-263.681, -4.32229)
-scale = Vector2(1.176, 1.671)
-sprite_frames = SubResource("SpriteFrames_fy5a1")
-frame_progress = 0.956326
-
-[node name="ConveyorMiddle" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(-244.987, -4.32229)
-scale = Vector2(1.17642, 1.67062)
-sprite_frames = ExtResource("7_qukh7")
-animation = &"middle"
-frame_progress = 0.28018
-
-[node name="ConveyorMiddle2" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(-226.293, -4.3223)
-scale = Vector2(1.17642, 1.67062)
-sprite_frames = ExtResource("7_qukh7")
-animation = &"middle"
-frame_progress = 0.679525
-
-[node name="ConveyorMiddle3" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(-208.583, -4.32228)
-scale = Vector2(1.176, 1.671)
-sprite_frames = ExtResource("7_qukh7")
-animation = &"middle"
-frame_progress = 0.722816
-
-[node name="ConveyorMiddle4" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(-189.89, -4.3223)
-scale = Vector2(1.176, 1.671)
-sprite_frames = ExtResource("7_qukh7")
-animation = &"middle"
-frame_progress = 0.842021
-
-[node name="ConveyorMiddle5" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(-171.196, -4.3223)
-scale = Vector2(1.176, 1.671)
-sprite_frames = ExtResource("7_qukh7")
-animation = &"middle"
-frame_progress = 0.634254
-
-[node name="ConveyorMiddle6" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(-155.454, -4.32229)
-scale = Vector2(1.17642, 1.67062)
-sprite_frames = ExtResource("7_qukh7")
-animation = &"middle"
-frame_progress = 0.912883
-
-[node name="ConveyorMiddle7" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(-136.76, -4.32229)
-scale = Vector2(1.17642, 1.67062)
-sprite_frames = ExtResource("7_qukh7")
-animation = &"middle"
-frame_progress = 0.912883
-
-[node name="ConveyorMiddle8" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(-118.066, -4.32229)
-scale = Vector2(1.17642, 1.67062)
-sprite_frames = ExtResource("7_qukh7")
-animation = &"middle"
-frame_progress = 0.912883
-
-[node name="ConveyorMiddle9" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(-99.3723, -4.32229)
-scale = Vector2(1.17642, 1.67062)
-sprite_frames = ExtResource("7_qukh7")
-animation = &"middle"
-frame_progress = 0.912883
-
-[node name="ConveyorMiddle10" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(-80.6785, -4.32229)
-scale = Vector2(1.17642, 1.67062)
-sprite_frames = ExtResource("7_qukh7")
-animation = &"middle"
-frame_progress = 0.912883
-
-[node name="ConveyorMiddle11" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(-61.9847, -4.32229)
-scale = Vector2(1.17642, 1.67062)
-sprite_frames = ExtResource("7_qukh7")
-animation = &"middle"
-frame_progress = 0.912883
-
-[node name="ConveyorMiddle12" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(-43.2909, -4.32229)
-scale = Vector2(1.17642, 1.67062)
-sprite_frames = ExtResource("7_qukh7")
-animation = &"middle"
-frame_progress = 0.912883
-
-[node name="ConveyorRight" type="AnimatedSprite2D" parent="ConveyorBelt2"]
-position = Vector2(261.713, -5.76306)
-scale = Vector2(1.176, 1.671)
-sprite_frames = SubResource("SpriteFrames_643hy")
-animation = &"right"
-frame_progress = 0.472107
-
 [node name="Pickupables" type="Node2D" parent="."]
 
 [node name="MachineGun" parent="Pickupables" instance=ExtResource("6_07pqv")]
@@ -1337,29 +1109,28 @@ position = Vector2(246, 605)
 [node name="Killzones" type="Node2D" parent="."]
 
 [node name="Left" parent="Killzones" instance=ExtResource("10_5tm67")]
+position = Vector2(-983, 329)
+scale = Vector2(1, 1.52)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Left"]
-position = Vector2(-1264, -465.5)
 shape = SubResource("RectangleShape2D_4bqrb")
 
 [node name="Right" parent="Killzones" instance=ExtResource("10_5tm67")]
-position = Vector2(3119, 900)
+position = Vector2(1995, 335)
+scale = Vector2(1, 1.48)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Right"]
-position = Vector2(-1264, -465.5)
 shape = SubResource("RectangleShape2D_4bqrb")
 
 [node name="Bottom" parent="Killzones" instance=ExtResource("10_5tm67")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Bottom"]
-position = Vector2(17, -153)
 shape = SubResource("RectangleShape2D_n0dk8")
 
 [node name="Top" parent="Killzones" instance=ExtResource("10_5tm67")]
-position = Vector2(561, 3)
+position = Vector2(520, -211)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Top"]
-position = Vector2(3, 39)
 shape = SubResource("RectangleShape2D_n0dk8")
 
 [node name="Collisions" type="Node2D" parent="."]
@@ -1465,7 +1236,7 @@ position = Vector2(0, -1)
 curve = SubResource("Curve2D_yf60i")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="PlatformPath/Path2D"]
-position = Vector2(-2, -48.259)
+position = Vector2(-1, -41)
 rotation = 0.00169205
 rotates = false
 
@@ -1507,6 +1278,9 @@ libraries = {
 "": SubResource("AnimationLibrary_ugq3b")
 }
 autoplay = "new_animation"
+
+[node name="measuring" type="Node2D" parent="."]
+position = Vector2(1030, 397)
 
 [connection signal="body_entered" from="Spike" to="Spike" method="_on_body_entered"]
 [connection signal="body_entered" from="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" to="MovingSaw/Path2D/PathFollow2D/Node2D/Area2D" method="_on_body_entered"]

@@ -848,11 +848,46 @@ sources/0 = SubResource("TileSetAtlasSource_vrs1l")
 sources/1 = SubResource("TileSetAtlasSource_64160")
 sources/2 = SubResource("TileSetAtlasSource_23u8y")
 
-[sub_resource type="GDScript" id="GDScript_xm5qf"]
-script/source = "extends Node2D
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h27f0"]
+size = Vector2(545, 25)
 
-var spawnPoints : Array[Vector2] = [Vector2(100, 500), Vector2(900, 500), Vector2(510, 160)]
-"
+[sub_resource type="Animation" id="Animation_jchqb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n0da6"]
+resource_name = "conveyor_belt"
+length = 0.15
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(4.5, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_samod"]
+_data = {
+"RESET": SubResource("Animation_jchqb"),
+"conveyor_belt": SubResource("Animation_n0da6")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wok2"]
 size = Vector2(43, 873)
@@ -991,6 +1026,12 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_qnl8p"]
 radius = 10.0499
 
+[sub_resource type="GDScript" id="GDScript_xm5qf"]
+script/source = "extends Node2D
+
+var spawnPoints : Array[Vector2] = [Vector2(100, 500), Vector2(900, 500), Vector2(510, 160)]
+"
+
 [node name="Saws" type="Node2D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -1036,11 +1077,6 @@ libraries = {
 "": SubResource("AnimationLibrary_samod")
 }
 
-[node name="ConveyorBelt2" parent="." instance=ExtResource("3_h7drm")]
-position = Vector2(512, 344)
-scale = Vector2(0.6, 0.7)
-script = SubResource("GDScript_xm5qf")
-
 [node name="Pickupables" type="Node2D" parent="."]
 position = Vector2(-1, 0)
 
@@ -1059,28 +1095,27 @@ position = Vector2(814, 559)
 [node name="Killzones" type="Node2D" parent="."]
 
 [node name="Left" parent="Killzones" instance=ExtResource("11_xpf73")]
-position = Vector2(-517, 427)
-scale = Vector2(1.75263, 1.21402)
+position = Vector2(-834, 183)
+scale = Vector2(1.75263, 1.89402)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Left"]
 shape = SubResource("RectangleShape2D_7wok2")
 
 [node name="Right" parent="Killzones" instance=ExtResource("11_xpf73")]
-position = Vector2(1516, 414)
-scale = Vector2(1.00695, 1.18595)
+position = Vector2(1832, 236)
+scale = Vector2(2.24695, 1.86595)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Right"]
 shape = SubResource("RectangleShape2D_7wok2")
 
 [node name="Bottom" parent="Killzones" instance=ExtResource("11_xpf73")]
-position = Vector2(512, 886)
+position = Vector2(529, 843)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Bottom"]
-position = Vector2(-5, -124)
 shape = SubResource("RectangleShape2D_rsu6c")
 
 [node name="Top" parent="Killzones" instance=ExtResource("11_xpf73")]
-position = Vector2(522, -80)
+position = Vector2(515, -441)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Top"]
 shape = SubResource("RectangleShape2D_rsu6c")
@@ -1258,13 +1293,14 @@ script = ExtResource("12_qa452")
 position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_qnl8p")
 
-[node name="Button_ConveyorBelt2" parent="." instance=ExtResource("13_j8bkv")]
-position = Vector2(337, 569)
-script = SubResource("GDScript_xm5qf")
-
 [node name="Button_Saw2" parent="." instance=ExtResource("13_j8bkv")]
 position = Vector2(645, 424)
 interact_with = "../MovingSaw"
+
+[node name="ConveyorBelt2" parent="." instance=ExtResource("3_h7drm")]
+position = Vector2(512, 344)
+scale = Vector2(0.6, 0.7)
+script = SubResource("GDScript_xm5qf")
 
 [node name="Measuring" type="Node2D" parent="."]
 position = Vector2(507, 260)

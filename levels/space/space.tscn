@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://vfsvmy82ajx0" path="res://assets/sprites/world/Assets.png" id="2_3jl65"]
 [ext_resource type="Texture2D" uid="uid://ddxxshcbnij1f" path="res://assets/sprites/world/Decor.png" id="3_kqnr0"]
 [ext_resource type="PackedScene" uid="uid://ck10vlm4ryxih" path="res://scenes/obstacles/conveyor_belt/conveyor_belt.tscn" id="6_s5jbt"]
-[ext_resource type="Texture2D" uid="uid://bwggdfsjxd07d" path="res://assets/sprites/world/tile_green.png" id="7_1qfs6"]
 [ext_resource type="PackedScene" uid="uid://bgi8lcckv30nb" path="res://scenes/pickupables/machine_gun_pickup/machine_gun_pickup.tscn" id="7_bmyr1"]
 [ext_resource type="PackedScene" uid="uid://du8d2k7flouhi" path="res://scenes/pickupables/laser_gun_pickup/laser_gun_pickup.tscn" id="8_yohcx"]
 [ext_resource type="PackedScene" uid="uid://byeo264dv3ep" path="res://scenes/pickupables/grenade_pickup/grenade_pickup.tscn" id="9_p18yr"]
@@ -1019,6 +1018,21 @@ point_count = 3
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tc3gd"]
 
+[sub_resource type="Animation" id="Animation_cxnh0"]
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6.16667, 12.2667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
+}
+
 [sub_resource type="Animation" id="Animation_b053u"]
 resource_name = "new_animation"
 length = 12.0
@@ -1034,21 +1048,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_cxnh0"]
-length = 12.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 6.16667, 12.2667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ugq3b"]
@@ -1130,30 +1129,30 @@ position = Vector2(-38, 216)
 [node name="Killzones" type="Node2D" parent="."]
 
 [node name="Left" parent="Killzones" instance=ExtResource("11_mdlnk")]
-position = Vector2(-423, 404)
-scale = Vector2(1.52, 1.16)
+position = Vector2(-524, 339)
+scale = Vector2(1.52, 1.74964)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Left"]
-position = Vector2(0, 1)
+position = Vector2(0, -3.09944e-06)
 shape = SubResource("RectangleShape2D_7orlc")
 
 [node name="Right" parent="Killzones" instance=ExtResource("11_mdlnk")]
-position = Vector2(1263, 403)
-scale = Vector2(1, 1.16)
+position = Vector2(1543, 317)
+scale = Vector2(1, 1.68)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Right"]
-position = Vector2(85, 2.58621)
+position = Vector2(0, -2.32458e-05)
 scale = Vector2(1.32, 1)
 shape = SubResource("RectangleShape2D_7orlc")
 
 [node name="Bottom" parent="Killzones" instance=ExtResource("11_mdlnk")]
+position = Vector2(538, 875)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Bottom"]
-position = Vector2(14, -76)
 shape = SubResource("RectangleShape2D_monco")
 
 [node name="Top" parent="Killzones" instance=ExtResource("11_mdlnk")]
-position = Vector2(561, 3)
+position = Vector2(530, -246)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzones/Top"]
 shape = SubResource("RectangleShape2D_monco")
